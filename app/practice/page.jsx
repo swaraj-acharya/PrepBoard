@@ -1,0 +1,139 @@
+"use client";
+import { useEffect, useMemo, useState } from "react";
+import { useData, DIFF } from "@/lib/data";
+import { useStore } from "@/lib/store";
+import { resolveTopics } from "@/lib/topics";
+import { useOpenItem } from "@/components/Drawer";
+import ItemRow from "@/components/ItemRow";
+import GoalCard from "@/components/GoalCard";
+
+const PLATFORMS = [["all", "All"], ["lc", "LeetCode"], ["cf", "Codeforces"], ["cc", "CodeChef"]];
+const ORDER = { E: 0, M: 1, H: 2 };
+const topicsOf = tags => { const { names } = resolveTopics(tags); return names.length ? names : ["How to Approach a Problem"]; };
+
+export default function Practice() {
+  const { problems, cf, cc, want, ready } = useData();
+  const { problems: prog } = useStore();
+  const open = useOpenItem();
+  useEffect(() => { want("cf"); want("cc"); }, [want]);
+
+  const [platform, setPlatform] = useState("all");
+  const [q, setQ] = useState("");
+  const [diff, setDiff] = useState("");
+  const [topic, setTopic] = useState("");
+  const [status, setStatus] = useState("");
+  const [premium, setPremium] = useState("all");
+  const [sort, setSort] = useState("easy");
+  const [limit, setLimit] = useState(100);
+
+  // One flat, searchable list of every question.
+  const index = useMemo(() => {
+    const out = [];
+    if (problems) for (const [s, p] of Object.entries(problems)) {
+      out.push({ id: s, pf: "lc", text: `${p.n || ""} ${p.t || ""} ${s}`.toLowerCase(), level: p.d || "M", rating: 0, num: p.n || 0, premium: !!p.p, topics: topicsOf(p.g || []) });
+    }
+    if (cf) for (const [id, p] of cf.map) {
+      const code = id.slice(3);
+      out.push({ id, pf: "cf", text: `${code} ${p.name}`.toLowerCase(), level: p.rating ? (p.rating <= 1200 ? "E" : p.rating <= 1900 ? "M" : "H") : /^[AB]/.test(p.index) ? "E" : /^[CD]/.test(p.index) ? "M" : "H", rating: p.rating, num: +p.contest, topics: topicsOf(p.tags) });
+    }
+    if (cc) for (const [id, p] of cc.map) out.push({ id, pf: "cc", text: `${p.code} ${p.name}`.toLowerCase(), level: p.level, rating: p.rating, num: 0, topics: topicsOf(p.tags) });
+    return out;
+  }, [problems, cf, cc]);
+
+  const counts = useMemo(() => ({ all: index.length, lc: index.filter(x => x.pf === "lc").length, cf: index.filter(x => x.pf === "cf").length, cc: index.filter(x => x.pf === "cc").length }), [index]);
+  const inPlatform = useMemo(() => index.filter(x => platform === "all" || x.pf === platform), [index, platform]);
+  const topicCounts = useMemo(() => {
+    const c = {};
+    for (const x of inPlatform) for (const t of x.topics) c[t] = (c[t] || 0) + 1;
+    return Object.entries(c).sort((a, b) => b[1] - a[1]);
+  }, [inPlatform]);
+
+  const list = useMemo(() => {
+    const t = q.trim().toLowerCase();
+    const out = inPlatform.filter(x => {
+      if (t && !x.text.includes(t)) return false;
+      if (diff && x.level !== diff) return false;
+      if (topic && !x.topics.includes(topic)) return false;
+      if (premium === "free" && x.premium) return false;
+      if (premium === "premium" && !x.premium) return false;
+      const st = prog[x.id]?.status;
+      if (status === "todo" && st) return false;
+      if (status === "done" && !st) return false;
+      if (status === "revisit" && st !== "revisit") return false;
+      return true;
+    });
+    const by = {
+      easy: (a, b) => ORDER[a.level] - ORDER[b.level] || a.rating - b.rating || a.num - b.num,
+      hard: (a, b) => ORDER[b.level] - ORDER[a.level] || b.rating - a.rating || b.num - a.num,
+      newest: (a, b) => b.num - a.num,
+      number: (a, b) => a.num - b.num || a.text.localeCompare(b.text),
+    }[sort];
+    return out.sort(by);
+  }, [inPlatform, q, diff, topic, premium, status, sort, prog]);
+
+  useEffect(() => { setLimit(100); }, [platform, q, diff, topic, premium, status, sort]);
+
+  function randomPick() {
+    const pool = list.filter(x => !prog[x.id]?.status);
+    if (pool.length) open(pool[Math.floor(Math.random() * pool.length)].id);
+  }
+
+  const loadingMore = (platform === "cf" && !cf) || (platform === "cc" && !cc) || (platform === "all" && (!cf || !cc));
+
+  return (
+    <div>
+      <header className="page-head">
+        <h1>More questions</h1>
+        <p className="muted">Every question on LeetCode (including Premium), Codeforces and CodeChef, outside your DSA path. Filter by topic and difficulty, or let it pick one for you.</p>
+      </header>
+      <GoalCard />
+
+      <div className="filters">
+        <div className="seg" role="tablist">
+          {PLATFORMS.map(([k, label]) => (
+            <button key={k} role="tab" aria-selected={platform === k} className={platform === k ? "on" : ""} onClick={() => { setPlatform(k); setTopic(""); }}>
+              {label} <span className="muted">{counts[k] ? counts[k].toLocaleString("en-IN") : "…"}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="filters">
+        <input className="search" placeholder="Search by name or number, e.g. 146, lru, 1A, FLOW001" value={q} onChange={e => setQ(e.target.value)} />
+        <select value={diff} onChange={e => setDiff(e.target.value)} aria-label="Difficulty">
+          <option value="">Any difficulty</option><option value="E">Easy</option><option value="M">Medium</option><option value="H">Hard</option>
+        </select>
+        <select value={topic} onChange={e => setTopic(e.target.value)} aria-label="Topic">
+          <option value="">Any topic</option>
+          {topicCounts.map(([t, c]) => <option key={t} value={t}>{t} ({c})</option>)}
+        </select>
+        <select value={status} onChange={e => setStatus(e.target.value)} aria-label="Status">
+          <option value="">Solved and unsolved</option><option value="todo">Unsolved only</option><option value="done">Solved only</option><option value="revisit">Needs revisit</option>
+        </select>
+        {(platform === "all" || platform === "lc") && (
+          <select value={premium} onChange={e => setPremium(e.target.value)} aria-label="LeetCode Premium">
+            <option value="all">Free and Premium</option><option value="free">Free only</option><option value="premium">Premium only</option>
+          </select>
+        )}
+        <select value={sort} onChange={e => setSort(e.target.value)} aria-label="Sort">
+          <option value="easy">Easiest first</option><option value="hard">Hardest first</option><option value="newest">Newest first</option><option value="number">By number</option>
+        </select>
+        <button className="btn" onClick={randomPick} disabled={!list.length}>Pick a random unsolved one</button>
+      </div>
+
+      {!ready ? <p className="muted">Loading questions…</p> : (
+        <>
+          <p className="muted small">
+            {list.length.toLocaleString("en-IN")} questions{loadingMore ? " (still loading Codeforces and CodeChef…)" : ""}.
+            {platform === "cf" && cf && !cf.rated && " Codeforces difficulty is estimated from the problem letter (A–B easy, C–D medium, E and later hard). Run npm run data to get official ratings."}
+          </p>
+          {list.length === 0 ? <p className="muted">No questions match these filters. Clear a filter to see more.</p> : (
+            <ul className="plist">
+              {list.slice(0, limit).map((x, i) => <ItemRow key={x.id} id={x.id} index={i + 1} />)}
+            </ul>
+          )}
+          {list.length > limit && <button className="btn more-btn" onClick={() => setLimit(l => l + 100)}>Show 100 more ({(list.length - limit).toLocaleString("en-IN")} left)</button>}
+        </>
+      )}
+    </div>
+  );
+}
