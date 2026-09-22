@@ -4,11 +4,11 @@ Tracked with Prepboard. Updated 2026-09-22.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **2** of 2,500 goal |
-| LeetCode | 2 (Easy 2, Medium 0, Hard 0) |
+| **Coding questions** | **3** of 2,500 goal |
+| LeetCode | 3 (Easy 3, Medium 0, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
-| DSA path | 2 of 456 |
+| DSA path | 3 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
@@ -18,7 +18,7 @@ Current streak: **1 days**.
 
 | Day | Solved or revised |
 |---|---|
-| 2026-09-22 | 2 |
+| 2026-09-22 | 3 |
 | 2026-09-21 | 0 |
 | 2026-09-20 | 0 |
 | 2026-09-19 | 0 |
@@ -37,5 +37,6 @@ Current streak: **1 days**.
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-22 | [2469. Convert the Temperature](https://leetcode.com/problems/convert-the-temperature/) | LeetCode | Easy | solved |
 | 2026-09-22 | [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | LeetCode | Easy | solved |
 | 2026-09-22 | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | LeetCode | Easy | solved |
