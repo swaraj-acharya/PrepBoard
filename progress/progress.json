@@ -7,10 +7,17 @@
    "solvedOn": "2026-09-22",
    "u": 1790016988958,
    "work": "class Solution {\npublic:\n    vector<int> runningSum(vector<int>& nums) {\n        int runSum = 0;\n        for(int i=0; i<nums.size();i++){\n            runSum = runSum + nums[i];\n            nums[i] = runSum;\n        }\n        return nums;\n    }\n};"
+  },
+  "fizz-buzz": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-23",
+   "solvedOn": "2026-09-22",
+   "u": 1790047685441
   }
  },
  "activity": {
-  "2026-09-22": 1
+  "2026-09-22": 2
  },
  "settings": {
   "lang": "C++",
