@@ -63,6 +63,7 @@ export async function POST(req) {
       const head = await ok(await gh(c, `/repos/${c.repo}/git/commits/${ref.object.sha}`), "Reading the last commit");
       const merged = mergeStates(body.state, await readRemote(c, ref.object.sha));
       const files = [{ path: `${c.dir}/progress.json`, mode: "100644", type: "blob", content: JSON.stringify(merged, null, 1) }];
+      if (body.history) files.push({ path: `${c.dir}/HISTORY.md`, mode: "100644", type: "blob", content: String(body.history).slice(0, 2000000) });
       if (body.readme) files.push({ path: `${c.dir}/README.md`, mode: "100644", type: "blob", content: String(body.readme).slice(0, 200000) });
       const tree = await ok(await gh(c, `/repos/${c.repo}/git/trees`, { method: "POST", body: JSON.stringify({ base_tree: head.tree.sha, tree: files }) }), "Saving files");
       const commit = await ok(await gh(c, `/repos/${c.repo}/git/commits`, { method: "POST", body: JSON.stringify({ message, tree: tree.sha, parents: [ref.object.sha] }) }), "Creating the commit");

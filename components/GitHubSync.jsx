@@ -3,7 +3,7 @@ import { useEffect, useSyncExternalStore } from "react";
 import { getState, replaceState, subscribe } from "@/lib/store";
 import { mergeStates } from "@/lib/merge";
 import { useData, resolveItem } from "@/lib/data";
-import { buildReadme } from "@/lib/progressReadme";
+import { buildReadme, buildHistoryMd } from "@/lib/progressReadme";
 
 // Commits your progress to GitHub through /api/progress, about 10 seconds after your last change.
 const KEY = "prepboard:sync";
@@ -14,7 +14,7 @@ const setStatus = patch => { status = { ...status, ...patch }; listeners.forEach
 export const useSyncStatus = () => useSyncExternalStore(cb => { listeners.add(cb); return () => listeners.delete(cb); }, () => status, () => status);
 
 const secret = () => { try { return JSON.parse(localStorage.getItem(KEY) || "null")?.secret || ""; } catch { return ""; } };
-const snapshot = s => JSON.stringify({ problems: s.problems, activity: s.activity });
+const snapshot = s => JSON.stringify({ problems: s.problems, activity: s.activity, log: s.log || {} });
 let lastSynced = null, dataRef = null, timer = null;
 const schedule = (ms = DELAY) => { clearTimeout(timer); timer = setTimeout(push, ms); };
 
@@ -58,7 +58,7 @@ async function push() {
   setStatus({ state: "syncing", message: "Saving to GitHub…" });
   try {
     const prev = lastSynced ? JSON.parse(lastSynced) : null;
-    const j = await call("POST", { state: s, message: commitMessage(prev, s), readme: buildReadme(s, dataRef) });
+    const j = await call("POST", { state: s, message: commitMessage(prev, s), readme: buildReadme(s, dataRef), history: buildHistoryMd(s, dataRef) });
     lastSynced = snapshot(j.state);
     const merged = mergeStates(getState(), j.state);
     if (snapshot(merged) !== snapshot(getState())) replaceState(merged);

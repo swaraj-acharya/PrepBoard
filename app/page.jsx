@@ -119,7 +119,7 @@ export default function Today() {
               <div className="goal-bar"><span style={{ width: `${Math.min(100, (doneToday / settings.goal) * 100)}%` }} /></div>
               <p><strong>{doneToday}</strong> of {settings.goal} done today</p>
             </div>
-            <p className="muted small">{streak(activity)} day streak</p>
+            <p className="muted small">{streak(activity)} day streak. <Link href="/history">See what you did each day</Link></p>
           </section>
           <section className="panel">
             <h2>Solved on LeetCode</h2>
