@@ -268,6 +268,11 @@ h3 { font-size: 1rem; font-weight: 700; margin: 1.25rem 0 .25rem; }
 .sync-ok { color: var(--solved); }
 .sync-syncing { color: var(--muted); }
 .sync-error { color: var(--hard); }
+.sync-pending { margin: .25rem 0 0; font-weight: 600; color: var(--muted); }
+.sync-pending.has { color: var(--revisit); }
+.unpushed { font-size: .8rem; font-weight: 600; color: var(--revisit); text-decoration: none; border: 1px solid currentColor; padding: .15rem .55rem; border-radius: 999px; white-space: nowrap; }
+.unpushed:hover { background: var(--card); text-decoration: underline; }
+.unpushed:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 2px; }
 .sync-form { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 .sync-form .row { flex: 1 1 22rem; }
 .sync-form .row input { width: 14rem; }

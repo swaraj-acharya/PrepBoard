@@ -75,7 +75,7 @@ Your ticks can be committed to your GitHub repo, so they show on your contributi
    Then redeploy.
 3. On the site: **Settings → Save progress to GitHub**, type your `SYNC_SECRET`, click **Connect**. Do this once per device.
 
-About 10 seconds after you tick something, the site commits `progress/progress.json` and a readable `progress/README.md`, with messages like "Solved Two Sum". `vercel.json` stops Vercel from redeploying for commits that only touch `progress/`. The token never reaches the browser; visitors can't save without your password. If the repo is public, your progress file (including notes and pasted code) is public too.
+Nothing is committed while you tick. When you're done, open **Settings** and click **Push Progress Now**: everything since your last push goes up as one commit (`progress/progress.json`, `progress/README.md` and `progress/HISTORY.md`), with a message like "Solved 4 questions (Two Sum, Fizz Buzz, Valid Anagram and 1 more); 2 revised". The top bar shows how many changes haven't been pushed yet. `vercel.json` stops Vercel from redeploying for commits that only touch `progress/`. The token never reaches the browser; visitors can't save without your password. If the repo is public, your progress file (including notes and pasted code) is public too.
 
 ## Where progress lives
 

@@ -45,15 +45,18 @@ export default function Settings() {
       </section>
       <section className="panel">
         <h2>Save progress to GitHub</h2>
-        <p className="muted">When this is on, the site commits your progress to your GitHub repo (in the <code>progress</code> folder) about 10 seconds after each tick. The commits count on your GitHub contribution graph, and your phone and laptop stay in sync.</p>
+        <p className="muted">Tick questions as usual; nothing is sent to GitHub until you click <strong>Push Progress Now</strong>. Everything you changed since your last push goes up together as one commit in the <code>progress</code> folder of your repo. Commits count on your GitHub contribution graph, and opening the site on another device loads what you pushed.</p>
         {sync.connected ? (
           <>
+            <p className={`sync-pending${sync.pending ? " has" : ""}`}>
+              {sync.pending ? `${sync.pending} change${sync.pending === 1 ? "" : "s"} waiting to be pushed.` : "No changes waiting to be pushed."}
+            </p>
             <p className={`sync-line sync-${sync.state}`} role="status">
               {sync.state === "syncing" ? sync.message : sync.state === "error" ? sync.message : `${sync.message}${sync.at ? ` Last checked ${sync.at.toLocaleTimeString()}.` : ""}`}
               {sync.commit && <> <a href={sync.commit} target="_blank" rel="noreferrer">See the last commit</a>.</>}
             </p>
             <div className="row-btns">
-              <button className="btn primary" disabled={busy} onClick={async () => { setBusy(true); await syncActions.syncNow(); setBusy(false); }}>Sync now</button>
+              <button className="btn primary" disabled={busy || sync.state === "syncing"} onClick={async () => { setBusy(true); await syncActions.pushNow(); setBusy(false); }}>{busy ? "Pushing…" : "Push Progress Now"}</button>
               <button className="btn ghost" onClick={() => syncActions.disconnect()}>Stop saving to GitHub on this device</button>
             </div>
           </>
@@ -74,6 +77,7 @@ export default function Settings() {
             <li><strong>Create a GitHub token.</strong> Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">GitHub → Fine-grained tokens → Generate new token</a>. Under Repository access choose <em>Only select repositories</em> and pick your Prepboard repo. Under Permissions set <em>Contents</em> to <em>Read and write</em>. Generate it and copy it.</li>
             <li><strong>Add it to Vercel.</strong> In Vercel open your project → Settings → Environment Variables and add <code>GITHUB_TOKEN</code> (the token), <code>GITHUB_REPO</code> (like <code>yourname/prepboard</code>) and <code>SYNC_SECRET</code> (a long password you make up). Then go to Deployments and click Redeploy.</li>
             <li><strong>Connect here.</strong> Type your <code>SYNC_SECRET</code> above and click Connect. Do this once on each device you use.</li>
+            <li><strong>Push when you're done.</strong> After a study session, come back here and click Push Progress Now. Unpushed changes stay safe in this browser until then.</li>
           </ol>
           <p className="muted small">The token only lives in Vercel, never in the browser or the code, and visitors can&apos;t save without your password. Commits that only change <code>progress/</code> don&apos;t trigger a new Vercel deploy (see <code>vercel.json</code>). If your repo is public, <code>progress.json</code> (including notes and pasted code) is public too. Commits count on your contribution graph when they go to the default branch of a repo that isn&apos;t a fork. For a private repo, also turn on &quot;Private contributions&quot; in your GitHub profile.</p>
         </details>
