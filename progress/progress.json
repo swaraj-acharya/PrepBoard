@@ -23,15 +23,59 @@
    "solvedOn": "2026-09-22",
    "u": 1790048479911,
    "work": "class Solution {\npublic:\n    vector<double> convertTemperature(double celsius) {\n        vector<double>ans(2);\n        ans[0] = celsius + 273.15;\n        ans[1] = celsius * 1.80 + 32.00;\n        return ans;\n    }\n};"
+  },
+  "richest-customer-wealth": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-24",
+   "solvedOn": "2026-09-23",
+   "u": 1790166032484,
+   "work": "class Solution {\npublic:\n    int maximumWealth(vector<vector<int>>& accounts) {\n        int max_wealth = 0;\n        for(int i=0; i<accounts.size(); i++){\n            int sum = 0;\n            for(int j=0; j<accounts[i].size(); j++){\n                sum = sum + accounts[i][j];\n            }\n            if(sum > max_wealth){\n                max_wealth = sum;\n            }\n        }\n        return max_wealth;\n    }\n};"
+  },
+  "number-of-steps-to-reduce-a-number-to-zero": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-24",
+   "solvedOn": "2026-09-23",
+   "u": 1790170157250,
+   "work": "class Solution {\npublic:\n    int numberOfSteps(int num) {\n        int step_count = 0;\n        while(num != 0){\n            if(num%2 == 0){\n                num = num/2;\n                step_count ++;\n            }else{\n                num = num - 1;\n                step_count ++;\n            }\n        }\n        return step_count;\n    }\n};"
+  },
+  "smallest-even-multiple": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-24",
+   "solvedOn": "2026-09-23",
+   "u": 1790174187803,
+   "work": "class Solution {\npublic:\n    int smallestEvenMultiple(int n) {\n        int num = n;\n        int count = 2;\n        while(num%2 != 0 || num%n != 0){\n            num = num * count;\n            count++;\n        }\n        return num;\n    }\n};"
   }
  },
  "activity": {
-  "2026-09-22": 3
+  "2026-09-22": 3,
+  "2026-09-23": 3
  },
  "settings": {
   "lang": "C++",
   "goal": 3,
   "target": 2500,
   "targets": []
+ },
+ "log": {
+  "2026-09-23": [
+   {
+    "id": "richest-customer-wealth",
+    "a": "solved",
+    "t": 1790166020418
+   },
+   {
+    "id": "number-of-steps-to-reduce-a-number-to-zero",
+    "a": "solved",
+    "t": 1790170149599
+   },
+   {
+    "id": "smallest-even-multiple",
+    "a": "solved",
+    "t": 1790174183117
+   }
+  ]
  }
 }
