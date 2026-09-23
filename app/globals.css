@@ -296,3 +296,17 @@ code { font: .88em ui-monospace, "Cascadia Code", Consolas, monospace; backgroun
 .act-short { display: none; }
 .nav-links a { white-space: nowrap; }
 @media (max-width: 820px) { .act { font-size: .7rem; padding: 0 .3rem; } .act-long { display: none; } .act-short { display: inline; } }
+
+/* sign-in page */
+.auth-main { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 1.5rem; }
+.auth { width: 100%; max-width: 22rem; }
+.auth-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 2rem 1.75rem 1.5rem; display: grid; gap: .9rem; }
+.auth-logo { border-radius: 10px; }
+.auth-card h1 { font: 700 1.75rem/1.1 var(--display); letter-spacing: -.02em; margin: .25rem 0 0; }
+.auth-card > p { margin: 0; }
+.auth-card > .muted:first-of-type { margin-top: -.5rem; }
+.auth-field { display: grid; gap: .35rem; font-weight: 600; font-size: .925rem; }
+.auth-field input { font: inherit; font-weight: 400; padding: .6rem .7rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink); }
+.auth-field input:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 1px; border-color: var(--cobalt); }
+.auth-submit { justify-content: center; padding: .65rem 1rem; margin-top: .25rem; }
+.auth-card .error { margin: 0; }

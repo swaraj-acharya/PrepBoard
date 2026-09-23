@@ -83,6 +83,13 @@ export default function Settings() {
         </details>
       </section>
       <section className="panel">
+        <h2>Sign-in</h2>
+        <p className="muted">This device stays signed in for 7 days after you sign in. To sign out every device at once, change <code>AUTH_PASSWORD</code> in Vercel and redeploy.</p>
+        <div className="row-btns">
+          <button className="btn" onClick={async () => { await fetch("/api/auth/logout", { method: "POST" }).catch(() => {}); window.location.assign("/login"); }}>Sign out on this device</button>
+        </div>
+      </section>
+      <section className="panel">
         <h2>Your data</h2>
         <p className="muted">Progress is always saved in this browser too ({Object.keys(problems).length} problems tracked). Download a backup to move it to another device or browser.</p>
         <div className="row-btns">

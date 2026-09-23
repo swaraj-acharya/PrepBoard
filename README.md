@@ -61,6 +61,22 @@ Then commit and push; Vercel redeploys automatically.
 - System design: `lib/systemDesign.js`. CS questions and resources: `lib/cs.js`.
 - Topic explanations: `lib/topics.js`. Prompt wording: `lib/prompts.js`.
 
+## Sign-in (required)
+
+Every page needs a sign-in. Without one, you're sent to `/login`.
+
+1. In Vercel → Settings → Environment Variables add:
+   - `AUTH_ID`: the ID you'll type to sign in
+   - `AUTH_PASSWORD`: a long password
+   - optional: `AUTH_SECRET`, a long random string used to sign the cookie. Without it, the cookie is signed with your ID and password.
+
+   Then redeploy.
+2. Open the site and sign in. The browser keeps a signed, HttpOnly cookie for 7 days; after that you sign in again.
+
+Don't put the ID or password in the code or any file in this repo. If the repo is public, anyone can read them there. To sign out every device at once, change `AUTH_PASSWORD` (or `AUTH_SECRET`) in Vercel and redeploy. Until `AUTH_ID` and `AUTH_PASSWORD` are set, the site stays locked.
+
+To run locally with sign-in, create a file named `.env.local` (Git ignores it) containing `AUTH_ID=...` and `AUTH_PASSWORD=...`.
+
 ## Save progress to GitHub (optional)
 
 Your ticks can be committed to your GitHub repo, so they show on your contribution graph and sync between devices.
