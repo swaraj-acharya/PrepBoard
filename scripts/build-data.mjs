@@ -5,10 +5,12 @@
 //                                   github.com/liquidslr/leetcode-company-wise-problems (extra companies + topic tags)
 // Codeforces ...................... codeforces.com/api (official, with ratings), falls back to github.com/Ronin5205/Codeforces-Problemset-Statements
 // CodeChef ........................ github.com/captn3m0/codechef + codechef.com/api/list/problems (newer problems, ratings)
+// AtCoder ......................... kenkoooo.com/atcoder (AtCoder Problems, unofficial): see scripts/atcoder.mjs
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { SEQUENCE } from "./sequence.mjs";
+import { buildAtCoder, bridgeFor } from "./atcoder.mjs";
 
 const CACHE = ".cache";
 const OUT = "public/data";
@@ -270,6 +272,9 @@ const LEVEL_TAG = { cakewalk: "E", simple: "E", easy: "E", "easy-medium": "M", m
   log(`CodeChef: ${items.length} problems${live ? ` (${live} from the live list)` : ""}`);
 }
 
+// ---------------------------------------------------------------- AtCoder
+const ac = await buildAtCoder({ out: OUT, cache: CACHE, offline: OFFLINE, log });
+
 // ---------------------------------------------------------------- write the rest
 for (const g of SEQUENCE) for (const s of g.problems) if (!problems[s]) console.warn("Missing metadata:", s);
 // Final step of the path: Google's most asked questions of the last year that the path hasn't covered yet (free ones only).
@@ -285,7 +290,13 @@ const sequenceOut = finalStep.length ? [...SEQUENCE, {
 }] : SEQUENCE;
 fs.writeFileSync(path.join(OUT, "problems.json"), JSON.stringify(problems));
 fs.writeFileSync(path.join(OUT, "companies.json"), JSON.stringify(companyIndex));
-fs.writeFileSync(path.join(OUT, "sequence.json"), JSON.stringify(sequenceOut));
+// AtCoder problems that practise each step's topic. Kept apart from `problems`, so path numbering and progress don't change.
+const withBridge = sequenceOut.map(g => {
+  const { bridge, missing } = bridgeFor(g.id, ac);
+  if (missing.length) console.warn(`AtCoder bridge for "${g.id}": not in the AtCoder list, skipped: ${missing.join(", ")}`);
+  return bridge.length ? { ...g, bridge } : g;
+});
+fs.writeFileSync(path.join(OUT, "sequence.json"), JSON.stringify(withBridge));
 fs.writeFileSync(path.join(OUT, "meta.json"), JSON.stringify({
   built: new Date().toISOString().slice(0, 10), companySnapshot: mainDate, yearSnapshot: oldSnap?.date || null,
 }));

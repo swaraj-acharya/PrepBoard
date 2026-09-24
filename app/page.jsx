@@ -8,6 +8,7 @@ import { useOpenItem } from "@/components/Drawer";
 import ItemRow from "@/components/ItemRow";
 import Heatmap from "@/components/Heatmap";
 import GoalCard from "@/components/GoalCard";
+import { normLab, pickToday, planSplit, CAT, status } from "@/lib/labEngine";
 
 function Hero({ id, total, number }) {
   const item = useItem(id);
@@ -56,7 +57,7 @@ export default function Today() {
   for (const [s, v] of Object.entries(prog)) {
     if (!v.status) continue;
     if (s.startsWith("hld:") || s.startsWith("lld:") || s.startsWith("cs:")) sdDone++;
-    else if (s.startsWith("cf:") || s.startsWith("cc:")) otherDone++;
+    else if (s.startsWith("cf:") || s.startsWith("cc:") || s.startsWith("ac:")) otherDone++;
     else if (problems?.[s]) byDiff[problems[s].d]++;
   }
   const pathDone = ordered.length - upcoming.length;
@@ -112,6 +113,7 @@ export default function Today() {
         </div>
 
         <aside className="col side">
+          <LabPanel />
           <GoalCard />
           <section className="panel">
             <h2>Today</h2>
@@ -129,11 +131,30 @@ export default function Today() {
               <span><b className="diff-H">{byDiff.H}</b> Hard</span>
               <span><b>{sdDone}</b> Design, CS</span>
             </div>
-            {otherDone > 0 && <p className="muted small">Plus {otherDone} on Codeforces and CodeChef.</p>}
+            {otherDone > 0 && <p className="muted small">Plus {otherDone} on Codeforces, CodeChef and AtCoder.</p>}
             <Heatmap activity={activity} />
           </section>
         </aside>
       </div>
     </div>
+  );
+}
+
+// Engineering training beside DSA: today's lab problem and the day's time split.
+function LabPanel() {
+  const state = useStore();
+  const lab = normLab(state.lab);
+  const pick = pickToday(lab, today());
+  const plan = planSplit(lab.settings);
+  const doneToday = Object.values(lab.sessions).some(s => s?.doneAt && new Date(s.doneAt).toDateString() === new Date().toDateString());
+  return (
+    <section className="card lab-panel">
+      <h2>Engineering today</h2>
+      {pick.challenge ? (
+        <p><Link href={`/lab/${pick.challenge.id}`}>{pick.challenge.title}</Link><br /><span className="muted small">{CAT[pick.challenge.category].name} · {pick.challenge.minutes} min{status(lab.sessions[pick.challenge.id]) !== "new" ? " · in progress" : ""}</span></p>
+      ) : <p className="small">{pick.reason}</p>}
+      {doneToday && <p className="small">Done for today. Nice.</p>}
+      <p className="muted small">{plan.mode} mode: DSA ~{plan.dsa} min · CP ~{plan.cp} min · Engineering ~{plan.eng} min. <Link href="/lab">Open the Lab</Link></p>
+    </section>
   );
 }

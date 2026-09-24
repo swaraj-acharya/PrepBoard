@@ -6,16 +6,17 @@ import { resolveTopics } from "@/lib/topics";
 import { useOpenItem } from "@/components/Drawer";
 import ItemRow from "@/components/ItemRow";
 import GoalCard from "@/components/GoalCard";
+import { TYPE_LABEL, shortContest } from "@/lib/atcoder";
 
-const PLATFORMS = [["all", "All"], ["lc", "LeetCode"], ["cf", "Codeforces"], ["cc", "CodeChef"]];
-const ORDER = { E: 0, M: 1, H: 2 };
+const PLATFORMS = [["all", "All"], ["lc", "LeetCode"], ["cf", "Codeforces"], ["cc", "CodeChef"], ["ac", "AtCoder"]];
+const ORDER = { E: 0, M: 1, H: 2, U: 3 }; // U: no difficulty known
 const topicsOf = tags => { const { names } = resolveTopics(tags); return names.length ? names : ["How to Approach a Problem"]; };
 
 export default function Practice() {
-  const { problems, cf, cc, want, ready } = useData();
+  const { problems, cf, cc, ac, want, ready } = useData();
   const { problems: prog } = useStore();
   const open = useOpenItem();
-  useEffect(() => { want("cf"); want("cc"); }, [want]);
+  useEffect(() => { want("cf"); want("cc"); want("ac"); }, [want]);
 
   const [platform, setPlatform] = useState("all");
   const [q, setQ] = useState("");
@@ -25,6 +26,7 @@ export default function Practice() {
   const [premium, setPremium] = useState("all");
   const [sort, setSort] = useState("easy");
   const [limit, setLimit] = useState(100);
+  const [ctype, setCtype] = useState(""); // AtCoder contest type
 
   // One flat, searchable list of every question.
   const index = useMemo(() => {
@@ -37,10 +39,22 @@ export default function Practice() {
       out.push({ id, pf: "cf", text: `${code} ${p.name}`.toLowerCase(), level: p.rating ? (p.rating <= 1200 ? "E" : p.rating <= 1900 ? "M" : "H") : /^[AB]/.test(p.index) ? "E" : /^[CD]/.test(p.index) ? "M" : "H", rating: p.rating, num: +p.contest, topics: topicsOf(p.tags) });
     }
     if (cc) for (const [id, p] of cc.map) out.push({ id, pf: "cc", text: `${p.code} ${p.name}`.toLowerCase(), level: p.level, rating: p.rating, num: 0, topics: topicsOf(p.tags) });
+    // AtCoder: search matches "abc350 c", "abc350c", "abc350_c", "edpc", the task name… The " · " separators stop
+    // "abc350 c" from also matching the start of another field (e.g. a task named "Cheating" in ABC350).
+    if (ac) for (const [id, p] of ac.map) out.push({ id, pf: "ac", text: [`${p.contest.id} ${p.index}`, `${p.contest.id}${p.index}`, p.pid, shortContest(p.contest.id), p.name].join(" · ").toLowerCase(), level: p.level || "U", rating: p.clip ?? 0, num: p.contest.start, ctype: p.contest.type, topics: topicsOf(p.tags) });
     return out;
-  }, [problems, cf, cc]);
+  }, [problems, cf, cc, ac]);
 
-  const counts = useMemo(() => ({ all: index.length, lc: index.filter(x => x.pf === "lc").length, cf: index.filter(x => x.pf === "cf").length, cc: index.filter(x => x.pf === "cc").length }), [index]);
+  const counts = useMemo(() => {
+    const c = { all: index.length, lc: 0, cf: 0, cc: 0, ac: 0 };
+    for (const x of index) c[x.pf]++;
+    return c;
+  }, [index]);
+  const ctypeCounts = useMemo(() => {
+    const c = {};
+    for (const x of index) if (x.pf === "ac") c[x.ctype] = (c[x.ctype] || 0) + 1;
+    return Object.keys(TYPE_LABEL).filter(k => c[k]).map(k => [k, c[k]]);
+  }, [index]);
   const inPlatform = useMemo(() => index.filter(x => platform === "all" || x.pf === platform), [index, platform]);
   const topicCounts = useMemo(() => {
     const c = {};
@@ -54,6 +68,7 @@ export default function Practice() {
       if (t && !x.text.includes(t)) return false;
       if (diff && x.level !== diff) return false;
       if (topic && !x.topics.includes(topic)) return false;
+      if (ctype && x.ctype !== ctype) return false;
       if (premium === "free" && x.premium) return false;
       if (premium === "premium" && !x.premium) return false;
       const st = prog[x.id]?.status;
@@ -69,36 +84,36 @@ export default function Practice() {
       number: (a, b) => a.num - b.num || a.text.localeCompare(b.text),
     }[sort];
     return out.sort(by);
-  }, [inPlatform, q, diff, topic, premium, status, sort, prog]);
+  }, [inPlatform, q, diff, topic, ctype, premium, status, sort, prog]);
 
-  useEffect(() => { setLimit(100); }, [platform, q, diff, topic, premium, status, sort]);
+  useEffect(() => { setLimit(100); }, [platform, q, diff, topic, ctype, premium, status, sort]);
 
   function randomPick() {
     const pool = list.filter(x => !prog[x.id]?.status);
     if (pool.length) open(pool[Math.floor(Math.random() * pool.length)].id);
   }
 
-  const loadingMore = (platform === "cf" && !cf) || (platform === "cc" && !cc) || (platform === "all" && (!cf || !cc));
+  const loadingMore = (platform === "cf" && !cf) || (platform === "cc" && !cc) || (platform === "ac" && !ac) || (platform === "all" && (!cf || !cc || !ac));
 
   return (
     <div>
       <header className="page-head">
         <h1>More questions</h1>
-        <p className="muted">Every question on LeetCode (including Premium), Codeforces and CodeChef, outside your DSA path. Filter by topic and difficulty, or let it pick one for you.</p>
+        <p className="muted">Every question on LeetCode (including Premium), Codeforces, CodeChef and AtCoder, outside your DSA path. Filter by topic and difficulty, or let it pick one for you.</p>
       </header>
       <GoalCard />
 
       <div className="filters">
         <div className="seg" role="tablist">
           {PLATFORMS.map(([k, label]) => (
-            <button key={k} role="tab" aria-selected={platform === k} className={platform === k ? "on" : ""} onClick={() => { setPlatform(k); setTopic(""); }}>
+            <button key={k} role="tab" aria-selected={platform === k} className={platform === k ? "on" : ""} onClick={() => { setPlatform(k); setTopic(""); setCtype(""); }}>
               {label} <span className="muted">{counts[k] ? counts[k].toLocaleString("en-IN") : "…"}</span>
             </button>
           ))}
         </div>
       </div>
       <div className="filters">
-        <input className="search" placeholder="Search by name or number, e.g. 146, lru, 1A, FLOW001" value={q} onChange={e => setQ(e.target.value)} />
+        <input className="search" placeholder="Search by name or number, e.g. 146, lru, 1A, FLOW001, abc350 c" value={q} onChange={e => setQ(e.target.value)} />
         <select value={diff} onChange={e => setDiff(e.target.value)} aria-label="Difficulty">
           <option value="">Any difficulty</option><option value="E">Easy</option><option value="M">Medium</option><option value="H">Hard</option>
         </select>
@@ -106,6 +121,12 @@ export default function Practice() {
           <option value="">Any topic</option>
           {topicCounts.map(([t, c]) => <option key={t} value={t}>{t} ({c})</option>)}
         </select>
+        {platform === "ac" && (
+          <select value={ctype} onChange={e => setCtype(e.target.value)} aria-label="AtCoder contest type">
+            <option value="">Every contest type</option>
+            {ctypeCounts.map(([k, c]) => <option key={k} value={k}>{TYPE_LABEL[k]} ({c.toLocaleString("en-IN")})</option>)}
+          </select>
+        )}
         <select value={status} onChange={e => setStatus(e.target.value)} aria-label="Status">
           <option value="">Solved and unsolved</option><option value="todo">Unsolved only</option><option value="done">Solved only</option><option value="revisit">Needs revisit</option>
         </select>
@@ -125,6 +146,9 @@ export default function Practice() {
           <p className="muted small">
             {list.length.toLocaleString("en-IN")} questions{loadingMore ? " (still loading Codeforces and CodeChef…)" : ""}.
             {platform === "cf" && cf && !cf.rated && " Codeforces difficulty is estimated from the problem letter (A–B easy, C–D medium, E and later hard). Run npm run data to get official ratings."}
+            {platform === "ac" && ac && (ac.seed
+              ? " Only the EDPC and ALPC practice sets are bundled. Run npm run data to download the full AtCoder list."
+              : " AtCoder publishes no difficulty or topic tags. The ≈ numbers are AtCoder Problems' estimates (a ? marks experimental ones); problems without one are graded by their letter or left unrated. Topics appear only for sets whose topic is certain.")}
           </p>
           {list.length === 0 ? <p className="muted">No questions match these filters. Clear a filter to see more.</p> : (
             <ul className="plist">

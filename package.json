@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "data": "node scripts/build-data.mjs"
+    "data": "node scripts/build-data.mjs",
+    "test": "node --test scripts/prepboard.test.mjs",
+    "validate": "node scripts/validate-data.mjs",
+    "check-links": "node scripts/check-links.mjs"
   },
   "dependencies": {
     "next": "16.3.5",

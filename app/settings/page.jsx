@@ -1,10 +1,32 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStore, actions } from "@/lib/store";
 import { useSyncStatus, syncActions } from "@/components/GitHubSync";
+import { refreshRatings } from "@/lib/profile";
+
+const PROFILES = [["ac", "AtCoder", "Used for your rating and colour"], ["cf", "Codeforces", "Used for your rating and rank"], ["cc", "CodeChef", "Link only"], ["lc", "LeetCode", "Link only"], ["gh", "GitHub", "Link only"]];
 
 export default function Settings() {
-  const { settings, problems } = useStore();
+  const { settings, problems, ratings = {} } = useStore();
+  const handles = settings.handles || {};
+  const [draft, setDraft] = useState(handles);
+  const saved = JSON.stringify(handles);
+  useEffect(() => { setDraft(JSON.parse(saved)); }, [saved]); // saved names arrive after the first render
+  const [rmsg, setRmsg] = useState("");
+  const [fetching, setFetching] = useState(false);
+  async function saveProfiles(e) {
+    e.preventDefault();
+    const clean = Object.fromEntries(PROFILES.map(([k]) => [k, (draft[k] || "").trim().replace(/^@/, "")]));
+    actions.handles(clean);
+    if (!clean.ac && !clean.cf && !handles.ac && !handles.cf) { setRmsg("Saved."); return; }
+    setFetching(true); setRmsg("Saved. Fetching ratings…");
+    try {
+      const { next, errors } = await refreshRatings(clean, ratings);
+      actions.ratings(next);
+      setRmsg(errors.length ? `Saved. ${errors.join(" ")}` : "Saved, and ratings updated.");
+    } catch (err) { setRmsg(`Saved. ${err.message}`); }
+    setFetching(false);
+  }
   const fileRef = useRef(null);
   const [msg, setMsg] = useState("");
   const sync = useSyncStatus();
@@ -42,6 +64,19 @@ export default function Settings() {
             {["C++", "Java", "Python", "JavaScript"].map(l => <option key={l}>{l}</option>)}
           </select>
         </label>
+      </section>
+      <section className="panel" id="profiles">
+        <h2>Public profiles</h2>
+        <p className="muted">Your usernames on other sites. Your <a href="/profile">profile</a> links to them and shows your AtCoder and Codeforces ratings, read from those sites. If you save progress to GitHub, they&apos;re saved there too.</p>
+        <form onSubmit={saveProfiles}>
+          {PROFILES.map(([k, name, note]) => (
+            <label className="row" key={k}><span>{name} <span className="muted small">{note}</span></span>
+              <input className="handle" value={draft[k] || ""} onChange={e => setDraft(d => ({ ...d, [k]: e.target.value }))} autoComplete="off" spellCheck={false} placeholder="username" />
+            </label>
+          ))}
+          <div className="row-btns"><button className="btn primary" disabled={fetching}>{fetching ? "Saving…" : "Save"}</button></div>
+        </form>
+        {rmsg && <p className="small" role="status">{rmsg}</p>}
       </section>
       <section className="panel">
         <h2>Save progress to GitHub</h2>

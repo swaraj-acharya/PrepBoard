@@ -4,7 +4,7 @@ import { useStore } from "@/lib/store";
 import ItemRow from "./ItemRow";
 import TopicCard from "./TopicCard";
 
-// groups: [{ id, name, topics, ids }]
+// groups: [{ id, name, topics, ids, bridge? }]. bridge = optional AtCoder problems for the step, not counted in its progress.
 export default function Rail({ groups, hideDone, numbered = true }) {
   const { problems: prog } = useStore();
   const [openId, setOpenId] = useState(null);
@@ -43,6 +43,15 @@ export default function Rail({ groups, hideDone, numbered = true }) {
                 <ul className="plist">
                   {g.ids.map((s, i) => (hideDone && prog[s]?.status) ? null : <ItemRow key={s} id={s} index={numbered ? start + i + 1 : null} />)}
                 </ul>
+                {g.bridge?.length > 0 && (
+                  <div className="bridge">
+                    <h3>Take it further on AtCoder <span className="count">{g.bridge.filter(b => prog[b.id]?.status).length}/{g.bridge.length}</span></h3>
+                    <p className="muted small">Optional, and not counted in this step. The same ideas with contest-style input and output, from AtCoder sets whose topic is known for certain.</p>
+                    <ul className="plist">
+                      {g.bridge.map(b => (hideDone && prog[b.id]?.status) ? null : <ItemRow key={b.id} id={b.id} note={b.why} />)}
+                    </ul>
+                  </div>
+                )}
                 {g.milestone && <p className="milestone"><strong>Milestone.</strong> {g.milestone}</p>}
               </div>
             )}

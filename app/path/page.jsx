@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useData } from "@/lib/data";
 import { useStore } from "@/lib/store";
 import Rail from "@/components/Rail";
@@ -12,7 +12,8 @@ const LANGS = [
 ];
 
 export default function PathPage() {
-  const { seq, ready } = useData();
+  const { seq, ready, want } = useData();
+  useEffect(() => { want("ac"); }, [want]);
   const { problems: prog, settings } = useStore();
   const [hideDone, setHideDone] = useState(false);
   if (!ready) return <p className="muted">Loading the path…</p>;
@@ -49,7 +50,7 @@ export default function PathPage() {
         </ol>
       </details>
 
-      <Rail hideDone={hideDone} groups={seq.map(g => ({ id: g.id, name: g.name, topics: g.topics, why: g.why, milestone: g.milestone, ids: g.problems }))} />
+      <Rail hideDone={hideDone} groups={seq.map(g => ({ id: g.id, name: g.name, topics: g.topics, why: g.why, milestone: g.milestone, ids: g.problems, bridge: g.bridge }))} />
     </div>
   );
 }

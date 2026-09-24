@@ -4,6 +4,8 @@ import { useStore, actions, INTERVALS } from "@/lib/store";
 import { useItem } from "@/lib/data";
 import { hintPrompt, checkPrompt, topicPrompt, answerPrompt, checkAnswerPrompt } from "@/lib/prompts";
 import { csStudyLinks } from "@/lib/cs";
+import { isLive, TYPE_LABEL } from "@/lib/atcoder";
+import { HOW_LABEL } from "@/lib/profile";
 import TopicCard from "./TopicCard";
 import PromptBox from "./PromptBox";
 
@@ -28,6 +30,17 @@ const HINT_NOTES = [
   "Asks the AI for the complete solution with code. Use it only after a real try.",
 ];
 const KIND_LABEL = { dsa: "Coding question", hld: "High-level design", lld: "Low-level design", cs: "CS fundamentals" };
+const HELP_OPTIONS = ["hint", "editorial", "code"];
+
+// Shown instead of every AI prompt while the problem's AtCoder contest is running.
+function LiveNotice({ item }) {
+  return (
+    <div className="live-notice" role="note">
+      <p><strong>This contest is running right now, so the AI prompts are switched off.</strong> AtCoder bans generative AI during live ABC, ARC and AGC contests, including asking for hints or explanations. Only translating the statement is allowed, with AtCoder&apos;s exact wording.</p>
+      <p className="small">They come back after the contest ends: practising past problems with AI is allowed. <a href="https://info.atcoder.jp/entry/llm-rules-en" target="_blank" rel="noreferrer">AtCoder&apos;s rules</a>{item.contest && <> · <a href={`https://atcoder.jp/contests/${item.contest.id}`} target="_blank" rel="noreferrer">Contest page</a></>}</p>
+    </div>
+  );
+}
 
 function Drawer({ id, onClose }) {
   const item = useItem(id);
@@ -54,6 +67,7 @@ function Drawer({ id, onClose }) {
     : "Paste the code you submitted.";
 
   const isCS = item.kind === "cs";
+  const live = item.platform === "AtCoder" && isLive(item.contest);
   const TABS = isCS
     ? [["topic", "Learn the topic"], ["answer", "Answer and resources"], ["check", "Check my answer"], ["notes", "Notes"]]
     : [["topic", "Learn the topic"], ["hints", `Hints${used ? ` (${used}/3 used)` : ""}`], ["check", "Check my solution"], ["notes", "Notes"]];
@@ -63,17 +77,25 @@ function Drawer({ id, onClose }) {
       <aside className="drawer" role="dialog" aria-label={item.title} tabIndex={-1} ref={panelRef}>
         <header className="drawer-head">
           <div>
-            <p className="kind">{isCS ? item.subjectName : KIND_LABEL[item.kind]}{item.pattern ? `, ${item.pattern.name} (path #${item.pattern.number})` : ""}</p>
+            <p className="kind">{isCS ? item.subjectName : KIND_LABEL[item.kind]}{item.pattern ? `, ${item.pattern.name} (path #${item.pattern.number})` : ""}{item.bridge ? `, AtCoder practice for step ${item.bridge.step}: ${item.bridge.name}` : ""}</p>
             <h2>{item.title}</h2>
             <p className="source">
               <span className={`diff diff-${item.level}`}>{item.levelLabel}</span>
               {item.url
                 ? <span>Platform: <a href={item.url} target="_blank" rel="noreferrer">{item.platform}</a>{item.premium && <span className="badge-premium">Premium</span>}</span>
+                : item.platform === "AtCoder" ? <span className="muted">Loading AtCoder details…</span>
                 : <span>Source: a common interview question, from the Prepboard question bank</span>}
               {item.from && <span>Listed in: <a href={item.from.url} target="_blank" rel="noreferrer">{item.from.name}</a></span>}
             </p>
             {item.premium && item.freeStatement && (
               <p className="source-more small">No Premium? <a href={item.freeStatement} target="_blank" rel="noreferrer">Read the full statement free on GitHub (doocs/leetcode)</a>. Solutions are further down that page, so stop after the examples.</p>
+            )}
+            {item.platform === "AtCoder" && item.contest && (
+              <p className="source-more muted small">
+                From <a href={`https://atcoder.jp/contests/${item.contest.id}`} target="_blank" rel="noreferrer">{item.contest.title}</a>{TYPE_LABEL[item.contest.type] ? ` (${TYPE_LABEL[item.contest.type]}${item.contest.div ? `, ${item.contest.div}` : ""})` : ""}.
+                {item.estimate != null ? ` The ≈${item.estimate} difficulty is AtCoder Problems' estimate, not an official AtCoder number${item.experimental ? "; the ? means the estimate is experimental" : ""}.` : item.byLetter ? " No difficulty estimate exists, so the level is a guess from the problem letter." : ""}
+                {item.bridge?.why && <><br />Why it's in the path: {item.bridge.why}</>}
+              </p>
             )}
             {item.more?.length > 0 && (
               <p className="source-more muted small">Also covered at: {item.more.map((m, i) => <span key={m.url}>{i > 0 && ", "}<a href={m.url} target="_blank" rel="noreferrer">{m.platform}{m.url.includes("system-design-primer") ? " (System Design Primer)" : ""}</a></span>)}</p>
@@ -88,6 +110,15 @@ function Drawer({ id, onClose }) {
           <button className={`btn ${me.status === "revisit" ? "on-revisit" : ""}`} onClick={() => { actions.tricky(id); setTab("check"); }}>{isCS ? "Needs more revision" : "Solved with help"}</button>
           {me.status && <button className="btn ghost" onClick={() => actions.clear(id)}>Mark unsolved</button>}
         </div>
+        {me.status === "revisit" && !isCS && item.kind === "dsa" && (
+          <label className="how">What helped?
+            <select value={me.how || ""} onChange={e => actions.how(id, e.target.value)}>
+              <option value="">Not specified</option>
+              {HELP_OPTIONS.map(h => <option key={h} value={h}>{HOW_LABEL[h]}</option>)}
+            </select>
+            <span className="muted small">Your profile never counts these as solved on your own.</span>
+          </label>
+        )}
         <p className="muted small">
           {me.status ? (me.due ? `Next revision on ${me.due}.` : "Mastered. No more revisions scheduled.") : `Not solved yet. After you solve it, it comes back for revision after ${INTERVALS.join(", ")} days.`}
         </p>
@@ -105,12 +136,15 @@ function Drawer({ id, onClose }) {
                 </>
               : <p className="muted">This question has no topic tags in the data. Use the prompt below to get the topics explained.</p>}
             <h3>Want it explained another way?</h3>
-            <p className="muted small">This prompt asks an AI to explain the topics simply, without solving the question.</p>
-            <PromptBox prompt={topicPrompt(item, [...item.topicNames, ...item.unknownTags])} />
+            {live ? <LiveNotice item={item} /> : <>
+              <p className="muted small">This prompt asks an AI to explain the topics simply, without solving the question.</p>
+              <PromptBox prompt={topicPrompt(item, [...item.topicNames, ...item.unknownTags])} />
+            </>}
           </section>
         )}
 
-        {tab === "hints" && (
+        {tab === "hints" && live && <section className="tabpanel"><LiveNotice item={item} /></section>}
+        {tab === "hints" && !live && (
           <section className="tabpanel">
             <p className="muted small">Each hint is a prompt you paste into any AI chat. Take them in order, and try again after each one.</p>
             {[1, 2, 3].map(n => {
@@ -184,8 +218,10 @@ function Drawer({ id, onClose }) {
                     onChange={e => setWork(e.target.value)} onBlur={() => actions.work(id, work)} placeholder={item.kind === "hld" ? "e.g. Requirements: …\nAPIs: POST /shorten …\nDB: …" : "Paste your solution here"} />
                 </label>
                 <h3>Your review prompt</h3>
-                <p className="muted small">It asks the AI to check your {item.kind === "hld" ? "design" : "code"}, then list all approaches, from brute force to the best, using the {item.platform} editorial and other platforms.</p>
-                <PromptBox prompt={checkPrompt(item, lang, work)} rows={10} />
+                {live ? <LiveNotice item={item} /> : <>
+                  <p className="muted small">It asks the AI to check your {item.kind === "hld" ? "design" : "code"}, then list all approaches, from brute force to the best, using the {item.platform} editorial and other platforms.</p>
+                  <PromptBox prompt={checkPrompt(item, lang, work)} rows={10} />
+                </>}
               </>
             )}
           </section>
