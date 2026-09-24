@@ -1,8 +1,18 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-23.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-24.
 
-2 active days so far.
+3 active days so far.
+
+### Thursday, 24 September 2026
+
+3 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1523. Count Odd Numbers in an Interval Range](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/) | LeetCode | Easy | Solved |
+| [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | Solved |
+| [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) | LeetCode | Easy | Solved |
 
 ### Wednesday, 23 September 2026
 

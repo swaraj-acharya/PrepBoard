@@ -1,23 +1,28 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-09-23.
+Tracked with Prepboard. Updated 2026-09-24.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **6** of 2,500 goal |
-| LeetCode | 6 (Easy 6, Medium 0, Hard 0) |
+| **Coding questions** | **9** of 2,500 goal |
+| LeetCode | 9 (Easy 9, Medium 0, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
-| DSA path | 6 of 456 |
+| AtCoder | 0 |
+| DSA path | 9 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Current streak: **2 days**.
+Solved on my own (no hint, editorial or reference code): **9** of 9.
+
+Current streak: **3 days**.
+
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-09-24 | 3 |
 | 2026-09-23 | 3 |
 | 2026-09-22 | 3 |
 | 2026-09-21 | 0 |
@@ -31,11 +36,20 @@ Current streak: **2 days**.
 | 2026-09-13 | 0 |
 | 2026-09-12 | 0 |
 | 2026-09-11 | 0 |
-| 2026-09-10 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Thursday, 24 September 2026
+
+3 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1523. Count Odd Numbers in an Interval Range](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/) | LeetCode | Easy | Solved |
+| [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | Solved |
+| [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) | LeetCode | Easy | Solved |
 
 ### Wednesday, 23 September 2026
 
@@ -61,6 +75,9 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-24 | [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) | LeetCode | Easy | solved |
+| 2026-09-24 | [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | solved |
+| 2026-09-24 | [1523. Count Odd Numbers in an Interval Range](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/) | LeetCode | Easy | solved |
 | 2026-09-23 | [2413. Smallest Even Multiple](https://leetcode.com/problems/smallest-even-multiple/) | LeetCode | Easy | solved |
 | 2026-09-23 | [1342. Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/) | LeetCode | Easy | solved |
 | 2026-09-23 | [1672. Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/) | LeetCode | Easy | solved |

@@ -47,17 +47,49 @@
    "solvedOn": "2026-09-23",
    "u": 1790174187803,
    "work": "class Solution {\npublic:\n    int smallestEvenMultiple(int n) {\n        int num = n;\n        int count = 2;\n        while(num%2 != 0 || num%n != 0){\n            num = num * count;\n            count++;\n        }\n        return num;\n    }\n};"
+  },
+  "count-odd-numbers-in-an-interval-range": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-25",
+   "solvedOn": "2026-09-24",
+   "u": 1790270324903,
+   "work": "class Solution {\npublic:\n    int countOdds(int low, int high) {\n        int count = 0;\n        for(int i=low; i<=high; i++){\n            if(i%2 != 0){\n                count ++;\n            }\n        }\n        return count;\n    }\n};"
+  },
+  "subtract-the-product-and-sum-of-digits-of-an-integer": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-25",
+   "solvedOn": "2026-09-24",
+   "u": 1790270819740,
+   "work": "class Solution {\npublic:\n    int subtractProductAndSum(int n) {\n        int sum = 0;\n        int prod = 1;\n        while(n!=0){\n            int digit = n%10;\n            sum = sum + digit;\n            prod = prod * digit;\n            n = n/10;\n        }\n        return prod-sum;\n    }\n};"
+  },
+  "find-numbers-with-even-number-of-digits": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-25",
+   "solvedOn": "2026-09-24",
+   "u": 1790272043799,
+   "work": "class Solution {\npublic:\n    int findNumbers(vector<int>& nums) {\n        int count = 0;\n        for(int i=0; i<nums.size(); i++){\n            string s = to_string(nums[i]);\n            int digi_count = s.length();\n            if((digi_count)%2 == 0){\n                count++;\n            }\n        }\n        return count;\n    }\n};"
   }
  },
  "activity": {
   "2026-09-22": 3,
-  "2026-09-23": 3
+  "2026-09-23": 3,
+  "2026-09-24": 3
  },
  "settings": {
   "lang": "C++",
   "goal": 3,
   "target": 2500,
-  "targets": []
+  "targets": [],
+  "handles": {
+   "ac": "SwarajAcharya",
+   "cf": "swaraj_acharya",
+   "cc": "swaraj_acharya",
+   "lc": "swaraj_acharya",
+   "gh": "swaraj-acharya"
+  }
  },
  "log": {
   "2026-09-23": [
@@ -76,6 +108,46 @@
     "a": "solved",
     "t": 1790174183117
    }
+  ],
+  "2026-09-24": [
+   {
+    "id": "count-odd-numbers-in-an-interval-range",
+    "a": "solved",
+    "t": 1790270309533
+   },
+   {
+    "id": "subtract-the-product-and-sum-of-digits-of-an-integer",
+    "a": "solved",
+    "t": 1790270815788
+   },
+   {
+    "id": "find-numbers-with-even-number-of-digits",
+    "a": "solved",
+    "t": 1790272040000
+   }
   ]
+ },
+ "ratings": {
+  "ac": {
+   "handle": "SwarajAcharya",
+   "rating": null,
+   "max": null,
+   "contests": 0,
+   "entered": 0,
+   "history": [],
+   "url": "https://atcoder.jp/users/SwarajAcharya",
+   "source": "atcoder.jp (official)",
+   "fetched": 1790244141026
+  },
+  "cf": {
+   "handle": "swaraj_acharya",
+   "rating": null,
+   "max": null,
+   "contests": 0,
+   "history": [],
+   "url": "https://codeforces.com/profile/swaraj_acharya",
+   "source": "codeforces.com/api (official)",
+   "fetched": 1790244141026
+  }
  }
 }
