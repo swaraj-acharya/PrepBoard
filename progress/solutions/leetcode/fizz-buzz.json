@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "fizz-buzz",
+ "attempts": [
+  {
+   "id": "w1ibve64hrq5",
+   "at": 1790047693495,
+   "u": 1790047693495,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    vector<string> fizzBuzz(int n) {\n        vector<string>ans(n);\n        for(int i=1; i<=n; i++){\n            if(i%3 == 0 || i%5 == 0){\n                if(i%3 == 0 && i%5 == 0){\n                    ans[i-1] = \"FizzBuzz\" ;\n                }else if(i%3 == 0){\n                    ans[i-1] = \"Fizz\" ;\n                }else if(i%5 == 0){\n                    ans[i-1] = \"Buzz\" ;\n                }\n            }else{\n                ans[i-1] = to_string(i);\n            }\n        }\n        return ans;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790047693495
+}

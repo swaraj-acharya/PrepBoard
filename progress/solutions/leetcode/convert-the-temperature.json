@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "convert-the-temperature",
+ "attempts": [
+  {
+   "id": "w25dz8aqojr1",
+   "at": 1790048479911,
+   "u": 1790048479911,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    vector<double> convertTemperature(double celsius) {\n        vector<double>ans(2);\n        ans[0] = celsius + 273.15;\n        ans[1] = celsius * 1.80 + 32.00;\n        return ans;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790048479911
+}

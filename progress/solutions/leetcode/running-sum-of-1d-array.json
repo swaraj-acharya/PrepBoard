@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "running-sum-of-1d-array",
+ "attempts": [
+  {
+   "id": "w1u9br68ge1x",
+   "at": 1790016988958,
+   "u": 1790016988958,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    vector<int> runningSum(vector<int>& nums) {\n        int runSum = 0;\n        for(int i=0; i<nums.size();i++){\n            runSum = runSum + nums[i];\n            nums[i] = runSum;\n        }\n        return nums;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790016988958
+}

@@ -6,13 +6,14 @@ Every day I solved or revised something, newest first. Tracked with Prepboard. U
 
 ### Friday, 25 September 2026
 
-3 solved, 0 revised.
+4 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | Solved |
 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | Solved |
 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | Solved |
+| [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | Solved |
 
 ### Thursday, 24 September 2026
 

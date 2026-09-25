@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "richest-customer-wealth",
+ "attempts": [
+  {
+   "id": "w1o3exhi2x09",
+   "at": 1790166032484,
+   "u": 1790166032484,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    int maximumWealth(vector<vector<int>>& accounts) {\n        int max_wealth = 0;\n        for(int i=0; i<accounts.size(); i++){\n            int sum = 0;\n            for(int j=0; j<accounts[i].size(); j++){\n                sum = sum + accounts[i][j];\n            }\n            if(sum > max_wealth){\n                max_wealth = sum;\n            }\n        }\n        return max_wealth;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790166032484
+}

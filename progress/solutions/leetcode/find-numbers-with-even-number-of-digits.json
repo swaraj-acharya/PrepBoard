@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "find-numbers-with-even-number-of-digits",
+ "attempts": [
+  {
+   "id": "w1ffixiz2b65",
+   "at": 1790272043799,
+   "u": 1790272043799,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    int findNumbers(vector<int>& nums) {\n        int count = 0;\n        for(int i=0; i<nums.size(); i++){\n            string s = to_string(nums[i]);\n            int digi_count = s.length();\n            if((digi_count)%2 == 0){\n                count++;\n            }\n        }\n        return count;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790272043799
+}

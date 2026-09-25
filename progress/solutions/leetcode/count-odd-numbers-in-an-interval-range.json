@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "count-odd-numbers-in-an-interval-range",
+ "attempts": [
+  {
+   "id": "w2bolf139jta",
+   "at": 1790270324903,
+   "u": 1790270324903,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    int countOdds(int low, int high) {\n        int count = 0;\n        for(int i=low; i<=high; i++){\n            if(i%2 != 0){\n                count ++;\n            }\n        }\n        return count;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790270324903
+}

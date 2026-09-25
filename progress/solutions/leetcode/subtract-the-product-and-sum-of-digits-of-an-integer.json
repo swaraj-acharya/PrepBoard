@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "subtract-the-product-and-sum-of-digits-of-an-integer",
+ "attempts": [
+  {
+   "id": "w5jd16tm7kh",
+   "at": 1790270819740,
+   "u": 1790270819740,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    int subtractProductAndSum(int n) {\n        int sum = 0;\n        int prod = 1;\n        while(n!=0){\n            int digit = n%10;\n            sum = sum + digit;\n            prod = prod * digit;\n            n = n/10;\n        }\n        return prod-sum;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790270819740
+}

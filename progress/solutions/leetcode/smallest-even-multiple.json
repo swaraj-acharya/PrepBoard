@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "smallest-even-multiple",
+ "attempts": [
+  {
+   "id": "wqyh31iaqu3",
+   "at": 1790174187803,
+   "u": 1790174187803,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    int smallestEvenMultiple(int n) {\n        int num = n;\n        int count = 2;\n        while(num%2 != 0 || num%n != 0){\n            num = num * count;\n            count++;\n        }\n        return num;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790174187803
+}

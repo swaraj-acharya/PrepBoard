@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "count-the-digits-that-divide-a-number",
+ "attempts": [
+  {
+   "id": "w25iaq89g860",
+   "at": 1790313695226,
+   "u": 1790313695226,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    int countDigits(int num) {\n        int n = num;\n        int count = 0;\n        while(n != 0){\n            int digit = n % 10 ;\n            if(num % digit == 0){\n                count++;\n            }\n            n = n/10;\n        }\n        return count;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790313695226
+}

@@ -93,13 +93,21 @@
    "due": "2026-09-26",
    "solvedOn": "2026-09-25",
    "u": 1790316609748
+  },
+  "palindrome-number": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-26",
+   "solvedOn": "2026-09-25",
+   "u": 1790328862316,
+   "work": "class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x < 0){\n            return false;\n        }\n        int num = x;\n        long long rev_num = 0;\n        while(num != 0){\n            int digit = num % 10;\n            rev_num = rev_num*10 + digit;\n            num = num / 10;\n        }\n        if(rev_num == x){\n            return true;\n        }else{\n            return false;\n        }\n    }\n};"
   }
  },
  "activity": {
   "2026-09-22": 3,
   "2026-09-23": 3,
   "2026-09-24": 3,
-  "2026-09-25": 3
+  "2026-09-25": 4
  },
  "settings": {
   "lang": "C++",
@@ -164,6 +172,11 @@
     "id": "sign-of-the-product-of-an-array",
     "a": "solved",
     "t": 1790316609748
+   },
+   {
+    "id": "palindrome-number",
+    "a": "solved",
+    "t": 1790326923395
    }
   ]
  },

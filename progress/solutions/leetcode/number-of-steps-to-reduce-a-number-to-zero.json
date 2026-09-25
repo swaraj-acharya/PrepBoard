@@ -1,0 +1,17 @@
+{
+ "v": 1,
+ "id": "number-of-steps-to-reduce-a-number-to-zero",
+ "attempts": [
+  {
+   "id": "w2d884i26w8m",
+   "at": 1790170157250,
+   "u": 1790170157250,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    int numberOfSteps(int num) {\n        int step_count = 0;\n        while(num != 0){\n            if(num%2 == 0){\n                num = num/2;\n                step_count ++;\n            }else{\n                num = num - 1;\n                step_count ++;\n            }\n        }\n        return step_count;\n    }\n};",
+   "ctx": "solve",
+   "from": "work"
+  }
+ ],
+ "deleted": {},
+ "u": 1790170157250
+}

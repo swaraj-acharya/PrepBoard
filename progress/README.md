@@ -4,25 +4,27 @@ Tracked with Prepboard. Updated 2026-09-25.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **12** of 2,500 goal |
-| LeetCode | 12 (Easy 12, Medium 0, Hard 0) |
+| **Coding questions** | **13** of 2,500 goal |
+| LeetCode | 13 (Easy 13, Medium 0, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 12 of 456 |
+| DSA path | 13 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **12** of 12.
+Solved on my own (no hint, editorial or reference code): **13** of 13.
 
 Current streak: **4 days**.
+
+Solution notebook: **10** questions with saved solutions (10 attempts), 0 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
-| 2026-09-25 | 3 |
+| 2026-09-25 | 4 |
 | 2026-09-24 | 3 |
 | 2026-09-23 | 3 |
 | 2026-09-22 | 3 |
@@ -43,13 +45,14 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 ### Friday, 25 September 2026
 
-3 solved, 0 revised.
+4 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | Solved |
 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | Solved |
 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | Solved |
+| [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | Solved |
 
 ### Thursday, 24 September 2026
 
@@ -85,6 +88,7 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-25 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | solved |
 | 2026-09-25 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | solved |
 | 2026-09-25 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | solved |
 | 2026-09-25 | [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | solved |
