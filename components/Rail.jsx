@@ -4,7 +4,8 @@ import { useStore } from "@/lib/store";
 import ItemRow from "./ItemRow";
 import TopicCard from "./TopicCard";
 
-// groups: [{ id, name, topics, ids, bridge? }]. bridge = optional AtCoder problems for the step, not counted in its progress.
+// groups: [{ id, name, topics, ids, bridge?, extra? }]. bridge = optional AtCoder problems for the step, not counted in its progress.
+// extra = optional content shown after the step's questions (the system design roadmap uses it for resources).
 export default function Rail({ groups, hideDone, numbered = true }) {
   const { problems: prog } = useStore();
   const [openId, setOpenId] = useState(null);
@@ -17,7 +18,7 @@ export default function Rail({ groups, hideDone, numbered = true }) {
     <ol className="rail">
       {groups.map((g, gi) => {
         const done = g.ids.filter(s => prog[s]?.status).length;
-        const pct = done / g.ids.length;
+        const pct = g.ids.length ? done / g.ids.length : 0;
         const start = n; n += g.ids.length;
         const isOpen = current === g.id;
         return (
@@ -43,6 +44,7 @@ export default function Rail({ groups, hideDone, numbered = true }) {
                 <ul className="plist">
                   {g.ids.map((s, i) => (hideDone && prog[s]?.status) ? null : <ItemRow key={s} id={s} index={numbered ? start + i + 1 : null} />)}
                 </ul>
+                {g.extra}
                 {g.bridge?.length > 0 && (
                   <div className="bridge">
                     <h3>Take it further on AtCoder <span className="count">{g.bridge.filter(b => prog[b.id]?.status).length}/{g.bridge.length}</span></h3>

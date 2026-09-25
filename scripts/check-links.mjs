@@ -1,6 +1,8 @@
-// Re-checks every external link in the Problem Solving Lab (resources, case-study sources, reading links).
+// Re-checks every external link in the Problem Solving Lab (resources, case-study sources, reading links)
+// and in the system design roadmap (its study resources and each phase's resources).
 // Resources move and die; run this now and then:  npm run check-links
 import { CHALLENGES, RESOURCES } from "../lib/lab.js";
+import { SD_RESOURCES, SD_PHASES } from "../lib/systemDesignPath.js";
 
 const links = new Map();
 for (const r of RESOURCES) links.set(r.url, r.name);
@@ -8,6 +10,7 @@ for (const c of CHALLENGES) {
   if (c.reveal.source) links.set(c.reveal.source.url, c.reveal.source.name);
   for (const r of c.resourceLinks || []) links.set(r.url, r.name);
 }
+for (const r of [...SD_RESOURCES, ...SD_PHASES.flatMap(p => p.resources)]) if (!links.has(r.url)) links.set(r.url, r.name);
 let bad = 0;
 for (const [url, name] of links) {
   let status = "error";

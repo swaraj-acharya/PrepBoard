@@ -560,3 +560,33 @@ code { font: .88em ui-monospace, "Cascadia Code", Consolas, monospace; backgroun
   .codeview pre, .raw-review { max-height: 24rem; }
   .timeline li { flex-direction: column; gap: 0; }
 }
+
+/* System design: roadmap and interview prep (app/system-design). Built on .resources, .card, .rail and .ptable. */
+.sd-next { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; margin-bottom: 1.5rem; max-width: 60rem; }
+.sd-resources li > div { min-width: 0; }
+.sd-resources li p { margin: .15rem 0 0; }
+.phase-more { margin: 1rem 0 0; max-width: 72ch; }
+.phase-more > p { margin: .5rem 0; }
+.phase-more h3 { margin: .9rem 0 .4rem; font-size: .95rem; }
+.phase-more .links { margin: 0; }
+.topic-links { color: var(--muted); border-top: 1px solid var(--line); padding-top: .6rem; }
+.topic-links strong { color: var(--ink); }
+.sd-frameworks { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.sd-frameworks .card { margin-bottom: 0; }
+.sd-frameworks h2 .count { white-space: nowrap; flex-shrink: 0; }
+.sd-steps { margin: 0 0 .75rem; padding-left: 1.3rem; display: grid; gap: .6rem; }
+.sd-steps p { margin: .1rem 0 0; }
+.sd-section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1rem; margin: 2.25rem 0 .25rem; }
+.sd-section-head h2 { margin: 0; }
+.sd-lead { margin: 0 0 1rem; max-width: 70ch; }
+.sd-after { margin-top: 1.5rem; }
+.sd-tradeoffs td { font-variant-numeric: normal; }
+.sd-tradeoffs td:first-child { white-space: normal; min-width: 9rem; }
+.sd-bars { display: grid; gap: 1rem 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); margin-bottom: .75rem; }
+.sd-bars p { margin: 0 0 .35rem; }
+/* Concept questions have a long platform label; on phones give the title its own line (these tabs only). */
+@media (max-width: 640px) {
+  .sd-mode .prow { flex-wrap: wrap; row-gap: .3rem; }
+  .sd-mode .ptitle { flex: 1 1 calc(100% - 1.5rem); }
+  .sd-mode .prow .diff { margin-left: 1.3rem; }
+}

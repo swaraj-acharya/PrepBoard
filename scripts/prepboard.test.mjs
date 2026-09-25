@@ -1,4 +1,5 @@
-// Run: npm test. Covers the AtCoder pipeline, the DSA-path links, profile numbers, GitHub sync merging and the solution notebook.
+// Run: npm test. Covers the AtCoder pipeline, the DSA-path links, profile numbers, GitHub sync merging, the solution notebook
+// and the system design questions, roadmap and interview map.
 // No network needed: fixtures follow the shapes in AtCoder Problems' own interfaces
 // (atcoder-problems-frontend/src/interfaces/{Contest,Problem,ProblemModel}.ts).
 import { test } from "node:test";
@@ -512,4 +513,88 @@ test("restoring a backup never puts saved solutions into progress", () => {
   assert.throws(() => storeActions.importJSON("null"));
   assert.throws(() => storeActions.importJSON("not json"));
   storeActions.reset();
+});
+
+// ---------------------------------------------------------------- system design
+import { HLD_GROUPS, LLD_GROUPS, SD_BY_ID } from "../lib/systemDesign.js";
+import { CS_SUBJECTS, CS_BY_ID } from "../lib/cs.js";
+import { TOPICS, HLD_TOPIC_NAMES } from "../lib/topics.js";
+import * as SDP from "../lib/systemDesignPath.js";
+
+test("system design: every question id is unique and every concept is explained", () => {
+  const sd = [...HLD_GROUPS, ...LLD_GROUPS].flatMap(g => g.items);
+  assert.equal(new Set(sd.map(i => i.id)).size, sd.length, "duplicate hld:/lld: ids");
+  assert.equal(Object.keys(SD_BY_ID).length, sd.length);
+  for (const i of sd) {
+    assert.match(i.id, /^(hld|lld):[a-z0-9-]+$/, i.id);
+    for (const c of i.concepts) assert.ok(TOPICS[c], `${i.id}: no explanation for "${c}"`);
+    const urls = [i.ref.url, ...i.more.map(m => m.url)];
+    assert.equal(new Set(i.more.map(m => m.url)).size, i.more.length, `${i.id}: the same extra link twice`);
+    for (const u of urls) assert.match(u, /^https?:\/\//, `${i.id}: bad link ${u}`);
+  }
+  const cs = CS_SUBJECTS.flatMap(s => s.groups.flatMap(g => g.items));
+  assert.equal(new Set(cs.map(i => i.id)).size, cs.length, "duplicate cs: ids");
+  assert.equal(Object.keys(CS_BY_ID).length, cs.length);
+  for (const i of cs) for (const c of i.concepts) assert.ok(TOPICS[c], `${i.id}: no explanation for "${c}"`);
+});
+
+test("topics: every explanation is plain text, so the Topics search works", () => {
+  for (const [name, t] of Object.entries(TOPICS)) {
+    assert.deepEqual(Object.keys(t).sort(), ["idea", "spot", "story"], name);
+    for (const v of Object.values(t)) assert.equal(typeof v, "string", name);
+  }
+});
+
+test("system design roadmap and interview map only use questions and resources that exist", () => {
+  assert.deepEqual(SDP.SD_MISSING, [], "resources the roadmap points at but can't find");
+  for (const id of SDP.SD_PATH_IDS) assert.ok(SDP.sdQuestionExists(id), `unknown question ${id}`);
+  const practice = SDP.SD_PHASES.flatMap(p => p.practice);
+  assert.equal(new Set(practice).size, practice.length, "a question sits in two phases");
+  SDP.SD_PHASES.forEach((p, i) => {
+    assert.equal(p.n, i + 1);
+    assert.ok(p.practice.length && p.resources.length && p.topics.length && p.why && p.milestone, p.id);
+    for (const t of p.topics) assert.ok(TOPICS[t], `${p.id}: no explanation for "${t}"`);
+    for (const n of p.needs) assert.ok(SDP.SD_PHASES.findIndex(x => x.id === n) < i, `${p.id} needs a later phase`);
+    for (const r of p.resources) assert.match(r.url, /^https:\/\//, `${p.id}: ${r.name}`);
+  });
+  assert.deepEqual(SDP.SD_TBE_QUESTIONS.map(x => x.n), Array.from({ length: 30 }, (_, i) => i + 1));
+  for (const x of SDP.SD_TBE_QUESTIONS) {
+    const phase = SDP.SD_PHASES.find(p => p.id === x.phase);
+    assert.ok(phase, `Q${x.n}: unknown phase`);
+    if (x.ids.length) assert.ok(x.ids.some(id => phase.practice.includes(id)), `Q${x.n} isn't practised in ${x.phase}`);
+  }
+  for (const c of SDP.SD_INTERVIEW) for (const t of c.topics) assert.ok(TOPICS[t], `${c.id}: no explanation for "${t}"`);
+  assert.equal(new Set(SDP.SD_RESOURCES.map(r => r.url)).size, SDP.SD_RESOURCES.length, "the same resource listed twice");
+});
+
+test("system design concepts: prerequisites follow the roadmap order and never loop", () => {
+  for (const n of HLD_TOPIC_NAMES) {
+    assert.ok(SDP.homePhase(n), `${n} isn't taught in any phase`);
+    assert.ok(SDP.conceptLinks(n), `${n} has no prerequisites entry`);
+  }
+  for (const [k, needs] of Object.entries(SDP.SD_NEEDS)) for (const x of needs) {
+    assert.ok(TOPICS[x], `${k} needs unknown "${x}"`);
+    const a = SDP.homePhase(x)?.n, b = SDP.homePhase(k).n;
+    if (a) assert.ok(a <= b, `${k} (phase ${b}) builds on ${x} (phase ${a})`);
+  }
+  const state = {};
+  const visit = n => {
+    assert.notEqual(state[n], 1, `prerequisite loop through ${n}`);
+    if (state[n]) return;
+    state[n] = 1; (SDP.SD_NEEDS[n] || []).forEach(visit); state[n] = 2;
+  };
+  Object.keys(SDP.SD_NEEDS).forEach(visit);
+  assert.equal(SDP.conceptLinks("Array"), null, "DSA topics get no system design links");
+});
+
+test("system design: next step and readiness come from progress, never as one score", () => {
+  assert.equal(SDP.roadmapNext({}).phase.n, 1);
+  const first = SDP.SD_PHASES[0].practice;
+  const prog = Object.fromEntries(first.map(id => [id, { status: "solved" }]));
+  assert.equal(SDP.roadmapNext(prog).phase.n, 2);
+  const all = Object.fromEntries(SDP.SD_PHASES.flatMap(p => p.practice).map(id => [id, { status: "revisit" }]));
+  assert.equal(SDP.roadmapNext(all), null);
+  const r = SDP.sdReadiness({});
+  assert.equal(r.length, 3);
+  for (const x of r) assert.ok(x.total > 0 && x.done === 0, x.label);
 });
