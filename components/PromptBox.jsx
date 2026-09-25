@@ -7,7 +7,7 @@ const CHATS = [
   ["Gemini", () => "https://gemini.google.com/app"],
 ];
 
-async function copy(text) {
+export async function copyText(text) {
   try { await navigator.clipboard.writeText(text); return true; }
   catch {
     const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select();
@@ -21,11 +21,11 @@ export default function PromptBox({ prompt, rows = 6 }) {
   const tooLong = prompt.length > 6000;
 
   async function onCopy() {
-    setMsg((await copy(prompt)) ? "Prompt copied. Paste it into any AI chat." : "Couldn't copy. Select the prompt below and copy it yourself.");
+    setMsg((await copyText(prompt)) ? "Prompt copied. Paste it into any AI chat." : "Couldn't copy. Select the prompt below and copy it yourself.");
     if (!show) setShow(true);
   }
   async function onOpen(name, make) {
-    await copy(prompt);
+    await copyText(prompt);
     const prefill = name !== "Gemini" && !tooLong;
     window.open(prefill ? make(prompt) : make(""), "_blank", "noopener");
     setMsg(prefill ? `Opened ${name}. The prompt is also copied, in case it isn't filled in.` : `Opened ${name}. Paste the prompt (Ctrl+V or long-press) and send it.`);

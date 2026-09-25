@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useData, DIFF } from "@/lib/data";
 import { useStore } from "@/lib/store";
+import { useSolutionIndex } from "@/lib/solutionStore";
 import { resolveTopics } from "@/lib/topics";
 import { useOpenItem } from "@/components/Drawer";
 import ItemRow from "@/components/ItemRow";
@@ -10,6 +11,7 @@ import { TYPE_LABEL, shortContest } from "@/lib/atcoder";
 
 const PLATFORMS = [["all", "All"], ["lc", "LeetCode"], ["cf", "Codeforces"], ["cc", "CodeChef"], ["ac", "AtCoder"]];
 const ORDER = { E: 0, M: 1, H: 2, U: 3 }; // U: no difficulty known
+const SOL_FILTERS = [["", "Saved or not"], ["saved", "Solution saved"], ["reviewed", "AI review saved"], ["unreviewed", "Saved, no AI review yet"], ["missing", "Solved, nothing saved"]];
 const topicsOf = tags => { const { names } = resolveTopics(tags); return names.length ? names : ["How to Approach a Problem"]; };
 
 export default function Practice() {
@@ -27,6 +29,10 @@ export default function Practice() {
   const [sort, setSort] = useState("easy");
   const [limit, setLimit] = useState(100);
   const [ctype, setCtype] = useState(""); // AtCoder contest type
+  const [sol, setSol] = useState(""); // saved solutions: see SOL_FILTERS
+  const { items: sols } = useSolutionIndex();
+  // The Today page links here with ?sol=unreviewed. Read once, without useSearchParams, so the page stays static.
+  useEffect(() => { const v = new URLSearchParams(window.location.search).get("sol"); if (v && SOL_FILTERS.some(([k]) => k === v)) setSol(v); }, []);
 
   // One flat, searchable list of every question.
   const index = useMemo(() => {
@@ -75,6 +81,13 @@ export default function Practice() {
       if (status === "todo" && st) return false;
       if (status === "done" && !st) return false;
       if (status === "revisit" && st !== "revisit") return false;
+      if (sol) {
+        const x2 = sols[x.id];
+        if (sol === "saved" && !x2?.n) return false;
+        if (sol === "reviewed" && !x2?.r) return false;
+        if (sol === "unreviewed" && !(x2?.n && !x2.r)) return false;
+        if (sol === "missing" && (!st || x2?.n)) return false;
+      }
       return true;
     });
     const by = {
@@ -84,9 +97,9 @@ export default function Practice() {
       number: (a, b) => a.num - b.num || a.text.localeCompare(b.text),
     }[sort];
     return out.sort(by);
-  }, [inPlatform, q, diff, topic, ctype, premium, status, sort, prog]);
+  }, [inPlatform, q, diff, topic, ctype, premium, status, sort, prog, sol, sols]);
 
-  useEffect(() => { setLimit(100); }, [platform, q, diff, topic, ctype, premium, status, sort]);
+  useEffect(() => { setLimit(100); }, [platform, q, diff, topic, ctype, premium, status, sort, sol]);
 
   function randomPick() {
     const pool = list.filter(x => !prog[x.id]?.status);
@@ -129,6 +142,9 @@ export default function Practice() {
         )}
         <select value={status} onChange={e => setStatus(e.target.value)} aria-label="Status">
           <option value="">Solved and unsolved</option><option value="todo">Unsolved only</option><option value="done">Solved only</option><option value="revisit">Needs revisit</option>
+        </select>
+        <select value={sol} onChange={e => setSol(e.target.value)} aria-label="Saved solutions">
+          {SOL_FILTERS.map(([k, label]) => <option key={k} value={k}>{label}</option>)}
         </select>
         {(platform === "all" || platform === "lc") && (
           <select value={premium} onChange={e => setPremium(e.target.value)} aria-label="LeetCode Premium">

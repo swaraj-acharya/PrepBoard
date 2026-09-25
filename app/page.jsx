@@ -9,6 +9,7 @@ import ItemRow from "@/components/ItemRow";
 import Heatmap from "@/components/Heatmap";
 import GoalCard from "@/components/GoalCard";
 import { normLab, pickToday, planSplit, CAT, status } from "@/lib/labEngine";
+import { useSolutionIndex } from "@/lib/solutionStore";
 
 function Hero({ id, total, number }) {
   const item = useItem(id);
@@ -115,6 +116,7 @@ export default function Today() {
         <aside className="col side">
           <LabPanel />
           <GoalCard />
+          <NotebookPanel />
           <section className="panel">
             <h2>Today</h2>
             <div className="goal">
@@ -155,6 +157,34 @@ function LabPanel() {
       ) : <p className="small">{pick.reason}</p>}
       {doneToday && <p className="small">Done for today. Nice.</p>}
       <p className="muted small">{plan.mode} mode: DSA ~{plan.dsa} min · CP ~{plan.cp} min · Engineering ~{plan.eng} min. <Link href="/lab">Open the Lab</Link></p>
+    </section>
+  );
+}
+
+// Your solution notebook in numbers. Only shown once something is saved.
+function NotebookPanel() {
+  const { items } = useSolutionIndex();
+  const saved = Object.entries(items).filter(([, x]) => x.n);
+  if (!saved.length) return null;
+  const all = saved.map(([, x]) => x);
+  const reviewed = all.filter(x => x.r).length, revised = all.filter(x => x.rv).length;
+  // More questions lists coding questions only, so the link counts those.
+  const waiting = saved.filter(([id, x]) => !x.r && !/^(hld|lld|cs):/.test(id)).length;
+  const waitingOther = all.length - reviewed - waiting;
+  return (
+    <section className="panel">
+      <h2>Solution notebook</h2>
+      <div className="diffsplit">
+        <span><b>{all.length}</b> Saved</span>
+        <span><b>{reviewed}</b> AI reviewed</span>
+        <span><b>{revised}</b> Re-solved</span>
+      </div>
+      <p className="muted small">
+        {waiting > 0 && <><Link href="/practice?sol=unreviewed">{waiting} saved solution{waiting === 1 ? " has" : "s have"} no AI review yet</Link>. </>}
+        {waitingOther > 0 && <>{waitingOther} design or CS answer{waitingOther === 1 ? " has" : "s have"} no AI review yet. </>}
+        {!waiting && !waitingOther && "Every saved solution has an AI review. "}
+        Open any question and look under My solutions.
+      </p>
     </section>
   );
 }

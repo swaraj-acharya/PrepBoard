@@ -1,4 +1,4 @@
-// Run: npm test. Covers the AtCoder pipeline, the DSA-path links, profile numbers and GitHub sync merging.
+// Run: npm test. Covers the AtCoder pipeline, the DSA-path links, profile numbers, GitHub sync merging and the solution notebook.
 // No network needed: fixtures follow the shapes in AtCoder Problems' own interfaces
 // (atcoder-problems-frontend/src/interfaces/{Contest,Problem,ProblemModel}.ts).
 import { test } from "node:test";
@@ -338,4 +338,163 @@ test("lab: sync merge keeps work from both devices", () => {
   assert.equal(m.lab.journal.j1.title, "x", "a fresh device doesn't wipe the journal");
   assert.equal(m.lab.settings.daily, 90);
   assert.ok(!("lab" in mergeStates({ problems: {} }, { problems: {} })), "no lab data, no lab key");
+});
+
+// ---- solution notebook (lib/solutions.js, lib/review.js)
+import { normalizeSolution, mergeSolution, summarize, solutionHash, solutionPath, validSolutionId, legacyAttempt, sameCode, diffLines, emptySolution, SOLUTIONS_INDEX } from "../lib/solutions.js";
+import { parseReview, lastCodeBlock, inlineParts } from "../lib/review.js";
+import { checkPrompt, checkAnswerPrompt } from "../lib/prompts.js";
+import { actions as storeActions, getState } from "../lib/store.js";
+
+const att = (id, at, extra = {}) => ({ id, at, u: at, lang: "C++", code: `code ${id}`, ctx: "solve", ...extra });
+const rec = (attempts, deleted = {}) => normalizeSolution({ id: "two-sum", attempts, deleted });
+
+test("solution records: bad input is cleaned, never trusted", () => {
+  assert.equal(normalizeSolution(null, "two-sum"), null);
+  assert.equal(normalizeSolution({ attempts: [] }, "../../etc/passwd"), null, "ids with slashes are refused");
+  assert.equal(normalizeSolution("text", "two-sum"), null);
+  const r = normalizeSolution({ id: "two-sum", attempts: [att("a", 5, { junk: 1, review: { raw: 42 } }), { id: "bad id!", code: "x" }, { id: "b" }, "nope", null], deleted: { "bad id!": 3 }, extra: true });
+  assert.deepEqual(r.attempts.map(a => a.id), ["a"], "attempts without code or with unsafe ids are dropped");
+  assert.equal(r.attempts[0].junk, undefined);
+  assert.equal(r.attempts[0].review, undefined, "a review that isn't text is dropped");
+  assert.deepEqual(r.deleted, {});
+  assert.equal(r.extra, undefined);
+  assert.equal(r.v, 1);
+  assert.deepEqual(normalizeSolution(r), r, "normalising twice changes nothing");
+  // The pasted review is stored exactly, whitespace, Markdown and all.
+  const raw = "## Verdict\r\n\n  Correct.  \n\n```cpp\nint x;\n```\n\t";
+  assert.equal(rec([att("a", 5, { review: { raw, at: 6, u: 6 } })]).attempts[0].review.raw, raw);
+});
+
+test("solution records: merging keeps every attempt and is order-independent", () => {
+  const phone = rec([att("a", 10), att("b", 20, { review: { raw: "old review", at: 21, u: 21 } })]);
+  const laptop = rec([att("a", 10, { code: "fixed typo", u: 30 }), att("b", 20, { review: { raw: "new review", at: 21, u: 40 } }), att("c", 50)]);
+  const m1 = mergeSolution(phone, laptop), m2 = mergeSolution(laptop, phone);
+  assert.deepEqual(m1, m2, "commutative");
+  assert.deepEqual(mergeSolution(m1, m1), m1, "idempotent");
+  assert.deepEqual(mergeSolution(mergeSolution(m1, phone), laptop), m1, "associative in practice");
+  assert.deepEqual(m1.attempts.map(a => a.id), ["a", "b", "c"]);
+  assert.equal(m1.attempts[0].code, "fixed typo", "newest edit wins");
+  assert.equal(m1.attempts[1].review.raw, "new review");
+  // Same clock, different content: both devices still end up with the same answer.
+  const x = rec([att("a", 10, { code: "left" })]), y = rec([att("a", 10, { code: "right" })]);
+  assert.deepEqual(mergeSolution(x, y), mergeSolution(y, x));
+  assert.equal(solutionHash(mergeSolution(x, y)), solutionHash(mergeSolution(y, x)));
+});
+
+test("solution records: code, review and improved solution each keep their own clock", () => {
+  const a = rec([att("a", 10, { code: "edited on phone", u: 50, review: { raw: "r1", at: 11, u: 11 } })]);
+  const b = rec([att("a", 10, { review: { raw: "r2 from laptop", at: 11, u: 60 }, improved: { code: "best", lang: "C++", u: 70 } })]);
+  const m = mergeSolution(a, b).attempts[0];
+  assert.equal(m.code, "edited on phone");
+  assert.equal(m.review.raw, "r2 from laptop");
+  assert.equal(m.improved.code, "best");
+  // Clearing a review is a change too: an empty review with a newer clock wins over the old text.
+  const cleared = rec([att("a", 10, { review: { raw: "", at: 11, u: 99 } })]);
+  assert.equal(mergeSolution(b, cleared).attempts[0].review.raw, "");
+});
+
+test("solution records: a deleted attempt stays deleted after syncing", () => {
+  const before = rec([att("a", 10), att("b", 20)]);
+  const deletedHere = rec([att("a", 10)], { b: 100 });
+  const editedThere = rec([att("a", 10), att("b", 20, { code: "edited later", u: 200 })]);
+  for (const m of [mergeSolution(before, deletedHere), mergeSolution(deletedHere, editedThere), mergeSolution(editedThere, deletedHere)]) {
+    assert.deepEqual(m.attempts.map(a => a.id), ["a"]);
+    assert.equal(m.deleted.b, 100);
+  }
+});
+
+test("solution records: summaries for lists, filters and sync", () => {
+  assert.equal(summarize(null), null);
+  const empty = summarize(emptySolution("two-sum"));
+  assert.equal(empty.n, 0);
+  const s = summarize(rec([att("a", 10, { review: { raw: "ok", at: 11, u: 11 } }), att("b", 20, { ctx: "revision" }), att("c", 30, { review: { raw: "  \n", at: 31, u: 31 } })]));
+  assert.equal(s.n, 3);
+  assert.equal(s.r, 1, "a blank review doesn't count");
+  assert.equal(s.rv, 1);
+  assert.equal(s.last, 30);
+  assert.equal(s.lr, 0);
+  assert.equal(s.u, 31);
+  assert.equal(typeof s.h, "string");
+  assert.notEqual(s.h, summarize(rec([att("a", 10)])).h);
+});
+
+test("solution records: GitHub paths are unique and stay inside the folder", () => {
+  assert.equal(solutionPath("two-sum"), "solutions/leetcode/two-sum.json");
+  assert.equal(solutionPath("cf:1A"), "solutions/codeforces/1A.json");
+  assert.equal(solutionPath("cc:FLOW001"), "solutions/codechef/FLOW001.json");
+  assert.equal(solutionPath("ac:abc350_c"), "solutions/atcoder/abc350_c.json");
+  assert.equal(solutionPath("hld:url-shortener"), "solutions/hld/url-shortener.json");
+  assert.equal(solutionPath("lld:parking-lot"), "solutions/lld/parking-lot.json");
+  assert.equal(solutionPath("cs:dbms:what-is-acid"), "solutions/cs/dbms/what-is-acid.json");
+  assert.equal(SOLUTIONS_INDEX, "solutions/index.json");
+  const ids = ["two-sum", "cf:1A", "cf:1a", "a.b", "a~2eb", "x:y", "x:y:z", "cs:a:b", "cs:a.b", "..", "a..b", "index", "cf:..", "zz:1"];
+  const paths = ids.map(solutionPath);
+  assert.equal(new Set(paths).size, ids.length, "no two ids share a file");
+  for (const p of paths) {
+    assert.ok(p.startsWith("solutions/") && p.endsWith(".json"));
+    assert.ok(!p.split("/").some(part => part === ".." || part === "." || part === ""), `${p} stays inside solutions/`);
+  }
+  assert.notEqual(solutionPath("index"), SOLUTIONS_INDEX);
+  assert.equal(validSolutionId("two-sum"), true);
+  assert.equal(validSolutionId("cs:os:what-is-a-process"), true);
+  for (const bad of ["", "a/b", "a b", "a\\b", "x".repeat(201), 5, null]) assert.equal(validSolutionId(bad), false);
+});
+
+test("solution records: old single code box becomes the same attempt 1 on every device", () => {
+  const a = legacyAttempt("int main() {}\r\n", 100, "C++"), b = legacyAttempt("int main() {}   \n", 200, "Java");
+  assert.equal(a.id, b.id, "the id comes from the code, so two devices don't create two attempts");
+  assert.equal(a.from, "work");
+  assert.equal(a.code, "int main() {}\r\n", "the code itself is kept exactly");
+  assert.notEqual(legacyAttempt("other", 1, null).id, a.id);
+  assert.ok(normalizeSolution({ id: "two-sum", attempts: [a] }).attempts.length === 1);
+  assert.ok(sameCode("a  \r\nb\n", "a\nb"));
+  assert.ok(!sameCode("a\nb", "a\n b"));
+});
+
+test("solution records: side-by-side comparison marks changed lines", () => {
+  const d = diffLines("for i\n  for j\n    check\nreturn", "map m\nfor i\n  lookup\nreturn");
+  assert.deepEqual(d.a.map(l => l.same), [true, false, false, true]);
+  assert.deepEqual(d.b.map(l => l.same), [false, true, false, true]);
+  assert.deepEqual(diffLines("x", "x").a, [{ line: "x", same: true }]);
+  assert.equal(diffLines("a\n".repeat(600), "b\n".repeat(600)), null, "very long code isn't diffed");
+});
+
+test("AI reviews: displayed from Markdown or plain text without losing anything", () => {
+  const raw = "## 1. VERDICT\nCorrect, **O(n)**.\n\n- did `well`\n- missed empty input\n  (and n = 1)\n\n| Approach | Time |\n|---|---|\n| Brute | O(n²) |\n\n> note\n\n---\n```cpp\nint a;\n```\nText after\n```python\nprint(1)";
+  const b = parseReview(raw);
+  assert.deepEqual(b.map(x => x.type), ["h", "p", "list", "table", "quote", "hr", "code", "p", "code"]);
+  assert.equal(b[2].items[1].text, "missed empty input\n(and n = 1)");
+  assert.deepEqual(b[3].rows, [["Approach", "Time"], ["Brute", "O(n²)"]]);
+  assert.equal(b[8].text, "print(1)", "an unclosed code block runs to the end");
+  assert.deepEqual(lastCodeBlock(raw), { type: "code", lang: "python", text: "print(1)" });
+  assert.equal(lastCodeBlock("no code here"), null);
+  assert.deepEqual(parseReview("plain\ntext\n\nsecond"), [{ type: "p", text: "plain\ntext" }, { type: "p", text: "second" }]);
+  assert.deepEqual(parseReview(""), []);
+  assert.deepEqual(inlineParts("a `b` **c** <img src=x>"), [{ t: "text", v: "a " }, { t: "code", v: "b" }, { t: "text", v: " " }, { t: "b", v: "c" }, { t: "text", v: " <img src=x>" }]);
+});
+
+test("review prompts ask for a reply that's easy to revise from", () => {
+  const dsa = { kind: "dsa", title: "Two Sum", platform: "LeetCode", url: "https://leetcode.com/problems/two-sum/", levelLabel: "Easy", tags: ["Array"] };
+  const p = checkPrompt(dsa, "C++", "int main() {}");
+  for (const part of ["VERDICT", "What I did well", "edge cases", "complexity", "Why my approach works", "ALL APPROACHES", "WHAT I SHOULD REMEMBER", "key insight", "THE BEST SOLUTION", "last code block", "Markdown"]) assert.ok(p.includes(part), part);
+  assert.ok(p.includes("int main() {}"), "your code is still in the prompt");
+  assert.ok(p.indexOf("1. VERDICT") < p.indexOf("6. THE BEST SOLUTION"));
+  const hld = checkPrompt({ ...dsa, kind: "hld", title: "URL shortener", concepts: ["Hashing"] }, "C++", "notes");
+  assert.ok(hld.includes("WHAT I SHOULD REMEMBER"));
+  const lld = checkPrompt({ ...dsa, kind: "lld", title: "Parking lot", concepts: ["OOP"] }, "Java", "class A {}");
+  assert.ok(lld.includes("THE BEST DESIGN") && lld.includes("Java"));
+  const cs = checkAnswerPrompt({ kind: "cs", title: "What is ACID?", subjectName: "DBMS", concepts: ["Transactions"] }, "atomicity…");
+  assert.ok(cs.includes("remember") && cs.includes("Score my answer"));
+});
+
+test("restoring a backup never puts saved solutions into progress", () => {
+  storeActions.importJSON(JSON.stringify({ problems: { "two-sum": { status: "solved", work: "x" } }, solutions: { "two-sum": { attempts: [] } } }));
+  assert.equal(getState().solutions, undefined);
+  assert.equal(getState().problems["two-sum"].work, "x", "old progress, including the code box, restores as before");
+  assert.equal(getState().settings.lang, "C++", "missing settings get defaults");
+  assert.throws(() => storeActions.importJSON("[1,2]"));
+  assert.throws(() => storeActions.importJSON("null"));
+  assert.throws(() => storeActions.importJSON("not json"));
+  storeActions.reset();
 });

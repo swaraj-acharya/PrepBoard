@@ -1,13 +1,16 @@
 "use client";
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { useStore, actions, INTERVALS } from "@/lib/store";
+import { useStore, actions, INTERVALS, today } from "@/lib/store";
 import { useItem } from "@/lib/data";
 import { hintPrompt, checkPrompt, topicPrompt, answerPrompt, checkAnswerPrompt } from "@/lib/prompts";
 import { csStudyLinks } from "@/lib/cs";
 import { isLive, TYPE_LABEL } from "@/lib/atcoder";
 import { HOW_LABEL } from "@/lib/profile";
+import { useSolution, solutionActions } from "@/lib/solutionStore";
 import TopicCard from "./TopicCard";
 import PromptBox from "./PromptBox";
+import { useSyncStatus } from "./GitHubSync";
+import { SaveAttempt, ReviewPaste, SolutionsTab, RecallGate, LANGS, ago, startOfToday, wordsFor } from "./Solutions";
 
 const Ctx = createContext(() => {});
 export const useOpenItem = () => useContext(Ctx);
@@ -22,7 +25,6 @@ export function DrawerProvider({ children }) {
   );
 }
 
-const LANGS = ["C++", "Java", "Python", "JavaScript"];
 const HINT_TITLES = ["Hint 1: a small nudge", "Hint 2: the key idea", "Hint 3: the full solution"];
 const HINT_NOTES = [
   "Points you in the right direction. No algorithm, no code.",
@@ -42,6 +44,13 @@ function LiveNotice({ item }) {
   );
 }
 
+// One line under the revision date: what's saved for this question.
+function solutionLine(summary, solved) {
+  if (!summary?.n) return solved ? "No solution saved yet." : "";
+  const review = summary.lr ? "AI review saved." : summary.r ? "The latest attempt has no AI review yet." : "No AI review saved yet.";
+  return `${summary.n} attempt${summary.n === 1 ? "" : "s"} saved, the latest ${ago(summary.last)}. ${review}`;
+}
+
 function Drawer({ id, onClose }) {
   const item = useItem(id);
   const { problems: prog, settings } = useStore();
@@ -50,6 +59,27 @@ function Drawer({ id, onClose }) {
   const [confirm3, setConfirm3] = useState(false);
   const [work, setWork] = useState(me.work || "");
   const panelRef = useRef(null);
+  const { record, loading: solLoading, failed: solFailed, summary } = useSolution(id);
+  const sync = useSyncStatus();
+  const [revealed, setRevealed] = useState(false); // "Show my old work anyway"
+  const [revising, setRevising] = useState(false); // started today's revision attempt
+  const [gateMsg, setGateMsg] = useState("");
+  const [gateBusy, setGateBusy] = useState(false);
+  const [compare, setCompare] = useState(null);    // { a, b } attempt keys shown side by side
+
+  // The code box saves when you click away. It also saves if you close the panel (Escape, ✕) while
+  // typing, and the browser warns before you leave the page with unsaved typing.
+  const workRef = useRef(work), dirtyRef = useRef(false);
+  const [dirty, setDirty] = useState(false);
+  const editWork = v => { workRef.current = v; setWork(v); dirtyRef.current = true; if (!dirty) setDirty(true); };
+  const flushWork = () => { if (dirtyRef.current) { actions.work(id, workRef.current); dirtyRef.current = false; setDirty(false); } };
+  useEffect(() => () => { if (dirtyRef.current) actions.work(id, workRef.current); }, [id]);
+  useEffect(() => {
+    if (!dirty) return;
+    const warn = e => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [dirty]);
 
   useEffect(() => {
     const k = e => e.key === "Escape" && onClose();
@@ -61,20 +91,47 @@ function Drawer({ id, onClose }) {
   if (!item) return null;
   const used = me.hints || 0;
   const lang = settings.lang;
+  const words = wordsFor(item);
+
+  // Active recall: while a revision is due, your old code, attempts, review and notes stay hidden
+  // until you save today's attempt (or choose to look anyway).
+  const revisionDue = !!me.status && !!me.due && me.due <= today();
+  const revisedToday = !!record?.attempts.some(a => a.ctx === "revision" && a.at >= startOfToday());
+  const hideOld = revisionDue && ((summary?.n || 0) > 0 || !!(me.work || "").trim()) && !revisedToday && !revealed;
+  const gateEditor = hideOld && !revising;
+  async function startRevision() {
+    setGateBusy(true); setGateMsg("");
+    try {
+      // Whatever is in the code box is kept as an attempt before the box is cleared.
+      if (workRef.current.trim()) {
+        const r = await solutionActions.saveAttempt(id, { code: workRef.current, lang, ctx: "solve" });
+        if (r.status === "created") setGateMsg(`Your previous ${words.thing} was kept as attempt ${(record?.attempts.length || 0) + 1}.`);
+      }
+      workRef.current = ""; setWork(""); dirtyRef.current = false; setDirty(false);
+      if (me.work) actions.work(id, "");
+      setRevising(true); setTab("check");
+    } catch (e) { setGateMsg(e.message); }
+    setGateBusy(false);
+  }
+  const gate = <RecallGate count={summary?.n || 0} reviews={summary?.r || 0} hasNotes={!!me.notes?.trim()} onStart={startRevision} onReveal={() => setRevealed(true)} busy={gateBusy} msg={gateMsg} />;
+  const showCompare = (a, b) => { setCompare({ a, b }); setTab("mine"); };
+  const solProps = { id, item, record, work, lang, revisionDue, onBeforeSave: flushWork };
+
+  const isCS = item.kind === "cs";
+  const live = item.platform === "AtCoder" && isLive(item.contest);
+  const mineLabel = `My solutions${summary?.n ? ` (${summary.n})` : ""}`;
+  const TABS = isCS
+    ? [["topic", "Learn the topic"], ["answer", "Answer and resources"], ["check", "Check my answer"], ["mine", mineLabel], ["notes", "Notes"]]
+    : [["topic", "Learn the topic"], ["hints", `Hints${used ? ` (${used}/3 used)` : ""}`], ["check", "Check my solution"], ["mine", mineLabel], ["notes", "Notes"]];
   const workLabel = item.kind === "hld" ? "Your design notes" : `Your ${lang} code`;
   const workHint = item.kind === "hld"
     ? "Requirements, estimates, APIs, database, components, trade-offs. Rough notes are fine."
     : "Paste the code you submitted.";
-
-  const isCS = item.kind === "cs";
-  const live = item.platform === "AtCoder" && isLive(item.contest);
-  const TABS = isCS
-    ? [["topic", "Learn the topic"], ["answer", "Answer and resources"], ["check", "Check my answer"], ["notes", "Notes"]]
-    : [["topic", "Learn the topic"], ["hints", `Hints${used ? ` (${used}/3 used)` : ""}`], ["check", "Check my solution"], ["notes", "Notes"]];
+  const revisingNote = hideOld && revising && <p className="recall-note small" role="status">{gateMsg && <>{gateMsg} </>}Revision attempt: write it from memory. Your earlier attempts unlock after you save this one.</p>;
 
   return (
     <div className="scrim" onMouseDown={e => e.target === e.currentTarget && onClose()}>
-      <aside className="drawer" role="dialog" aria-label={item.title} tabIndex={-1} ref={panelRef}>
+      <aside className={`drawer${compare && tab === "mine" ? " wide" : ""}`} role="dialog" aria-label={item.title} tabIndex={-1} ref={panelRef}>
         <header className="drawer-head">
           <div>
             <p className="kind">{isCS ? item.subjectName : KIND_LABEL[item.kind]}{item.pattern ? `, ${item.pattern.name} (path #${item.pattern.number})` : ""}{item.bridge ? `, AtCoder practice for step ${item.bridge.step}: ${item.bridge.name}` : ""}</p>
@@ -120,8 +177,16 @@ function Drawer({ id, onClose }) {
           </label>
         )}
         <p className="muted small">
-          {me.status ? (me.due ? `Next revision on ${me.due}.` : "Mastered. No more revisions scheduled.") : `Not solved yet. After you solve it, it comes back for revision after ${INTERVALS.join(", ")} days.`}
+          {me.status ? (me.due ? (revisionDue ? `Revision due${me.due < today() ? ` since ${me.due}` : " today"}.` : `Next revision on ${me.due}.`) : "Mastered. No more revisions scheduled.") : `Not solved yet. After you solve it, it comes back for revision after ${INTERVALS.join(", ")} days.`}
+          {solutionLine(summary, !!me.status) && <><br />{solutionLine(summary, !!me.status)}</>}
         </p>
+        {revisionDue && (revisedToday || revealed) && (
+          <div className="rev-grade" role="group" aria-label="How did this revision go?">
+            <span>How did this revision go?</span>
+            <button type="button" className="mini good" onClick={() => actions.remembered(id)}>I remembered it</button>
+            <button type="button" className="mini bad" onClick={() => actions.forgot(id)}>I forgot it</button>
+          </div>
+        )}
 
         <div className="tabs" role="tablist">
           {TABS.map(([k, label]) => <button key={k} role="tab" aria-selected={tab === k} className={tab === k ? "on" : ""} onClick={() => setTab(k)}>{label}</button>)}
@@ -188,14 +253,19 @@ function Drawer({ id, onClose }) {
 
         {tab === "check" && isCS && (
           <section className="tabpanel">
-            <label className="field">
-              <span>Your answer</span>
-              <span className="muted small">Write it the way you'd say it in an interview. It's saved with this question.</span>
-              <textarea rows={8} className="notes" value={work} onChange={e => setWork(e.target.value)} onBlur={() => actions.work(id, work)} placeholder="Type your answer here" />
-            </label>
-            <h3>Your feedback prompt</h3>
-            <p className="muted small">It asks the AI to score your answer, point out what's missing, and give the model answer.</p>
-            <PromptBox prompt={checkAnswerPrompt(item, work)} rows={10} />
+            {gateEditor ? gate : <>
+              {revisingNote}
+              <label className="field">
+                <span>Your answer</span>
+                <span className="muted small">Write it the way you'd say it in an interview. It's saved with this question.</span>
+                <textarea rows={8} className="notes" value={work} onChange={e => editWork(e.target.value)} onBlur={flushWork} placeholder="Type your answer here" />
+              </label>
+              <SaveAttempt {...solProps} onCompare={showCompare} />
+              <h3>Your feedback prompt</h3>
+              <p className="muted small">It asks the AI to score your answer, point out what's missing, and give the model answer.</p>
+              <PromptBox prompt={checkAnswerPrompt(item, work)} rows={10} />
+              <ReviewPaste {...solProps} onShow={() => setTab("mine")} />
+            </>}
           </section>
         )}
 
@@ -206,31 +276,45 @@ function Drawer({ id, onClose }) {
                 <p>Finished this question? Mark it done, paste your {item.kind === "hld" ? "design" : "code"}, and get a prompt that reviews it and shows every approach from brute force to the most optimised.</p>
                 <button className="btn primary" onClick={() => actions.solve(id)}>I finished it</button>
               </div>
-            ) : (
+            ) : gateEditor ? gate : (
               <>
+                {revisingNote}
                 {item.kind !== "hld" && <label className="lang">Language
                   <select value={lang} onChange={e => actions.settings({ lang: e.target.value })}>{LANGS.map(l => <option key={l}>{l}</option>)}</select>
                 </label>}
                 <label className="field">
                   <span>{workLabel}</span>
-                  <span className="muted small">{workHint} It's saved with this question.</span>
+                  <span className="muted small">{workHint} Save it as an attempt to keep this version, with its AI review, for revision.</span>
                   <textarea rows={item.kind === "hld" ? 8 : 12} className="code" spellCheck={false} value={work}
-                    onChange={e => setWork(e.target.value)} onBlur={() => actions.work(id, work)} placeholder={item.kind === "hld" ? "e.g. Requirements: …\nAPIs: POST /shorten …\nDB: …" : "Paste your solution here"} />
+                    onChange={e => editWork(e.target.value)} onBlur={flushWork} placeholder={item.kind === "hld" ? "e.g. Requirements: …\nAPIs: POST /shorten …\nDB: …" : "Paste your solution here"} />
                 </label>
+                <SaveAttempt {...solProps} onCompare={showCompare} />
                 <h3>Your review prompt</h3>
                 {live ? <LiveNotice item={item} /> : <>
                   <p className="muted small">It asks the AI to check your {item.kind === "hld" ? "design" : "code"}, then list all approaches, from brute force to the best, using the {item.platform} editorial and other platforms.</p>
                   <PromptBox prompt={checkPrompt(item, lang, work)} rows={10} />
+                  <ReviewPaste {...solProps} onShow={() => setTab("mine")} />
                 </>}
               </>
             )}
           </section>
         )}
 
+        {tab === "mine" && (
+          <section className="tabpanel">
+            {hideOld ? gate : (
+              <SolutionsTab id={id} item={item} record={record} loading={solLoading} failed={solFailed} notes={me.notes} onEditNotes={() => setTab("notes")}
+                onGoCheck={() => setTab("check")} compare={compare} setCompare={setCompare} synced={sync.connected} />
+            )}
+          </section>
+        )}
+
         {tab === "notes" && (
           <section className="tabpanel">
-            <textarea rows={8} className="notes" placeholder="Key idea, edge cases, the mistake you made…" defaultValue={me.notes || ""} onBlur={e => actions.note(id, e.target.value)} />
-            <p className="muted small">Saved when you click outside the box.</p>
+            {hideOld && me.notes?.trim() ? gate : <>
+              <textarea rows={8} className="notes" aria-label="Your notes" placeholder="Key insight, the pattern, the mistake you made, what to remember…" defaultValue={me.notes || ""} onBlur={e => actions.note(id, e.target.value)} />
+              <p className="muted small">Saved when you click outside the box. They show at the top of My solutions too.</p>
+            </>}
           </section>
         )}
       </aside>
