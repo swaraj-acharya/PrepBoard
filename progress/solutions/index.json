@@ -14,10 +14,16 @@
    "r": 1
   },
   "count-the-digits-that-divide-a-number": {
-   "h": "cayf4f1j8s",
-   "u": 1790313695226,
+   "h": "21q0pbmf0nr",
+   "u": 1790331296865,
    "n": 1,
-   "r": 0
+   "r": 1
+  },
+  "difference-between-element-sum-and-digit-sum-of-an-array": {
+   "h": "20ad4uxanx0",
+   "u": 1790331387765,
+   "n": 1,
+   "r": 1
   },
   "find-numbers-with-even-number-of-digits": {
    "h": "1sx5q34arq4",
@@ -37,6 +43,12 @@
    "n": 1,
    "r": 1
   },
+  "palindrome-number": {
+   "h": "2ebipfwolfj",
+   "u": 1790331520697,
+   "n": 1,
+   "r": 1
+  },
   "richest-customer-wealth": {
    "h": "1ghh8e242yh",
    "u": 1790330701686,
@@ -46,6 +58,12 @@
   "running-sum-of-1d-array": {
    "h": "22b7q10162x",
    "u": 1790330616268,
+   "n": 1,
+   "r": 1
+  },
+  "sign-of-the-product-of-an-array": {
+   "h": "qqi37x8pww",
+   "u": 1790331451814,
    "n": 1,
    "r": 1
   },

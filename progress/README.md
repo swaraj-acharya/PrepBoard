@@ -17,7 +17,7 @@ Solved on my own (no hint, editorial or reference code): **13** of 13.
 
 Current streak: **4 days**.
 
-Solution notebook: **10** questions with saved solutions (10 attempts), 9 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **13** questions with saved solutions (13 attempts), 13 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
@@ -50,9 +50,9 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | Solved |
-| [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | Solved |
 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | Solved |
 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | Solved |
+| [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | Solved |
 
 ### Thursday, 24 September 2026
 
@@ -88,9 +88,9 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
-| 2026-09-25 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | solved |
 | 2026-09-25 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | solved |
 | 2026-09-25 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | solved |
+| 2026-09-25 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | solved |
 | 2026-09-25 | [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | solved |
 | 2026-09-24 | [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | solved |
 | 2026-09-24 | [1523. Count Odd Numbers in an Interval Range](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/) | LeetCode | Easy | solved |

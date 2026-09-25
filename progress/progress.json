@@ -85,14 +85,16 @@
    "stage": 0,
    "due": "2026-09-26",
    "solvedOn": "2026-09-25",
-   "u": 1790314850871
+   "u": 1790331336853,
+   "work": "class Solution {\npublic:\n    int differenceOfSum(vector<int>& nums) {\n        int ele_sum = 0;\n        int dig_sum = 0;\n        for(int i=0; i<nums.size(); i++){\n            ele_sum = ele_sum + nums[i];\n            while(nums[i] != 0){\n                int last = nums[i] % 10;\n                dig_sum = dig_sum + last;\n                nums[i] = nums[i] / 10;\n            }\n        }\n        return abs(ele_sum - dig_sum);\n    }\n};"
   },
   "sign-of-the-product-of-an-array": {
    "status": "solved",
    "stage": 0,
    "due": "2026-09-26",
    "solvedOn": "2026-09-25",
-   "u": 1790316609748
+   "u": 1790331415532,
+   "work": "class Solution {\npublic:\n    int signFunc(int prod_sign){\n        if(prod_sign == 0){\n            return 1;\n        }else{\n            return -1;\n        }\n    }\n\n    int arraySign(vector<int>& nums) {\n        int prod_non_zero = 1;\n        int neg_no = 0;\n        for(int i=0; i<nums.size(); i++){\n            if(nums[i] == 0){\n                prod_non_zero = 0;\n                break;\n            }\n            if(nums[i] < 0){\n                neg_no++;\n            }\n        }\n        \n        if(prod_non_zero == 0){\n            return 0;\n        }else{\n            return signFunc(neg_no%2);\n        }\n        \n    }\n};"
   },
   "palindrome-number": {
    "status": "solved",
@@ -166,7 +168,7 @@
    {
     "id": "difference-between-element-sum-and-digit-sum-of-an-array",
     "a": "solved",
-    "t": 1790314850871
+    "t": 1790331314900
    },
    {
     "id": "sign-of-the-product-of-an-array",
