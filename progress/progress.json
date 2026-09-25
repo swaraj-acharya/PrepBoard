@@ -11,9 +11,9 @@
   "fizz-buzz": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-23",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-22",
-   "u": 1790047693495,
+   "u": 1790330306073,
    "work": "class Solution {\npublic:\n    vector<string> fizzBuzz(int n) {\n        vector<string>ans(n);\n        for(int i=1; i<=n; i++){\n            if(i%3 == 0 || i%5 == 0){\n                if(i%3 == 0 && i%5 == 0){\n                    ans[i-1] = \"FizzBuzz\" ;\n                }else if(i%3 == 0){\n                    ans[i-1] = \"Fizz\" ;\n                }else if(i%5 == 0){\n                    ans[i-1] = \"Buzz\" ;\n                }\n            }else{\n                ans[i-1] = to_string(i);\n            }\n        }\n        return ans;\n    }\n};"
   },
   "convert-the-temperature": {
@@ -67,9 +67,9 @@
   "find-numbers-with-even-number-of-digits": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-25",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-24",
-   "u": 1790272043799,
+   "u": 1790330271725,
    "work": "class Solution {\npublic:\n    int findNumbers(vector<int>& nums) {\n        int count = 0;\n        for(int i=0; i<nums.size(); i++){\n            string s = to_string(nums[i]);\n            int digi_count = s.length();\n            if((digi_count)%2 == 0){\n                count++;\n            }\n        }\n        return count;\n    }\n};"
   },
   "count-the-digits-that-divide-a-number": {

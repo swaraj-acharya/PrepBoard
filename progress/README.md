@@ -17,7 +17,7 @@ Solved on my own (no hint, editorial or reference code): **13** of 13.
 
 Current streak: **4 days**.
 
-Solution notebook: **10** questions with saved solutions (10 attempts), 0 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **10** questions with saved solutions (10 attempts), 1 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
@@ -81,8 +81,8 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | LeetCode | Easy | Solved |
-| [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | LeetCode | Easy | Solved |
 | [2469. Convert the Temperature](https://leetcode.com/problems/convert-the-temperature/) | LeetCode | Easy | Solved |
+| [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | LeetCode | Easy | Solved |
 
 ## Recently solved
 
@@ -98,6 +98,6 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-23 | [2413. Smallest Even Multiple](https://leetcode.com/problems/smallest-even-multiple/) | LeetCode | Easy | solved |
 | 2026-09-23 | [1342. Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/) | LeetCode | Easy | solved |
 | 2026-09-23 | [1672. Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/) | LeetCode | Easy | solved |
-| 2026-09-22 | [2469. Convert the Temperature](https://leetcode.com/problems/convert-the-temperature/) | LeetCode | Easy | solved |
 | 2026-09-22 | [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | LeetCode | Easy | solved |
+| 2026-09-22 | [2469. Convert the Temperature](https://leetcode.com/problems/convert-the-temperature/) | LeetCode | Easy | solved |
 | 2026-09-22 | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | LeetCode | Easy | solved |
