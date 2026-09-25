@@ -474,10 +474,24 @@ test("AI reviews: displayed from Markdown or plain text without losing anything"
   assert.deepEqual(inlineParts("a `b` **c** <img src=x>"), [{ t: "text", v: "a " }, { t: "code", v: "b" }, { t: "text", v: " " }, { t: "b", v: "c" }, { t: "text", v: " <img src=x>" }]);
 });
 
+test("AI reviews: plain-text replies copied from a chat keep their sections", () => {
+  const raw = "1. VERDICT\nCorrect, O(n).\n\n2. REVIEW MY CODE\n- What I did well: used a map\n- Missed n = 1\n3. ALL APPROACHES, FROM BRUTE FORCE TO MOST OPTIMISED\nAPPROACH 1: BRUTE FORCE\nTry every pair.\n```cpp\nint x;\n```\n5. WHAT I SHOULD REMEMBER (for my revision notes)\n1. Use a hash map\n2. Check n = 1";
+  const b = parseReview(raw);
+  assert.deepEqual(b.map(x => x.type + (x.level || "")), ["h2", "p", "h2", "list", "h2", "h3", "p", "code", "h2", "list"]);
+  assert.equal(b[8].text, "5. WHAT I SHOULD REMEMBER (for my revision notes)");
+  assert.deepEqual(b[9].items.map(i => i.text), ["Use a hash map", "Check n = 1"], "ordinary numbered points stay a list");
+  assert.equal(b[3].items.length, 2, "a section title right after a list isn't swallowed by it");
+  // Short capitals, code-like lines and long lines are not titles.
+  for (const line of ["1. DFS", "MOD = 10**9+7", "INT_MAX", "A".repeat(120)]) assert.notEqual(parseReview(line)[0].type, "h", line);
+});
+
 test("review prompts ask for a reply that's easy to revise from", () => {
   const dsa = { kind: "dsa", title: "Two Sum", platform: "LeetCode", url: "https://leetcode.com/problems/two-sum/", levelLabel: "Easy", tags: ["Array"] };
   const p = checkPrompt(dsa, "C++", "int main() {}");
-  for (const part of ["VERDICT", "What I did well", "edge cases", "complexity", "Why my approach works", "ALL APPROACHES", "WHAT I SHOULD REMEMBER", "key insight", "THE BEST SOLUTION", "last code block", "Markdown"]) assert.ok(p.includes(part), part);
+  for (const part of ["VERDICT", "What I did well", "edge cases", "complexity", "Why my approach works", "ALL APPROACHES", "WHAT I SHOULD REMEMBER", "key insight", "THE BEST SOLUTION", "last code block"]) assert.ok(p.includes(part), part);
+  // The reply should be a chat message that survives copy and paste, not a file or heavy Markdown.
+  for (const part of ["Reply right here in the chat", "Don't create a file, document, canvas or artifact", "easy to copy", "its own code block", "Don't use tables"]) assert.ok(p.includes(part), part);
+  assert.ok(!p.includes("Markdown"), "doesn't ask for Markdown");
   assert.ok(p.includes("int main() {}"), "your code is still in the prompt");
   assert.ok(p.indexOf("1. VERDICT") < p.indexOf("6. THE BEST SOLUTION"));
   const hld = checkPrompt({ ...dsa, kind: "hld", title: "URL shortener", concepts: ["Hashing"] }, "C++", "notes");
@@ -486,6 +500,7 @@ test("review prompts ask for a reply that's easy to revise from", () => {
   assert.ok(lld.includes("THE BEST DESIGN") && lld.includes("Java"));
   const cs = checkAnswerPrompt({ kind: "cs", title: "What is ACID?", subjectName: "DBMS", concepts: ["Transactions"] }, "atomicity…");
   assert.ok(cs.includes("remember") && cs.includes("Score my answer"));
+  for (const x of [hld, lld, cs]) assert.ok(x.includes("Don't create a file, document, canvas or artifact"));
 });
 
 test("restoring a backup never puts saved solutions into progress", () => {

@@ -531,6 +531,10 @@ code { font: .88em ui-monospace, "Cascadia Code", Consolas, monospace; backgroun
 .attempt-body { padding: 0 .9rem .9rem; border-top: 1px solid var(--line); }
 .attempt-part { margin-top: 1rem; }
 .attempt-part h4 { margin: 0 0 .2rem; font: 700 .95rem var(--display); }
+.part-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .75rem; margin-bottom: .2rem; }
+.part-head h4 { margin: 0; }
+.part-head .row-btns { margin: 0; }
+.attempt-edit > .muted { margin: 0 0 .4rem; }
 .attempt-part > p { margin: .25rem 0; }
 .attempt-edit { margin-top: .75rem; }
 .attempt-edit .field { margin-bottom: .5rem; }

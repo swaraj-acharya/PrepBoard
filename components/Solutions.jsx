@@ -89,13 +89,16 @@ export function SaveAttempt({ id, item, record, work, lang, revisionDue, onBefor
 
 // Paste the AI's reply after using the review prompt.
 export function ReviewPaste({ id, item, record, work, lang, revisionDue, onBeforeSave, onShow }) {
-  // The pasted text survives closing the panel or reloading the page until you save it.
+  // The pasted text (and which review you were editing) survives closing the panel or reloading
+  // the page until you save it.
   const key = `prepboard:review-draft:${id}`;
   const [text, setText] = useState(() => { try { return sessionStorage.getItem(key) || ""; } catch { return ""; } });
+  const [editing, setEditing] = useState(() => { try { return sessionStorage.getItem(`${key}:edit`) || null; } catch { return null; } });
   const [confirm, setConfirm] = useState(false);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState(null);
   useEffect(() => { try { if (text) sessionStorage.setItem(key, text); else sessionStorage.removeItem(key); } catch {} }, [key, text]);
+  useEffect(() => { try { if (editing) sessionStorage.setItem(`${key}:edit`, editing); else sessionStorage.removeItem(`${key}:edit`); } catch {} }, [key, editing]);
   useEffect(() => {
     if (!text.trim()) return;
     const warn = e => { e.preventDefault(); e.returnValue = ""; };
@@ -105,10 +108,33 @@ export function ReviewPaste({ id, item, record, work, lang, revisionDue, onBefor
   const nums = numbering(record);
   const match = matchDraft(record, work);
   const { thing, paste } = wordsFor(item);
+  // Editing a saved review: the attempt it belongs to (null once that attempt is gone).
+  const editAtt = editing ? record?.attempts.find(a => a.id === editing) || null : null;
+  useEffect(() => { if (editing && record && !record.attempts.some(a => a.id === editing)) setEditing(null); }, [editing, record]);
+
+  function startEdit(att) {
+    setText(att.review.raw); setEditing(att.id); setConfirm(false); setMsg(null);
+  }
+  function cancelEdit() { setText(""); setEditing(null); setMsg(null); }
+  const doneMsg = (att, n, raw, extra = "") => ({
+    kind: "ok", text: `${extra || `AI review saved with attempt ${n}.`} `,
+    action: <><button type="button" className="linkish" onClick={() => startEdit({ id: att.id, review: { raw } })}>Edit it</button> · <button type="button" className="linkish" onClick={onShow}>Read it in My solutions</button></>,
+  });
 
   async function save(replace = false) {
     setMsg(null);
-    if (!text.trim()) { setMsg({ kind: "error", text: "Paste the AI's review before saving." }); return; }
+    if (!text.trim()) { setMsg({ kind: "error", text: editAtt ? "The review is empty. To delete it, use Remove review in My solutions." : "Paste the AI's review before saving." }); return; }
+    if (editAtt) {
+      setBusy(true);
+      try {
+        await solutionActions.saveReview(id, editAtt.id, text);
+        const raw = text;
+        setText(""); setEditing(null);
+        setMsg(doneMsg(editAtt, nums.get(editAtt.id), raw, `Changes to the review of attempt ${nums.get(editAtt.id)} saved.`));
+      } catch (e) { setMsg({ kind: "error", text: e.message }); }
+      setBusy(false);
+      return;
+    }
     if (!work.trim()) { setMsg({ kind: "error", text: `Paste ${paste} in the box above first. The review is saved with the ${thing} it reviews.` }); return; }
     if (match && hasReview(match) && match.review.raw !== text && !replace) { setConfirm(true); return; }
     setBusy(true); setConfirm(false);
@@ -120,18 +146,35 @@ export function ReviewPaste({ id, item, record, work, lang, revisionDue, onBefor
         target = r.attempt; n = (record?.attempts.length || 0) + 1;
       }
       await solutionActions.saveReview(id, target.id, text);
+      const raw = text;
       setText("");
-      setMsg({ kind: "ok", text: `AI review saved with attempt ${n}${match ? "" : ` (your ${thing} was saved as attempt ${n} too)`}.`, action: <> <button type="button" className="linkish" onClick={onShow}>Read it in My solutions</button></> });
+      setMsg(doneMsg(target, n, raw, `AI review saved with attempt ${n}${match ? "" : ` (your ${thing} was saved as attempt ${n} too)`}.`));
     } catch (e) { setMsg({ kind: "error", text: e.message }); }
     setBusy(false);
   }
 
+  if (editAtt) return (
+    <div className="review-paste">
+      <h3>Edit the AI&apos;s review of attempt {nums.get(editAtt.id)}</h3>
+      <p className="muted small">Change anything you like: fix the layout, cut the parts you don&apos;t need, or add your own notes. What you save here is what My solutions shows.</p>
+      <label className="field">
+        <span>The AI&apos;s review</span>
+        <textarea rows={16} className="code" value={text} onChange={e => setText(e.target.value)} />
+      </label>
+      <div className="row-btns">
+        <button type="button" className="btn primary" disabled={busy} onClick={() => save()}>{busy ? "Saving…" : "Save changes"}</button>
+        <button type="button" className="btn ghost" onClick={cancelEdit}>Cancel</button>
+      </div>
+      <Msg msg={msg} />
+    </div>
+  );
+
   return (
     <div className="review-paste">
       <h3>Save the AI&apos;s review</h3>
-      <p className="muted small">When the AI replies, copy its whole answer (the copy button under the reply keeps the formatting) and paste it here. It&apos;s kept exactly as you paste it, with {match ? `attempt ${nums.get(match.id)}` : `the ${thing} above`}.</p>
+      <p className="muted small">When the AI replies, copy its whole answer with the copy button under the reply, and paste it here. It&apos;s saved with {match ? `attempt ${nums.get(match.id)}` : `the ${thing} above`}, and you can edit it any time.</p>
       {match && hasReview(match) && !text && (
-        <p className="small">Attempt {nums.get(match.id)} already has a review, saved on {fmtDate(match.review.at || match.review.u)}. <button type="button" className="linkish" onClick={onShow}>Read it</button></p>
+        <p className="small">Attempt {nums.get(match.id)} already has a review, saved on {fmtDate(match.review.at || match.review.u)}. <button type="button" className="linkish" onClick={() => startEdit(match)}>Edit it</button> · <button type="button" className="linkish" onClick={onShow}>Read it</button></p>
       )}
       <label className="field">
         <span>The AI&apos;s reply</span>
@@ -232,8 +275,9 @@ function AttemptCard({ id, item, attempt, n, latest }) {
     catch (e) { setMsg({ kind: "error", text: e.message }); }
     setBusy(false);
   }
-  const editor = (label, rows, onSave, extra) => (
+  const editor = (label, rows, onSave, extra, hint) => (
     <div className="attempt-edit">
+      {hint && <p className="muted small">{hint}</p>}
       <label className="field"><span>{label}</span>
         <textarea rows={rows} className="code" spellCheck={false} value={draft} onChange={e => setDraft(e.target.value)} />
       </label>
@@ -270,11 +314,20 @@ function AttemptCard({ id, item, attempt, n, latest }) {
           )}
 
           <div className="attempt-part">
-            <h4>AI review</h4>
-            {edit === "review" ? editor("The AI's reply, exactly as pasted", 10, () => run(() => solutionActions.saveReview(id, attempt.id, draft), "Review saved."))
+            <div className="part-head">
+              <h4>AI review</h4>
+              {reviewed && edit !== "review" && (
+                <div className="row-btns small-btns">
+                  <button type="button" className="btn" onClick={() => open("review", attempt.review.raw)}>Edit review</button>
+                  <button type="button" className="btn ghost" onClick={() => setRaw(r => !r)} aria-pressed={raw}>{raw ? "Show it formatted" : "Show as plain text"}</button>
+                </div>
+              )}
+            </div>
+            {edit === "review" ? editor("The AI's review", 16, () => run(() => solutionActions.saveReview(id, attempt.id, draft), "Review saved."), null,
+                "Change anything you like: fix the layout, cut the parts you don't need, or add your own notes.")
               : reviewed ? (
                 <>
-                  <p className="muted small">Saved on {fmtDate(attempt.review.at || attempt.review.u)}{attempt.review.u > (attempt.review.at || 0) + 1000 ? `, changed on ${fmtDate(attempt.review.u)}` : ""}.</p>
+                  <p className="muted small">Saved on {fmtDate(attempt.review.at || attempt.review.u)}{attempt.review.u > (attempt.review.at || 0) + 1000 ? `, edited on ${fmtDate(attempt.review.u)}` : ""}.</p>
                   {raw ? <pre className="raw-review">{attempt.review.raw}</pre> : <ReviewText raw={attempt.review.raw} />}
                   {confirm === "review" ? (
                     <div className="confirm">
@@ -284,7 +337,6 @@ function AttemptCard({ id, item, attempt, n, latest }) {
                     </div>
                   ) : (
                     <div className="row-btns small-btns">
-                      <button type="button" className="btn ghost" onClick={() => setRaw(r => !r)} aria-pressed={raw}>{raw ? "Show it formatted" : "Show exactly what I pasted"}</button>
                       <button type="button" className="btn ghost" onClick={() => open("review", attempt.review.raw)}>Edit review</button>
                       <button type="button" className="btn ghost danger" onClick={() => setConfirm("review")}>Remove review</button>
                     </div>
