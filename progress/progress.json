@@ -3,9 +3,9 @@
   "running-sum-of-1d-array": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-23",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-22",
-   "u": 1790016988958,
+   "u": 1790330560839,
    "work": "class Solution {\npublic:\n    vector<int> runningSum(vector<int>& nums) {\n        int runSum = 0;\n        for(int i=0; i<nums.size();i++){\n            runSum = runSum + nums[i];\n            nums[i] = runSum;\n        }\n        return nums;\n    }\n};"
   },
   "fizz-buzz": {
@@ -19,49 +19,49 @@
   "convert-the-temperature": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-23",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-22",
-   "u": 1790048479911,
+   "u": 1790330873052,
    "work": "class Solution {\npublic:\n    vector<double> convertTemperature(double celsius) {\n        vector<double>ans(2);\n        ans[0] = celsius + 273.15;\n        ans[1] = celsius * 1.80 + 32.00;\n        return ans;\n    }\n};"
   },
   "richest-customer-wealth": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-24",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-23",
-   "u": 1790166032484,
+   "u": 1790330645653,
    "work": "class Solution {\npublic:\n    int maximumWealth(vector<vector<int>>& accounts) {\n        int max_wealth = 0;\n        for(int i=0; i<accounts.size(); i++){\n            int sum = 0;\n            for(int j=0; j<accounts[i].size(); j++){\n                sum = sum + accounts[i][j];\n            }\n            if(sum > max_wealth){\n                max_wealth = sum;\n            }\n        }\n        return max_wealth;\n    }\n};"
   },
   "number-of-steps-to-reduce-a-number-to-zero": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-24",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-23",
-   "u": 1790170157250,
+   "u": 1790330754435,
    "work": "class Solution {\npublic:\n    int numberOfSteps(int num) {\n        int step_count = 0;\n        while(num != 0){\n            if(num%2 == 0){\n                num = num/2;\n                step_count ++;\n            }else{\n                num = num - 1;\n                step_count ++;\n            }\n        }\n        return step_count;\n    }\n};"
   },
   "smallest-even-multiple": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-24",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-23",
-   "u": 1790174187803,
+   "u": 1790330934486,
    "work": "class Solution {\npublic:\n    int smallestEvenMultiple(int n) {\n        int num = n;\n        int count = 2;\n        while(num%2 != 0 || num%n != 0){\n            num = num * count;\n            count++;\n        }\n        return num;\n    }\n};"
   },
   "count-odd-numbers-in-an-interval-range": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-25",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-24",
-   "u": 1790270324903,
+   "u": 1790331000168,
    "work": "class Solution {\npublic:\n    int countOdds(int low, int high) {\n        int count = 0;\n        for(int i=low; i<=high; i++){\n            if(i%2 != 0){\n                count ++;\n            }\n        }\n        return count;\n    }\n};"
   },
   "subtract-the-product-and-sum-of-digits-of-an-integer": {
    "status": "solved",
    "stage": 0,
-   "due": "2026-09-25",
+   "due": "2026-09-26",
    "solvedOn": "2026-09-24",
-   "u": 1790270819740,
+   "u": 1790331068084,
    "work": "class Solution {\npublic:\n    int subtractProductAndSum(int n) {\n        int sum = 0;\n        int prod = 1;\n        while(n!=0){\n            int digit = n%10;\n            sum = sum + digit;\n            prod = prod * digit;\n            n = n/10;\n        }\n        return prod-sum;\n    }\n};"
   },
   "find-numbers-with-even-number-of-digits": {

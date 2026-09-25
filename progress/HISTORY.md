@@ -41,6 +41,6 @@ Every day I solved or revised something, newest first. Tracked with Prepboard. U
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
+| [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | LeetCode | Easy | Solved |
 | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | LeetCode | Easy | Solved |
 | [2469. Convert the Temperature](https://leetcode.com/problems/convert-the-temperature/) | LeetCode | Easy | Solved |
-| [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | LeetCode | Easy | Solved |

@@ -2,16 +2,16 @@
  "v": 1,
  "items": {
   "convert-the-temperature": {
-   "h": "gko75dk9xo",
-   "u": 1790048479911,
+   "h": "1w9d205hica",
+   "u": 1790330913018,
    "n": 1,
-   "r": 0
+   "r": 1
   },
   "count-odd-numbers-in-an-interval-range": {
-   "h": "13uf3ngw6i2",
-   "u": 1790270324903,
+   "h": "2aauf2t1sl6",
+   "u": 1790331040617,
    "n": 1,
-   "r": 0
+   "r": 1
   },
   "count-the-digits-that-divide-a-number": {
    "h": "cayf4f1j8s",
@@ -20,10 +20,10 @@
    "r": 0
   },
   "find-numbers-with-even-number-of-digits": {
-   "h": "4t1z38k7ng",
-   "u": 1790272043799,
+   "h": "1sx5q34arq4",
+   "u": 1790331185083,
    "n": 1,
-   "r": 0
+   "r": 1
   },
   "fizz-buzz": {
    "h": "265jlpczw8e",
@@ -32,34 +32,34 @@
    "r": 1
   },
   "number-of-steps-to-reduce-a-number-to-zero": {
-   "h": "19jahjn5uju",
-   "u": 1790170157250,
+   "h": "29pbf3wes0o",
+   "u": 1790330843685,
    "n": 1,
-   "r": 0
+   "r": 1
   },
   "richest-customer-wealth": {
-   "h": "avpl4csuxh",
-   "u": 1790166032484,
+   "h": "1ghh8e242yh",
+   "u": 1790330701686,
    "n": 1,
-   "r": 0
+   "r": 1
   },
   "running-sum-of-1d-array": {
-   "h": "7s0qv1o8at",
-   "u": 1790016988958,
+   "h": "22b7q10162x",
+   "u": 1790330616268,
    "n": 1,
-   "r": 0
+   "r": 1
   },
   "smallest-even-multiple": {
-   "h": "1qi2mp0i8o1",
-   "u": 1790174187803,
+   "h": "q1gcmsgv19",
+   "u": 1790330978050,
    "n": 1,
-   "r": 0
+   "r": 1
   },
   "subtract-the-product-and-sum-of-digits-of-an-integer": {
-   "h": "2czxaa0uwrp",
-   "u": 1790270819740,
+   "h": "btnfijntqy",
+   "u": 1790331134967,
    "n": 1,
-   "r": 0
+   "r": 1
   }
  }
 }
