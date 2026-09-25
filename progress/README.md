@@ -1,27 +1,28 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-09-24.
+Tracked with Prepboard. Updated 2026-09-25.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **9** of 2,500 goal |
-| LeetCode | 9 (Easy 9, Medium 0, Hard 0) |
+| **Coding questions** | **12** of 2,500 goal |
+| LeetCode | 12 (Easy 12, Medium 0, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 9 of 456 |
+| DSA path | 12 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **9** of 9.
+Solved on my own (no hint, editorial or reference code): **12** of 12.
 
-Current streak: **3 days**.
+Current streak: **4 days**.
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-09-25 | 3 |
 | 2026-09-24 | 3 |
 | 2026-09-23 | 3 |
 | 2026-09-22 | 3 |
@@ -35,11 +36,20 @@ Current streak: **3 days**.
 | 2026-09-14 | 0 |
 | 2026-09-13 | 0 |
 | 2026-09-12 | 0 |
-| 2026-09-11 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Friday, 25 September 2026
+
+3 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | Solved |
+| [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | Solved |
+| [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | Solved |
 
 ### Thursday, 24 September 2026
 
@@ -75,6 +85,9 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-25 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | solved |
+| 2026-09-25 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | solved |
+| 2026-09-25 | [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | solved |
 | 2026-09-24 | [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) | LeetCode | Easy | solved |
 | 2026-09-24 | [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | solved |
 | 2026-09-24 | [1523. Count Odd Numbers in an Interval Range](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/) | LeetCode | Easy | solved |

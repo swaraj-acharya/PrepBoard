@@ -71,12 +71,35 @@
    "solvedOn": "2026-09-24",
    "u": 1790272043799,
    "work": "class Solution {\npublic:\n    int findNumbers(vector<int>& nums) {\n        int count = 0;\n        for(int i=0; i<nums.size(); i++){\n            string s = to_string(nums[i]);\n            int digi_count = s.length();\n            if((digi_count)%2 == 0){\n                count++;\n            }\n        }\n        return count;\n    }\n};"
+  },
+  "count-the-digits-that-divide-a-number": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-26",
+   "solvedOn": "2026-09-25",
+   "u": 1790313695226,
+   "work": "class Solution {\npublic:\n    int countDigits(int num) {\n        int n = num;\n        int count = 0;\n        while(n != 0){\n            int digit = n % 10 ;\n            if(num % digit == 0){\n                count++;\n            }\n            n = n/10;\n        }\n        return count;\n    }\n};"
+  },
+  "difference-between-element-sum-and-digit-sum-of-an-array": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-26",
+   "solvedOn": "2026-09-25",
+   "u": 1790314850871
+  },
+  "sign-of-the-product-of-an-array": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-26",
+   "solvedOn": "2026-09-25",
+   "u": 1790316609748
   }
  },
  "activity": {
   "2026-09-22": 3,
   "2026-09-23": 3,
-  "2026-09-24": 3
+  "2026-09-24": 3,
+  "2026-09-25": 3
  },
  "settings": {
   "lang": "C++",
@@ -124,6 +147,23 @@
     "id": "find-numbers-with-even-number-of-digits",
     "a": "solved",
     "t": 1790272040000
+   }
+  ],
+  "2026-09-25": [
+   {
+    "id": "count-the-digits-that-divide-a-number",
+    "a": "solved",
+    "t": 1790313686826
+   },
+   {
+    "id": "difference-between-element-sum-and-digit-sum-of-an-array",
+    "a": "solved",
+    "t": 1790314850871
+   },
+   {
+    "id": "sign-of-the-product-of-an-array",
+    "a": "solved",
+    "t": 1790316609748
    }
   ]
  },
