@@ -1,6 +1,18 @@
 {
  "v": 1,
  "items": {
+  "add-digits": {
+   "h": "nfbvyrbq3j",
+   "u": 1790437557000,
+   "n": 1,
+   "r": 1
+  },
+  "average-salary-excluding-the-minimum-and-maximum-salary": {
+   "h": "1piv7oi8ow7",
+   "u": 1790434493743,
+   "n": 1,
+   "r": 1
+  },
   "convert-the-temperature": {
    "h": "1w9d205hica",
    "u": 1790330913018,
@@ -46,6 +58,12 @@
   "palindrome-number": {
    "h": "2ebipfwolfj",
    "u": 1790331520697,
+   "n": 1,
+   "r": 1
+  },
+  "reverse-integer": {
+   "h": "1nxljlxn5vd",
+   "u": 1790436692649,
    "n": 1,
    "r": 1
   },

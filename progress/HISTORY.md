@@ -1,8 +1,18 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-25.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-26.
 
-4 active days so far.
+5 active days so far.
+
+### Saturday, 26 September 2026
+
+3 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | Solved |
+| [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | Solved |
+| [258. Add Digits](https://leetcode.com/problems/add-digits/) | LeetCode | Easy | Solved |
 
 ### Friday, 25 September 2026
 

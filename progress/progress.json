@@ -103,13 +103,38 @@
    "solvedOn": "2026-09-25",
    "u": 1790328862316,
    "work": "class Solution {\npublic:\n    bool isPalindrome(int x) {\n        if(x < 0){\n            return false;\n        }\n        int num = x;\n        long long rev_num = 0;\n        while(num != 0){\n            int digit = num % 10;\n            rev_num = rev_num*10 + digit;\n            num = num / 10;\n        }\n        if(rev_num == x){\n            return true;\n        }else{\n            return false;\n        }\n    }\n};"
+  },
+  "average-salary-excluding-the-minimum-and-maximum-salary": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-27",
+   "solvedOn": "2026-09-26",
+   "u": 1790434395170,
+   "work": "class Solution {\npublic:\n    double average(vector<int>& salary) {\n        double max= salary[0];\n        double min = salary[0];\n        double total = salary[0];\n        for(int i=1 ; i< salary.size(); i++){\n            total = total + salary[i];\n            if(max < salary[i]){\n                max = salary[i];\n            }\n            if(min > salary[i]){\n                min = salary[i];\n            }\n        }\n\n        return (total-(max+min))/(salary.size()-2);\n    }\n};"
+  },
+  "reverse-integer": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-27",
+   "solvedOn": "2026-09-26",
+   "u": 1790436648320,
+   "work": "class Solution {\npublic:\n    int reverse(int x) {\n        long long rev = 0;\n        \n        while (x != 0) {\n            int digit = x % 10;\n            rev = rev * 10 + digit;\n            x = x / 10;\n        }\n        \n        if (rev > INT_MAX || rev < INT_MIN) {\n            return 0;\n        }\n        \n        return (int)rev;\n    }\n};"
+  },
+  "add-digits": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-09-27",
+   "solvedOn": "2026-09-26",
+   "u": 1790437496734,
+   "work": "class Solution {\npublic:\n    int addDigits(int num) {\n        if(num<10){\n            return num;\n        }\n        int n = num;\n        int digi_sum = 0;\n        while(n > 9){\n            while(n!=0){\n                int digit = n%10;\n                digi_sum += digit;\n                n = n/10;\n            }\n            if(digi_sum > 9){\n                n = digi_sum;\n                digi_sum = 0;\n            }\n        }\n        return digi_sum;\n    }\n};"
   }
  },
  "activity": {
   "2026-09-22": 3,
   "2026-09-23": 3,
   "2026-09-24": 3,
-  "2026-09-25": 4
+  "2026-09-25": 4,
+  "2026-09-26": 3
  },
  "settings": {
   "lang": "C++",
@@ -180,6 +205,23 @@
     "a": "solved",
     "t": 1790326923395
    }
+  ],
+  "2026-09-26": [
+   {
+    "id": "average-salary-excluding-the-minimum-and-maximum-salary",
+    "a": "solved",
+    "t": 1790434391210
+   },
+   {
+    "id": "reverse-integer",
+    "a": "solved",
+    "t": 1790436644934
+   },
+   {
+    "id": "add-digits",
+    "a": "solved",
+    "t": 1790437494067
+   }
   ]
  },
  "ratings": {
@@ -192,7 +234,7 @@
    "history": [],
    "url": "https://atcoder.jp/users/SwarajAcharya",
    "source": "atcoder.jp (official)",
-   "fetched": 1790244141026
+   "fetched": 1790340477943
   },
   "cf": {
    "handle": "swaraj_acharya",
@@ -202,7 +244,7 @@
    "history": [],
    "url": "https://codeforces.com/profile/swaraj_acharya",
    "source": "codeforces.com/api (official)",
-   "fetched": 1790244141026
+   "fetched": 1790340477943
   }
  }
 }

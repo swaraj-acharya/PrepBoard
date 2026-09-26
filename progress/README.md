@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-09-25.
+Tracked with Prepboard. Updated 2026-09-26.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **13** of 2,500 goal |
-| LeetCode | 13 (Easy 13, Medium 0, Hard 0) |
+| **Coding questions** | **16** of 2,500 goal |
+| LeetCode | 16 (Easy 15, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 13 of 456 |
+| DSA path | 16 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **13** of 13.
+Solved on my own (no hint, editorial or reference code): **16** of 16.
 
-Current streak: **4 days**.
+Current streak: **5 days**.
 
-Solution notebook: **13** questions with saved solutions (13 attempts), 13 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **16** questions with saved solutions (16 attempts), 16 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-09-26 | 3 |
 | 2026-09-25 | 4 |
 | 2026-09-24 | 3 |
 | 2026-09-23 | 3 |
@@ -37,11 +38,20 @@ Solution notebook: **13** questions with saved solutions (13 attempts), 13 with 
 | 2026-09-15 | 0 |
 | 2026-09-14 | 0 |
 | 2026-09-13 | 0 |
-| 2026-09-12 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Saturday, 26 September 2026
+
+3 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | Solved |
+| [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | Solved |
+| [258. Add Digits](https://leetcode.com/problems/add-digits/) | LeetCode | Easy | Solved |
 
 ### Friday, 25 September 2026
 
@@ -88,6 +98,9 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-26 | [258. Add Digits](https://leetcode.com/problems/add-digits/) | LeetCode | Easy | solved |
+| 2026-09-26 | [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | solved |
+| 2026-09-26 | [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | solved |
 | 2026-09-25 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | solved |
 | 2026-09-25 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | solved |
 | 2026-09-25 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | solved |
