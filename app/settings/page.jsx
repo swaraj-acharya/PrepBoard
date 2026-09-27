@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useStore, actions, getState } from "@/lib/store";
 import { useSolutionIndex, solutionActions } from "@/lib/solutionStore";
-import { useSyncStatus, syncActions } from "@/components/GitHubSync";
+import { useSyncStatus, syncActions } from "@/components/LocalSync";
 import { refreshRatings } from "@/lib/profile";
 
 const PROFILES = [["ac", "AtCoder", "Used for your rating and colour"], ["cf", "Codeforces", "Used for your rating and rank"], ["cc", "CodeChef", "Link only"], ["lc", "LeetCode", "Link only"], ["gh", "GitHub", "Link only"]];
@@ -30,9 +30,6 @@ export default function Settings() {
   }
   const fileRef = useRef(null);
   const [msg, setMsg] = useState("");
-  const sync = useSyncStatus();
-  const [pw, setPw] = useState("");
-  const [busy, setBusy] = useState(false);
   const sol = useSolutionIndex();
   const savedCount = Object.values(sol.items).filter(x => x.n).length;
 
@@ -89,7 +86,7 @@ export default function Settings() {
       </section>
       <section className="panel" id="profiles">
         <h2>Public profiles</h2>
-        <p className="muted">Your usernames on other sites. Your <a href="/profile">profile</a> links to them and shows your AtCoder and Codeforces ratings, read from those sites. If you save progress to GitHub, they&apos;re saved there too.</p>
+        <p className="muted">Your usernames on other sites. Your <a href="/profile">profile</a> links to them and shows your AtCoder and Codeforces ratings, read from those sites. If you link your repo folder, they&apos;re saved there too.</p>
         <form onSubmit={saveProfiles}>
           {PROFILES.map(([k, name, note]) => (
             <label className="row" key={k}><span>{name} <span className="muted small">{note}</span></span>
@@ -100,46 +97,7 @@ export default function Settings() {
         </form>
         {rmsg && <p className="small" role="status">{rmsg}</p>}
       </section>
-      <section className="panel">
-        <h2>Save progress to GitHub</h2>
-        <p className="muted">Tick questions as usual; nothing is sent to GitHub until you click <strong>Push Progress Now</strong>. Everything you changed since your last push goes up together as one commit in the <code>progress</code> folder of your repo. Commits count on your GitHub contribution graph, and opening the site on another device loads what you pushed.</p>
-        {sync.connected ? (
-          <>
-            {savedCount > 0 && <p className="small privacy-note">Your saved solutions and AI reviews ({savedCount} question{savedCount === 1 ? "" : "s"}) are pushed with your progress, to <code>progress/solutions/</code>. If your repo is public, anyone can read them.</p>}
-            <p className={`sync-pending${sync.pending ? " has" : ""}`}>
-              {sync.pending ? `${sync.pending} change${sync.pending === 1 ? "" : "s"} waiting to be pushed.` : "No changes waiting to be pushed."}
-            </p>
-            <p className={`sync-line sync-${sync.state}`} role="status">
-              {sync.state === "syncing" ? sync.message : sync.state === "error" ? sync.message : `${sync.message}${sync.at ? ` Last checked ${sync.at.toLocaleTimeString()}.` : ""}`}
-              {sync.commit && <> <a href={sync.commit} target="_blank" rel="noreferrer">See the last commit</a>.</>}
-            </p>
-            <div className="row-btns">
-              <button className="btn primary" disabled={busy || sync.state === "syncing"} onClick={async () => { setBusy(true); await syncActions.pushNow(); setBusy(false); }}>{busy ? "Pushing…" : "Push Progress Now"}</button>
-              <button className="btn ghost" onClick={() => syncActions.disconnect()}>Stop saving to GitHub on this device</button>
-            </div>
-          </>
-        ) : (
-          <>
-            <form className="sync-form" onSubmit={async e => { e.preventDefault(); if (!pw.trim()) return; setBusy(true); await syncActions.connect(pw); setBusy(false); setPw(""); }}>
-              <label className="row">Sync password (your SYNC_SECRET)
-                <input type="password" autoComplete="current-password" value={pw} onChange={e => setPw(e.target.value)} />
-              </label>
-              <button className="btn primary" disabled={busy || !pw.trim()}>{busy ? "Connecting…" : "Connect"}</button>
-            </form>
-            {sync.state === "error" && <p className="error" role="alert">{sync.message}</p>}
-          </>
-        )}
-        <details className="setup">
-          <summary>How to set it up (once, about 5 minutes)</summary>
-          <ol>
-            <li><strong>Create a GitHub token.</strong> Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">GitHub → Fine-grained tokens → Generate new token</a>. Under Repository access choose <em>Only select repositories</em> and pick your Prepboard repo. Under Permissions set <em>Contents</em> to <em>Read and write</em>. Generate it and copy it.</li>
-            <li><strong>Add it to Vercel.</strong> In Vercel open your project → Settings → Environment Variables and add <code>GITHUB_TOKEN</code> (the token), <code>GITHUB_REPO</code> (like <code>yourname/prepboard</code>) and <code>SYNC_SECRET</code> (a long password you make up). Then go to Deployments and click Redeploy.</li>
-            <li><strong>Connect here.</strong> Type your <code>SYNC_SECRET</code> above and click Connect. Do this once on each device you use.</li>
-            <li><strong>Push when you're done.</strong> After a study session, come back here and click Push Progress Now. Unpushed changes stay safe in this browser until then.</li>
-          </ol>
-          <p className="muted small">The token only lives in Vercel, never in the browser or the code, and visitors can&apos;t save without your password. Commits that only change <code>progress/</code> don&apos;t trigger a new Vercel deploy (see <code>vercel.json</code>). If your repo is public, <code>progress.json</code> (including notes and pasted code) and <code>progress/solutions/</code> (your saved attempts and AI reviews) are public too. Commits count on your contribution graph when they go to the default branch of a repo that isn&apos;t a fork. For a private repo, also turn on &quot;Private contributions&quot; in your GitHub profile.</p>
-        </details>
-      </section>
+      <RepoFolder savedCount={savedCount} />
       <section className="panel">
         <h2>Sign-in</h2>
         <p className="muted">This device stays signed in for 7 days after you sign in. To sign out every device at once, change <code>AUTH_PASSWORD</code> in Vercel and redeploy.</p>
@@ -160,5 +118,86 @@ export default function Settings() {
         {msg && <p className="small" role="status">{msg}</p>}
       </section>
     </div>
+  );
+}
+
+// Saving to your local copy of the repo (components/LocalSync.jsx). Nothing here talks to GitHub.
+function RepoFolder({ savedCount }) {
+  const sync = useSyncStatus();
+  const [busy, setBusy] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const cmdRef = useRef(null);
+  useEffect(() => { setCopied(false); }, [sync.command]);
+  const run = fn => async () => { setBusy(true); try { await fn(); } finally { setBusy(false); } };
+  async function copy() {
+    try { await navigator.clipboard.writeText(sync.command); setCopied(true); }
+    catch { if (cmdRef.current) window.getSelection()?.selectAllChildren(cmdRef.current); } // select it to copy by hand
+  }
+  const time = sync.savedAt ? sync.savedAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : null;
+  const where = sync.path === "." ? "this folder" : "your repo folder";
+
+  return (
+    <section className="panel" id="repo">
+      <h2>Save progress to your repo folder</h2>
+      <p className="muted">Link the folder where you cloned this repo. Every tick, note and saved solution is written to its <code>progress</code> folder a moment after you make it. This site doesn&apos;t connect to GitHub: when you&apos;re done for the day, commit and push with Git.</p>
+      {!sync.supported ? (
+        <p className="error" role="alert">This browser can&apos;t save into a folder on your computer. Open Prepboard in Chrome or Edge on a laptop or desktop. Your progress is still kept in this browser.</p>
+      ) : !sync.linked ? (
+        <>
+          <div className="row-btns"><button className="btn primary" onClick={run(syncActions.link)} disabled={busy}>{busy ? "Opening…" : "Choose repo folder"}</button></div>
+          <p className="muted small">Pick the folder that has <code>package.json</code> and <code>progress</code> in it. If it has no <code>progress</code> folder, one is created.</p>
+          {sync.state === "error" && <p className="error" role="alert">{sync.message}</p>}
+        </>
+      ) : (
+        <>
+          <p className="folder-line">{sync.state === "needs-permission" ? "Linked to" : "Saving to"} <code>{sync.folder}</code>{sync.created ? ". It had no progress folder, so one was created" : ""}.</p>
+          {sync.repo === false && <p className="small privacy-note">This folder isn&apos;t a Git repository (it has no <code>.git</code> folder), so there&apos;s nothing to push from it. Choose the folder you cloned from GitHub instead.</p>}
+          {sync.state === "needs-permission" ? (
+            <>
+              <p className="sync-line sync-needs-permission" role="alert">{sync.message} Chrome and Edge ask again after they restart; choose <strong>Allow on every visit</strong> so they stop asking.</p>
+              <div className="row-btns folder-allow"><button className="btn primary" onClick={run(syncActions.reconnect)} disabled={busy}>Allow access</button></div>
+            </>
+          ) : (
+            <p className={`sync-line sync-${sync.state === "loading" || (sync.state === "ok" && sync.unsaved) ? "syncing" : sync.state}`} role="status">
+              {sync.state === "loading" || sync.state === "error" ? sync.message
+                : sync.unsaved ? "Saving…"
+                : `All changes are saved in the folder${time ? ` (last saved ${time})` : ""}.`}
+            </p>
+          )}
+          {sync.repaired && <p className="small privacy-note">A <code>git pull</code> had left a merge conflict in the progress files. Both sides were merged and saved; commit the result to finish the merge.</p>}
+          {savedCount > 0 && <p className="small privacy-note">Your saved solutions and AI reviews ({savedCount} question{savedCount === 1 ? "" : "s"}) are saved to <code>progress/solutions/</code> too. If your repo is public, anyone can read them once you push.</p>}
+          {sync.state !== "needs-permission" && (sync.toCommit > 0 ? (
+            <div className="commit-box">
+              <h3>When you&apos;re done for the day</h3>
+              <p>{sync.toCommit} change{sync.toCommit === 1 ? "" : "s"} since your last commit. In a terminal in {where}, run:</p>
+              <pre ref={cmdRef}><code>{sync.command}</code></pre>
+              <div className="row-btns">
+                <button className="btn" onClick={copy}>{copied ? "Copied" : "Copy command"}</button>
+                {!sync.git && <button className="btn ghost" onClick={() => syncActions.markCommitted()}>I&apos;ve committed these</button>}
+              </div>
+            </div>
+          ) : sync.git?.pushed === false ? (
+            <p className="commit-box">Your last commit isn&apos;t on GitHub yet. Run <code>git push</code> in {where}.</p>
+          ) : sync.git?.head ? (
+            <p className="muted small">Nothing new to commit{sync.git.pushed ? ", and GitHub has your latest commit" : ""}.</p>
+          ) : null)}
+          <div className="row-btns">
+            {sync.state === "error" && <button className="btn primary" onClick={run(syncActions.saveNow)} disabled={busy}>Save now</button>}
+            <button className="btn" onClick={run(syncActions.link)} disabled={busy}>Choose a different folder</button>
+            <button className="btn ghost" onClick={() => syncActions.unlink()}>Unlink folder</button>
+          </div>
+        </>
+      )}
+      <details className="setup">
+        <summary>How it works</summary>
+        <ol>
+          <li><strong>Have the repo on this computer.</strong> If it isn&apos;t yet, run <code>git clone</code> with your repo&apos;s address.</li>
+          <li><strong>Choose the folder once.</strong> Click Choose repo folder, pick the cloned folder and allow editing. This browser remembers the link.</li>
+          <li><strong>Study as usual.</strong> Each change is written to <code>progress/</code> a moment later: <code>progress.json</code>, <code>README.md</code>, <code>HISTORY.md</code> and <code>solutions/</code>, in the same format as before.</li>
+          <li><strong>Commit and push.</strong> At the end of the day, copy the command above and run it. Prepboard notices the new commit and starts counting again from there.</li>
+        </ol>
+        <p className="muted small">Only Chrome and Edge on a computer can write to a folder. On other browsers and phones, progress stays in that browser; use Download backup to move it. Using two computers? Run <code>git pull</code> before you start: Prepboard reads the pulled files and merges them in. Unlinking never deletes anything in the folder. Commits that only change <code>progress/</code> don&apos;t trigger a new Vercel deploy (see <code>vercel.json</code>). If your repo is public, your notes, pasted code, saved solutions and AI reviews are public once you push.</p>
+      </details>
+    </section>
   );
 }

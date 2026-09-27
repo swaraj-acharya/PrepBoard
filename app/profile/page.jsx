@@ -5,7 +5,7 @@ import { useStore, actions } from "@/lib/store";
 import { useData, resolveItem } from "@/lib/data";
 import { computeProfile, refreshRatings, firstReached, HOW_LABEL } from "@/lib/profile";
 import { AC_BANDS, CF_BANDS, acBand, acNextBand, cfRank, cfNextRank } from "@/lib/atcoder";
-import { useSyncStatus } from "@/components/GitHubSync";
+import { useSyncStatus } from "@/components/LocalSync";
 import RatingChart from "@/components/RatingChart";
 
 const pct = (a, b) => (b ? `${Math.round((a / b) * 100)}%` : "—");
@@ -165,7 +165,7 @@ export default function Profile() {
           <div>
             <h3>Public proof</h3>
             <ul className="signal-list">
-              <Signal label="Progress committed to GitHub" value={sync.connected ? "Connected" : null} empty="Not set up" />
+              <Signal label="Progress saved to your repo" value={sync.linked ? "Linked" : null} empty="Not linked" />
               <Signal label="Public profiles linked" value={linked.length ? `${linked.length}` : null} />
               <Signal label="Questions with your own notes" value={notes || null} />
               <Signal label="Active days" value={p.activeDays || null} />
