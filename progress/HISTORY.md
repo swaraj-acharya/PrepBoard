@@ -1,8 +1,18 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-26.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-27.
 
-5 active days so far.
+6 active days so far.
+
+### Sunday, 27 September 2026
+
+3 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [771. Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | LeetCode | Easy | Solved |
+| [1512. Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/) | LeetCode | Easy | Solved |
+| [1108. Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/) | LeetCode | Easy | Solved |
 
 ### Saturday, 26 September 2026
 

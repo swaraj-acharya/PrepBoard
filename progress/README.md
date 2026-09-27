@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-09-26.
+Tracked with Prepboard. Updated 2026-09-27.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **16** of 2,500 goal |
-| LeetCode | 16 (Easy 15, Medium 1, Hard 0) |
+| **Coding questions** | **19** of 2,500 goal |
+| LeetCode | 19 (Easy 18, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 16 of 456 |
+| DSA path | 19 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **16** of 16.
+Solved on my own (no hint, editorial or reference code): **19** of 19.
 
-Current streak: **5 days**.
+Current streak: **6 days**.
 
-Solution notebook: **16** questions with saved solutions (16 attempts), 16 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **19** questions with saved solutions (19 attempts), 19 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-09-27 | 3 |
 | 2026-09-26 | 3 |
 | 2026-09-25 | 4 |
 | 2026-09-24 | 3 |
@@ -37,11 +38,20 @@ Solution notebook: **16** questions with saved solutions (16 attempts), 16 with 
 | 2026-09-16 | 0 |
 | 2026-09-15 | 0 |
 | 2026-09-14 | 0 |
-| 2026-09-13 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Sunday, 27 September 2026
+
+3 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [771. Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | LeetCode | Easy | Solved |
+| [1512. Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/) | LeetCode | Easy | Solved |
+| [1108. Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/) | LeetCode | Easy | Solved |
 
 ### Saturday, 26 September 2026
 
@@ -98,6 +108,9 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-27 | [1108. Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/) | LeetCode | Easy | solved |
+| 2026-09-27 | [1512. Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/) | LeetCode | Easy | solved |
+| 2026-09-27 | [771. Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | LeetCode | Easy | solved |
 | 2026-09-26 | [258. Add Digits](https://leetcode.com/problems/add-digits/) | LeetCode | Easy | solved |
 | 2026-09-26 | [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | solved |
 | 2026-09-26 | [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | solved |

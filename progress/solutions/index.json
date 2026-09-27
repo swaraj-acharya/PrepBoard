@@ -31,6 +31,12 @@
    "n": 1,
    "r": 1
   },
+  "defanging-an-ip-address": {
+   "h": "fywko7x5sq",
+   "u": 1790532354005,
+   "n": 1,
+   "r": 1
+  },
   "difference-between-element-sum-and-digit-sum-of-an-array": {
    "h": "20ad4uxanx0",
    "u": 1790331387765,
@@ -46,6 +52,18 @@
   "fizz-buzz": {
    "h": "265jlpczw8e",
    "u": 1790330422957,
+   "n": 1,
+   "r": 1
+  },
+  "jewels-and-stones": {
+   "h": "neb24v3j5e",
+   "u": 1790531221816,
+   "n": 1,
+   "r": 1
+  },
+  "number-of-good-pairs": {
+   "h": "dbkp6k697d",
+   "u": 1790531851135,
    "n": 1,
    "r": 1
   },
