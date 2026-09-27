@@ -440,7 +440,7 @@ export function SolutionsTab({ id, item, record, loading, failed, notes, onEditN
         {[...attempts].reverse().map(a => <AttemptCard key={a.id} id={id} item={item} attempt={a} n={nums.get(a.id)} latest={a.id === last.id} />)}
       </ol>
       <Timeline id={id} record={record} nums={nums} />
-      {synced && <p className="muted small privacy-note">GitHub saving is on: when you push, these attempts and reviews go to <code>progress/solutions/</code> in your repo. If the repo is public, anyone can read them.</p>}
+      {synced && <p className="muted small privacy-note">Your repo folder is linked: these attempts and reviews are saved to <code>progress/solutions/</code> and go to GitHub when you push. If the repo is public, anyone can read them.</p>}
     </>
   );
 }

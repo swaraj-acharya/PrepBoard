@@ -99,28 +99,35 @@ Don't put the ID or password in the code or any file in this repo. If the repo i
 
 To run locally with sign-in, create a file named `.env.local` (Git ignores it) containing `AUTH_ID=...` and `AUTH_PASSWORD=...`.
 
-## Save progress to GitHub (optional)
+## Save progress to your repo folder (optional)
 
-Your ticks can be committed to your GitHub repo, so they show on your contribution graph and sync between devices.
+Your progress is written into your own copy of this repo on your computer, in its `progress/` folder, and you push it to GitHub yourself with Git. The site never connects to GitHub and needs no token.
 
-1. Create a fine-grained token at https://github.com/settings/personal-access-tokens/new: **Only select repositories** → this repo, **Contents: Read and write**.
-2. In Vercel → Settings → Environment Variables add:
-   - `GITHUB_TOKEN`: the token
-   - `GITHUB_REPO`: `yourname/your-repo`
-   - `SYNC_SECRET`: a long password you make up
-   - optional: `GITHUB_BRANCH` (defaults to the repo's default branch), `PROGRESS_DIR` (defaults to `progress`)
+1. Clone the repo to your computer if it isn't there yet (`git clone https://github.com/yourname/your-repo.git`).
+2. Open the site in **Chrome or Edge on a computer** (the browsers that can write to a folder). Go to **Settings → Save progress to your repo folder**, click **Choose repo folder**, pick the cloned folder and allow editing. If it has no `progress/` folder, one is created; if it has one, it's used as it is.
+3. Study as usual. A moment after each change, `progress/progress.json`, `progress/README.md`, `progress/HISTORY.md` and `progress/solutions/` are updated in that folder, in the same format as before.
+4. At the end of the day, commit and push. Settings (and the "to commit" badge in the top bar) shows what changed and a ready command such as:
 
-   Then redeploy.
-3. On the site: **Settings → Save progress to GitHub**, type your `SYNC_SECRET`, click **Connect**. Do this once per device.
+   ```
+   git add progress && git commit -m "Solved 3 questions (Two Sum, Fizz Buzz, Valid Anagram); saved 3 solutions" && git push
+   ```
 
-Nothing is committed while you tick. When you're done, open **Settings** and click **Push Progress Now**: everything since your last push goes up as one commit (`progress/progress.json`, `progress/README.md` and `progress/HISTORY.md`), with a message like "Solved 4 questions (Two Sum, Fizz Buzz, Valid Anagram and 1 more); 2 revised". The top bar shows how many changes haven't been pushed yet. `vercel.json` stops Vercel from redeploying for commits that only touch `progress/`. The token never reaches the browser; visitors can't save without your password. If the repo is public, your progress file (including notes and pasted code) is public too.
+   Prepboard notices the new commit in `.git` by itself and starts counting from there. It only reads `.git`; it never runs Git or changes anything there.
+
+The folder link is remembered in this browser (in IndexedDB, next to your saved solutions; localStorage can only hold text, so it keeps just the folder's name). After the browser restarts, it asks once more before the site may write: click **Allow folder access** in the top bar and choose **Allow on every visit** so it stops asking.
+
+**Two computers?** Run `git pull` before you start. Opening the site (or switching back to its tab) reads the folder again and merges what was pulled into the browser, newest change per question winning, like before. If a pull leaves a merge conflict in `progress/`, Prepboard merges both sides the next time it saves; commit the result to finish the merge.
+
+`vercel.json` stops Vercel from redeploying for commits that only touch `progress/`. If the repo is public, your progress file (including notes and pasted code) and saved solutions are public once you push. On phones and other browsers, progress stays in that browser; **Settings → Download backup** moves it.
+
+**Moving from the old GitHub saving:** delete `GITHUB_TOKEN`, `GITHUB_REPO`, `SYNC_SECRET`, `GITHUB_BRANCH` and `PROGRESS_DIR` in Vercel → Settings → Environment Variables (nothing reads them any more), and revoke the token at https://github.com/settings/personal-access-tokens.
 
 ## Contest ratings and your profile
 
 1. On the site: **Settings → Public profiles**. Type your AtCoder and Codeforces usernames (CodeChef, LeetCode and GitHub are links only) and click **Save**.
 2. The **Profile** page shows your ratings, and **Refresh contest ratings** fetches them again.
 
-Ratings are fetched by the site's own server (`/api/ratings`) from each site's official data, only when you ask, and cached for 30 minutes. Like every page, it needs you to be signed in. The last fetch is saved with your progress, so it syncs to GitHub, and `progress/README.md` lists your ratings. LeetCode and CodeChef have no official public rating API, so their ratings aren't shown.
+Ratings are fetched by the site's own server (`/api/ratings`) from each site's official data, only when you ask, and cached for 30 minutes. Like every page, it needs you to be signed in. The last fetch is saved with your progress, so it goes into your repo folder, and `progress/README.md` lists your ratings. LeetCode and CodeChef have no official public rating API, so their ratings aren't shown.
 
 **How solves are counted.** Only a solve with no hint, editorial or reference code counts as "on your own". After **Solved with help**, pick what helped in the question's panel. Opening hint 3 (the full-solution prompt) counts as reference code.
 
@@ -138,7 +145,7 @@ Ratings are fetched by the site's own server (`/api/ratings`) from each site's o
 
 **Library.** 16 mental models (spaced review, one a day, each with a transfer question), 10 anti-patterns, 20 resources levelled 1–5 and marked passive, active or applied, each tied to practice, and 12 build-to-understand projects with the principle each exposes and the evidence to produce. `npm run check-links` re-checks every external link.
 
-**Journal and evidence.** Finished challenges become journal entries automatically; add real-world problems too. The principle notebook collects what you learned. "Copy as Markdown" gives a write-up for GitHub or a blog, and if you save progress to GitHub, your progress README gets a Lab section. Journal entries are public if the repository is.
+**Journal and evidence.** Finished challenges become journal entries automatically; add real-world problems too. The principle notebook collects what you learned. "Copy as Markdown" gives a write-up for GitHub or a blog, and if you save progress to your repo folder, your progress README gets a Lab section. Journal entries are public if the repository is.
 
 **Content.** 33 original challenges in `lib/lab.js` across 18 categories: bug hunts in JS, React, C++ and SQL, data bugs, API failures, incidents, code review, code reading (including a real open-source file), estimation, trade-offs, counterexamples, performance, security, decomposition, product problems, how-does-it-work, unknown technology, engineering research, verifying AI-generated code, and three real case studies (Cloudflare 2019, AWS S3 2017, GitLab 2017) whose reveals follow each company's own postmortem. To add one, copy a challenge of the same category; `npm test` checks every field and link between challenges, models and resources.
 
@@ -154,4 +161,4 @@ Ratings are fetched by the site's own server (`/api/ratings`) from each site's o
 
 ## Where progress lives
 
-In your browser (localStorage), and in your GitHub repo too if you turn on GitHub saving. **Settings → Download backup** also works for moving it between devices.
+In your browser (localStorage, and IndexedDB for saved solutions), and in your repo folder's `progress/` too if you link it. It reaches GitHub when you push. **Settings → Download backup** also works for moving it between devices.

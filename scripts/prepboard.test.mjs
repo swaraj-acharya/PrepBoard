@@ -1,4 +1,4 @@
-// Run: npm test. Covers the AtCoder pipeline, the DSA-path links, profile numbers, GitHub sync merging, the solution notebook
+// Run: npm test. Covers the AtCoder pipeline, the DSA-path links, profile numbers, sync merging, saving to your repo folder, the solution notebook
 // and the system design questions, roadmap and interview map.
 // No network needed: fixtures follow the shapes in AtCoder Problems' own interfaces
 // (atcoder-problems-frontend/src/interfaces/{Contest,Problem,ProblemModel}.ts).
@@ -597,4 +597,107 @@ test("system design: next step and readiness come from progress, never as one sc
   const r = SDP.sdReadiness({});
   assert.equal(r.length, 3);
   for (const x of r) assert.ok(x.total > 0 && x.done === 0, x.label);
+});
+
+// ---------------------------------------------------------------- saving to your repo folder
+import { openStorage, readText, writeText, readJSONFile, conflictSides, gitStatus, canon, commitCommand, shellSafe, FolderFileError } from "../lib/localFolder.js";
+
+// A folder in memory that behaves like the browser's FileSystemDirectoryHandle.
+// tree: { "file.json": "text", folder: { ... } }
+function fakeFolder(name, tree = {}) {
+  const entries = new Map();
+  const fail = n => Object.assign(new Error(n), { name: n });
+  for (const [k, v] of Object.entries(tree)) entries.set(k, typeof v === "string" ? { kind: "file", text: v } : fakeFolder(k, v));
+  return {
+    kind: "directory", name, entries,
+    async getDirectoryHandle(n, { create = false } = {}) {
+      const e = entries.get(n);
+      if (e) { if (e.kind !== "directory") throw fail("TypeMismatchError"); return e; }
+      if (!create) throw fail("NotFoundError");
+      const d = fakeFolder(n); entries.set(n, d); return d;
+    },
+    async getFileHandle(n, { create = false } = {}) {
+      let e = entries.get(n);
+      if (e && e.kind !== "file") throw fail("TypeMismatchError");
+      if (!e) { if (!create) throw fail("NotFoundError"); e = { kind: "file", text: "" }; entries.set(n, e); }
+      return {
+        kind: "file", name: n,
+        getFile: async () => ({ text: async () => e.text }),
+        createWritable: async () => { let buf = ""; return { write: async t => { buf += t; }, close: async () => { e.text = buf; }, abort: async () => {} }; },
+      };
+    },
+  };
+}
+
+test("repo folder: an existing progress folder is used, never replaced", async () => {
+  const repo = fakeFolder("PrepBoard", { "package.json": "{}", progress: { "progress.json": '{"problems":{}}' } });
+  const s = await openStorage(repo);
+  assert.equal(s.created, false);
+  assert.equal(s.inRoot, true);
+  assert.equal(s.label, "PrepBoard/progress");
+  assert.equal(await readText(s.dir, "progress.json"), '{"problems":{}}', "the files in it are untouched");
+});
+
+test("repo folder: a missing progress folder is created", async () => {
+  const repo = fakeFolder("PrepBoard", { "package.json": "{}", ".git": { HEAD: "ref: refs/heads/main\n" } });
+  const s = await openStorage(repo);
+  assert.equal(s.created, true);
+  assert.ok(repo.entries.get("progress")?.kind === "directory");
+  assert.equal((await openStorage(repo)).created, false, "the second time it's linked, not created again");
+});
+
+test("repo folder: picking the progress folder itself works too", async () => {
+  const progress = fakeFolder("progress", { "progress.json": "{}", solutions: {} });
+  const s = await openStorage(progress);
+  assert.equal(s.dir, progress);
+  assert.equal(s.inRoot, false);
+  assert.equal(s.created, false);
+});
+
+test("repo folder: files are written into nested folders and read back", async () => {
+  const dir = fakeFolder("progress");
+  await writeText(dir, "solutions/leetcode/two-sum.json", '{"id":"two-sum"}');
+  assert.equal(await readText(dir, "solutions/leetcode/two-sum.json"), '{"id":"two-sum"}');
+  assert.equal(await readText(dir, "solutions/codeforces/1A.json"), null, "a missing file reads as null");
+  assert.deepEqual(await readJSONFile(dir, "nope.json"), { value: null, conflict: false });
+});
+
+test("repo folder: a Git merge conflict is repaired from both sides", async () => {
+  const ours = { problems: { a: { status: "solved", u: 5 } }, activity: { "2026-09-01": 1 } };
+  const theirs = { problems: { b: { status: "solved", u: 7 } }, activity: { "2026-09-02": 2 } };
+  const text = `{\n<<<<<<< HEAD\n "problems": ${JSON.stringify(ours.problems)},\n "activity": ${JSON.stringify(ours.activity)}\n=======\n "problems": ${JSON.stringify(theirs.problems)},\n "activity": ${JSON.stringify(theirs.activity)}\n>>>>>>> origin/main\n}`;
+  const [a, b] = conflictSides(text);
+  assert.deepEqual(JSON.parse(a), ours);
+  assert.deepEqual(JSON.parse(b), theirs);
+  const diff3 = text.replace("=======", "||||||| base\n \"problems\": {},\n \"activity\": {}\n=======");
+  assert.deepEqual(JSON.parse(conflictSides(diff3)[1]), theirs, "diff3-style conflicts drop the base section");
+
+  const dir = fakeFolder("progress", { "progress.json": text, "bad.json": "{ not json", "stuck.json": "<<<<<<< HEAD\n{\n=======\n[\n>>>>>>> x\n" });
+  const r = await readJSONFile(dir, "progress.json", (x, y) => mergeStates(x, y));
+  assert.equal(r.conflict, true);
+  assert.ok(r.value.problems.a && r.value.problems.b, "both computers' solves are kept");
+  assert.equal(r.value.activity["2026-09-02"], 2);
+  await assert.rejects(readJSONFile(dir, "progress.json"), FolderFileError, "without a merge it isn't guessed at");
+  await assert.rejects(readJSONFile(dir, "bad.json", (x, y) => x), FolderFileError);
+  await assert.rejects(readJSONFile(dir, "stuck.json", (x, y) => x), /merge conflict/);
+  assert.equal(conflictSides('{"a": 1}'), null);
+});
+
+test("repo folder: Git status from loose and packed refs", async () => {
+  const sha1 = "a".repeat(40), sha2 = "b".repeat(40);
+  const loose = fakeFolder("repo", { ".git": { HEAD: "ref: refs/heads/main\n", refs: { heads: { main: sha1 + "\n" }, remotes: { origin: { main: sha1 + "\n" } } } } });
+  assert.deepEqual(await gitStatus(loose), { branch: "main", head: sha1, pushed: true });
+  const packed = fakeFolder("repo", { ".git": { HEAD: "ref: refs/heads/main\n", "packed-refs": `# pack-refs with: peeled\n${sha2} refs/heads/main\n${sha1} refs/remotes/origin/main\n` } });
+  assert.deepEqual(await gitStatus(packed), { branch: "main", head: sha2, pushed: false }, "committed but not pushed");
+  const noRemote = fakeFolder("repo", { ".git": { HEAD: "ref: refs/heads/dev\n", refs: { heads: { dev: sha1 } } } });
+  assert.equal((await gitStatus(noRemote)).pushed, null);
+  assert.equal(await gitStatus(fakeFolder("repo", {})), null, "not a repo");
+});
+
+test("repo folder: the commit command is safe to paste into any shell", () => {
+  assert.equal(shellSafe('Solved "Pow(x, n)"; $HOME `ls` 100% done!'), "Solved 'Pow(x, n)'; HOME ls 100 done");
+  assert.equal(commitCommand("Solved Two Sum"), 'git add progress && git commit -m "Solved Two Sum" && git push');
+  assert.equal(commitCommand("x", "."), 'git add . && git commit -m "x" && git push');
+  assert.equal(canon({ b: 1, a: { d: 2, c: [3, { f: 1, e: 0 }] } }), canon({ a: { c: [3, { e: 0, f: 1 }], d: 2 }, b: 1 }), "key order doesn't matter");
+  assert.notEqual(canon({ a: [1, 2] }), canon({ a: [2, 1] }), "array order does");
 });

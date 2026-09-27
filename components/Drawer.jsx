@@ -9,7 +9,7 @@ import { HOW_LABEL } from "@/lib/profile";
 import { useSolution, solutionActions } from "@/lib/solutionStore";
 import TopicCard from "./TopicCard";
 import PromptBox from "./PromptBox";
-import { useSyncStatus } from "./GitHubSync";
+import { useSyncStatus } from "./LocalSync";
 import { SaveAttempt, ReviewPaste, SolutionsTab, RecallGate, LANGS, ago, startOfToday, wordsFor } from "./Solutions";
 
 const Ctx = createContext(() => {});
@@ -304,7 +304,7 @@ function Drawer({ id, onClose }) {
           <section className="tabpanel">
             {hideOld ? gate : (
               <SolutionsTab id={id} item={item} record={record} loading={solLoading} failed={solFailed} notes={me.notes} onEditNotes={() => setTab("notes")}
-                onGoCheck={() => setTab("check")} compare={compare} setCompare={setCompare} synced={sync.connected} />
+                onGoCheck={() => setTab("check")} compare={compare} setCompare={setCompare} synced={sync.linked} />
             )}
           </section>
         )}
