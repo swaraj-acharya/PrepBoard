@@ -1,8 +1,17 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-27.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-28.
 
-6 active days so far.
+7 active days so far.
+
+### Monday, 28 September 2026
+
+2 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | LeetCode | Easy | Solved |
+| [2114. Maximum Number of Words Found in Sentences](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) | LeetCode | Easy | Solved |
 
 ### Sunday, 27 September 2026
 
