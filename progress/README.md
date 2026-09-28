@@ -4,27 +4,27 @@ Tracked with Prepboard. Updated 2026-09-28.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **23** of 2,500 goal |
-| LeetCode | 23 (Easy 22, Medium 1, Hard 0) |
+| **Coding questions** | **24** of 2,500 goal |
+| LeetCode | 24 (Easy 23, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 23 of 456 |
+| DSA path | 24 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **23** of 23.
+Solved on my own (no hint, editorial or reference code): **23** of 24.
 
 Current streak: **7 days**.
 
-Solution notebook: **23** questions with saved solutions (23 attempts), 23 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **24** questions with saved solutions (24 attempts), 24 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
-| 2026-09-28 | 3 |
+| 2026-09-28 | 4 |
 | 2026-09-27 | 4 |
 | 2026-09-26 | 3 |
 | 2026-09-25 | 4 |
@@ -45,13 +45,14 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 ### Monday, 28 September 2026
 
-3 solved, 0 revised.
+4 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | LeetCode | Easy | Solved |
 | [2114. Maximum Number of Words Found in Sentences](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) | LeetCode | Easy | Solved |
 | [231. Power of Two](https://leetcode.com/problems/power-of-two/) | LeetCode | Easy | Solved |
+| [326. Power of Three](https://leetcode.com/problems/power-of-three/) | LeetCode | Easy | Solved |
 
 ### Sunday, 27 September 2026
 
@@ -119,6 +120,7 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-28 | [326. Power of Three](https://leetcode.com/problems/power-of-three/) | LeetCode | Easy | solved |
 | 2026-09-28 | [231. Power of Two](https://leetcode.com/problems/power-of-two/) | LeetCode | Easy | solved |
 | 2026-09-28 | [2114. Maximum Number of Words Found in Sentences](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) | LeetCode | Easy | solved |
 | 2026-09-28 | [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | LeetCode | Easy | solved |

@@ -6,13 +6,14 @@ Every day I solved or revised something, newest first. Tracked with Prepboard. U
 
 ### Monday, 28 September 2026
 
-3 solved, 0 revised.
+4 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | LeetCode | Easy | Solved |
 | [2114. Maximum Number of Words Found in Sentences](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) | LeetCode | Easy | Solved |
 | [231. Power of Two](https://leetcode.com/problems/power-of-two/) | LeetCode | Easy | Solved |
+| [326. Power of Three](https://leetcode.com/problems/power-of-three/) | LeetCode | Easy | Solved |
 
 ### Sunday, 27 September 2026
 
