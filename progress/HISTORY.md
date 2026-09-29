@@ -1,8 +1,17 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-28.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-29.
 
-7 active days so far.
+8 active days so far.
+
+### Tuesday, 29 September 2026
+
+2 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [202. Happy Number](https://leetcode.com/problems/happy-number/) | LeetCode | Easy | Solved with help |
+| [263. Ugly Number](https://leetcode.com/problems/ugly-number/) | LeetCode | Easy | Solved with help |
 
 ### Monday, 28 September 2026
 

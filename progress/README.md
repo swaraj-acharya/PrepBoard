@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-09-28.
+Tracked with Prepboard. Updated 2026-09-29.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **24** of 2,500 goal |
-| LeetCode | 24 (Easy 23, Medium 1, Hard 0) |
+| **Coding questions** | **26** of 2,500 goal |
+| LeetCode | 26 (Easy 25, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 24 of 456 |
+| DSA path | 26 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **23** of 24.
+Solved on my own (no hint, editorial or reference code): **23** of 26.
 
-Current streak: **7 days**.
+Current streak: **8 days**.
 
-Solution notebook: **24** questions with saved solutions (24 attempts), 24 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **26** questions with saved solutions (26 attempts), 26 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-09-29 | 2 |
 | 2026-09-28 | 4 |
 | 2026-09-27 | 4 |
 | 2026-09-26 | 3 |
@@ -37,11 +38,19 @@ Solution notebook: **24** questions with saved solutions (24 attempts), 24 with 
 | 2026-09-18 | 0 |
 | 2026-09-17 | 0 |
 | 2026-09-16 | 0 |
-| 2026-09-15 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Tuesday, 29 September 2026
+
+2 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [202. Happy Number](https://leetcode.com/problems/happy-number/) | LeetCode | Easy | Solved with help |
+| [263. Ugly Number](https://leetcode.com/problems/ugly-number/) | LeetCode | Easy | Solved with help |
 
 ### Monday, 28 September 2026
 
@@ -106,20 +115,12 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [1342. Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/) | LeetCode | Easy | Solved |
 | [2413. Smallest Even Multiple](https://leetcode.com/problems/smallest-even-multiple/) | LeetCode | Easy | Solved |
 
-### Tuesday, 22 September 2026
-
-3 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | LeetCode | Easy | Solved |
-| [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | LeetCode | Easy | Solved |
-| [2469. Convert the Temperature](https://leetcode.com/problems/convert-the-temperature/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-29 | [263. Ugly Number](https://leetcode.com/problems/ugly-number/) | LeetCode | Easy | needs revision |
+| 2026-09-29 | [202. Happy Number](https://leetcode.com/problems/happy-number/) | LeetCode | Easy | needs revision |
 | 2026-09-28 | [326. Power of Three](https://leetcode.com/problems/power-of-three/) | LeetCode | Easy | solved |
 | 2026-09-28 | [231. Power of Two](https://leetcode.com/problems/power-of-two/) | LeetCode | Easy | solved |
 | 2026-09-28 | [2114. Maximum Number of Words Found in Sentences](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) | LeetCode | Easy | solved |
