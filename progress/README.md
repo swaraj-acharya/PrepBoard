@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-09-29.
+Tracked with Prepboard. Updated 2026-09-30.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **26** of 2,500 goal |
-| LeetCode | 26 (Easy 25, Medium 1, Hard 0) |
+| **Coding questions** | **27** of 2,500 goal |
+| LeetCode | 27 (Easy 26, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 26 of 456 |
+| DSA path | 27 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **23** of 26.
+Solved on my own (no hint, editorial or reference code): **24** of 27.
 
-Current streak: **8 days**.
+Current streak: **9 days**.
 
-Solution notebook: **26** questions with saved solutions (26 attempts), 26 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **27** questions with saved solutions (27 attempts), 27 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-09-30 | 1 |
 | 2026-09-29 | 2 |
 | 2026-09-28 | 4 |
 | 2026-09-27 | 4 |
@@ -37,11 +38,18 @@ Solution notebook: **26** questions with saved solutions (26 attempts), 26 with 
 | 2026-09-19 | 0 |
 | 2026-09-18 | 0 |
 | 2026-09-17 | 0 |
-| 2026-09-16 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Wednesday, 30 September 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [728. Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | LeetCode | Easy | Solved |
 
 ### Tuesday, 29 September 2026
 
@@ -105,20 +113,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | Solved |
 | [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) | LeetCode | Easy | Solved |
 
-### Wednesday, 23 September 2026
-
-3 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [1672. Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/) | LeetCode | Easy | Solved |
-| [1342. Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/) | LeetCode | Easy | Solved |
-| [2413. Smallest Even Multiple](https://leetcode.com/problems/smallest-even-multiple/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-30 | [728. Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | LeetCode | Easy | solved |
 | 2026-09-29 | [263. Ugly Number](https://leetcode.com/problems/ugly-number/) | LeetCode | Easy | needs revision |
 | 2026-09-29 | [202. Happy Number](https://leetcode.com/problems/happy-number/) | LeetCode | Easy | needs revision |
 | 2026-09-28 | [326. Power of Three](https://leetcode.com/problems/power-of-three/) | LeetCode | Easy | solved |
