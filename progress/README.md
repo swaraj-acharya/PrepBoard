@@ -4,27 +4,27 @@ Tracked with Prepboard. Updated 2026-09-30.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **27** of 2,500 goal |
-| LeetCode | 27 (Easy 26, Medium 1, Hard 0) |
+| **Coding questions** | **28** of 2,500 goal |
+| LeetCode | 28 (Easy 27, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 27 of 456 |
+| DSA path | 28 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **24** of 27.
+Solved on my own (no hint, editorial or reference code): **25** of 28.
 
 Current streak: **9 days**.
 
-Solution notebook: **27** questions with saved solutions (27 attempts), 27 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **28** questions with saved solutions (28 attempts), 28 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
-| 2026-09-30 | 1 |
+| 2026-09-30 | 2 |
 | 2026-09-29 | 2 |
 | 2026-09-28 | 4 |
 | 2026-09-27 | 4 |
@@ -45,11 +45,12 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 ### Wednesday, 30 September 2026
 
-1 solved, 0 revised.
+2 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [728. Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | LeetCode | Easy | Solved |
+| [507. Perfect Number](https://leetcode.com/problems/perfect-number/) | LeetCode | Easy | Solved |
 
 ### Tuesday, 29 September 2026
 
@@ -117,6 +118,7 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-09-30 | [507. Perfect Number](https://leetcode.com/problems/perfect-number/) | LeetCode | Easy | solved |
 | 2026-09-30 | [728. Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | LeetCode | Easy | solved |
 | 2026-09-29 | [263. Ugly Number](https://leetcode.com/problems/ugly-number/) | LeetCode | Easy | needs revision |
 | 2026-09-29 | [202. Happy Number](https://leetcode.com/problems/happy-number/) | LeetCode | Easy | needs revision |

@@ -6,11 +6,12 @@ Every day I solved or revised something, newest first. Tracked with Prepboard. U
 
 ### Wednesday, 30 September 2026
 
-1 solved, 0 revised.
+2 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [728. Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | LeetCode | Easy | Solved |
+| [507. Perfect Number](https://leetcode.com/problems/perfect-number/) | LeetCode | Easy | Solved |
 
 ### Tuesday, 29 September 2026
 
