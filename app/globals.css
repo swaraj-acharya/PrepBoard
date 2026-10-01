@@ -154,7 +154,7 @@ h3 { font-size: 1rem; font-weight: 700; margin: 1.25rem 0 .25rem; }
 
 /* drawer */
 .scrim { position: fixed; inset: 0; background: rgb(10 18 30 / .35); z-index: 50; display: flex; justify-content: flex-end; }
-.drawer { width: min(640px, 100%); height: 100%; overflow-y: auto; background: var(--card); padding: 1.5rem clamp(1rem, 3vw, 2rem) 3rem; border-left: 1px solid var(--line); animation: slide .22s ease-out; }
+.drawer { width: min(640px, 100%); height: 100%; overflow-y: auto; overflow-x: hidden; background: var(--card); padding: 1.5rem clamp(1rem, 3vw, 2rem) 3rem; border-left: 1px solid var(--line); animation: slide .22s ease-out; }
 @keyframes slide { from { transform: translateX(24px); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .drawer { animation: none; } .goal-bar span { transition: none; } }
 .drawer-head { display: flex; justify-content: space-between; gap: 1rem; }
@@ -504,13 +504,15 @@ code { font: .88em ui-monospace, "Cascadia Code", Consolas, monospace; backgroun
 .codeview-actions { display: inline-flex; align-items: center; gap: .5rem; }
 .codeview pre { margin: 0; padding: .7rem; overflow-x: auto; max-height: 32rem; overflow-y: auto; font: .84rem/1.55 ui-monospace, "Cascadia Code", Consolas, monospace; tab-size: 4; max-width: 100%; }
 .codeview pre code { font: inherit; background: none; border: 0; padding: 0; }
-.codeview-lines code { display: block; min-width: max-content; }
+.codeview-lines code { display: block; }
 .codeview-lines code > span { display: block; }
 .cv-mark { display: inline-block; width: 1.2rem; color: var(--muted); user-select: none; }
 .cv-changed { background: color-mix(in srgb, var(--revisit) 16%, transparent); }
 .cv-changed .cv-mark { color: var(--revisit); font-weight: 700; }
 
-.review-text { font-size: .95rem; max-width: 72ch; overflow-wrap: anywhere; }
+.review-text { font-size: .95rem; max-width: 100%; overflow-wrap: break-word; word-wrap: break-word; overflow-x: hidden; }
+.review-text .codeview { max-width: 100%; }
+.review-text .codeview pre { max-width: 100%; overflow-x: auto; }
 .review-text h4, .review-text h5 { font-family: var(--display); margin: 1rem 0 .3rem; }
 .review-text h4 { font-size: 1.02rem; }
 .review-text h5 { font-size: .95rem; }
