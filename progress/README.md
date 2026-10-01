@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-09-30.
+Tracked with Prepboard. Updated 2026-10-01.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **28** of 2,500 goal |
-| LeetCode | 28 (Easy 27, Medium 1, Hard 0) |
+| **Coding questions** | **29** of 2,500 goal |
+| LeetCode | 29 (Easy 28, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 28 of 456 |
+| DSA path | 29 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **25** of 28.
+Solved on my own (no hint, editorial or reference code): **26** of 29.
 
-Current streak: **9 days**.
+Current streak: **10 days**.
 
-Solution notebook: **28** questions with saved solutions (28 attempts), 28 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **29** questions with saved solutions (29 attempts), 29 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-01 | 1 |
 | 2026-09-30 | 2 |
 | 2026-09-29 | 2 |
 | 2026-09-28 | 4 |
@@ -37,11 +38,18 @@ Solution notebook: **28** questions with saved solutions (28 attempts), 28 with 
 | 2026-09-20 | 0 |
 | 2026-09-19 | 0 |
 | 2026-09-18 | 0 |
-| 2026-09-17 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Thursday, 1 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1688. Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/) | LeetCode | Easy | Solved |
 
 ### Wednesday, 30 September 2026
 
@@ -104,20 +112,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | Solved |
 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | Solved |
 
-### Thursday, 24 September 2026
-
-3 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [1523. Count Odd Numbers in an Interval Range](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/) | LeetCode | Easy | Solved |
-| [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | Solved |
-| [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-01 | [1688. Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/) | LeetCode | Easy | solved |
 | 2026-09-30 | [507. Perfect Number](https://leetcode.com/problems/perfect-number/) | LeetCode | Easy | solved |
 | 2026-09-30 | [728. Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | LeetCode | Easy | solved |
 | 2026-09-29 | [263. Ugly Number](https://leetcode.com/problems/ugly-number/) | LeetCode | Easy | needs revision |

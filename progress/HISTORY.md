@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-09-30.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-01.
 
-9 active days so far.
+10 active days so far.
+
+### Thursday, 1 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1688. Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/) | LeetCode | Easy | Solved |
 
 ### Wednesday, 30 September 2026
 

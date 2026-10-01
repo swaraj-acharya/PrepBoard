@@ -226,6 +226,14 @@
    "solvedOn": "2026-09-30",
    "u": 1790779729079,
    "work": "class Solution {\npublic:\n    bool checkPerfectNumber(int num) {\n        int sum = 0;\n        for(int i=1; i<=num/2; i++){\n            if(num % i == 0){\n                sum += i;\n            }\n        }\n        if(sum == num){\n            return true;\n        }else{\n            return false;\n        }\n    }\n};"
+  },
+  "count-of-matches-in-tournament": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-10-02",
+   "solvedOn": "2026-10-01",
+   "u": 1790877607268,
+   "work": "class Solution {\npublic:\n    int numberOfMatches(int n) {\n        int total_team = n;\n        int total_match = 0;\n        while(total_team!=1){\n            if(total_team % 2 == 0){\n                total_match = total_match + (total_team/2);\n                total_team = total_team/2;\n            }else{\n                total_match = total_match + ((total_team-1)/2);\n                total_team = ((total_team-1)/2) + 1;\n            }\n        }\n        return total_match;\n    }\n};"
   }
  },
  "activity": {
@@ -237,7 +245,8 @@
   "2026-09-27": 4,
   "2026-09-28": 4,
   "2026-09-29": 2,
-  "2026-09-30": 2
+  "2026-09-30": 2,
+  "2026-10-01": 1
  },
  "log": {
   "2026-09-23": [
@@ -379,6 +388,13 @@
     "id": "perfect-number",
     "a": "solved",
     "t": 1790779726245
+   }
+  ],
+  "2026-10-01": [
+   {
+    "id": "count-of-matches-in-tournament",
+    "a": "solved",
+    "t": 1790877604951
    }
   ]
  },
