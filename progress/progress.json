@@ -234,6 +234,14 @@
    "solvedOn": "2026-10-01",
    "u": 1790877607268,
    "work": "class Solution {\npublic:\n    int numberOfMatches(int n) {\n        int total_team = n;\n        int total_match = 0;\n        while(total_team!=1){\n            if(total_team % 2 == 0){\n                total_match = total_match + (total_team/2);\n                total_team = total_team/2;\n            }else{\n                total_match = total_match + ((total_team-1)/2);\n                total_team = ((total_team-1)/2) + 1;\n            }\n        }\n        return total_match;\n    }\n};"
+  },
+  "excel-sheet-column-number": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-10-03",
+   "solvedOn": "2026-10-02",
+   "u": 1790962685732,
+   "work": "class Solution {\npublic:\n    int titleToNumber(string columnTitle) {\n        unordered_map<char, int>store;\n        int j=1;\n        for(char i = 'A'; i<='Z'; i++){\n            store[i] = j;\n            j++;\n        }\n        int ans = 0;\n        for(int i=0; i<columnTitle.length(); i++){\n            ans = ans*26 + store[columnTitle[i]];\n        }\n        return ans;\n    }\n};"
   }
  },
  "activity": {
@@ -246,7 +254,8 @@
   "2026-09-28": 4,
   "2026-09-29": 2,
   "2026-09-30": 2,
-  "2026-10-01": 1
+  "2026-10-01": 1,
+  "2026-10-02": 1
  },
  "log": {
   "2026-09-23": [
@@ -395,6 +404,13 @@
     "id": "count-of-matches-in-tournament",
     "a": "solved",
     "t": 1790877604951
+   }
+  ],
+  "2026-10-02": [
+   {
+    "id": "excel-sheet-column-number",
+    "a": "solved",
+    "t": 1790962680925
    }
   ]
  },

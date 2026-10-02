@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-01.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-02.
 
-10 active days so far.
+11 active days so far.
+
+### Friday, 2 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [171. Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/) | LeetCode | Easy | Solved |
 
 ### Thursday, 1 October 2026
 

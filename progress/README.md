@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-01.
+Tracked with Prepboard. Updated 2026-10-02.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **29** of 2,500 goal |
-| LeetCode | 29 (Easy 28, Medium 1, Hard 0) |
+| **Coding questions** | **30** of 2,500 goal |
+| LeetCode | 30 (Easy 29, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 29 of 456 |
+| DSA path | 30 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **26** of 29.
+Solved on my own (no hint, editorial or reference code): **27** of 30.
 
-Current streak: **10 days**.
+Current streak: **11 days**.
 
-Solution notebook: **29** questions with saved solutions (29 attempts), 29 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **30** questions with saved solutions (30 attempts), 30 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-02 | 1 |
 | 2026-10-01 | 1 |
 | 2026-09-30 | 2 |
 | 2026-09-29 | 2 |
@@ -37,11 +38,18 @@ Solution notebook: **29** questions with saved solutions (29 attempts), 29 with 
 | 2026-09-21 | 0 |
 | 2026-09-20 | 0 |
 | 2026-09-19 | 0 |
-| 2026-09-18 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Friday, 2 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [171. Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/) | LeetCode | Easy | Solved |
 
 ### Thursday, 1 October 2026
 
@@ -101,21 +109,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | Solved |
 | [258. Add Digits](https://leetcode.com/problems/add-digits/) | LeetCode | Easy | Solved |
 
-### Friday, 25 September 2026
-
-4 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | Solved |
-| [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | Solved |
-| [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | Solved |
-| [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-02 | [171. Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/) | LeetCode | Easy | solved |
 | 2026-10-01 | [1688. Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/) | LeetCode | Easy | solved |
 | 2026-09-30 | [507. Perfect Number](https://leetcode.com/problems/perfect-number/) | LeetCode | Easy | solved |
 | 2026-09-30 | [728. Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | LeetCode | Easy | solved |
