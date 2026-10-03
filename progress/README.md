@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-02.
+Tracked with Prepboard. Updated 2026-10-03.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **30** of 2,500 goal |
-| LeetCode | 30 (Easy 29, Medium 1, Hard 0) |
+| **Coding questions** | **31** of 2,500 goal |
+| LeetCode | 31 (Easy 30, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 30 of 456 |
+| DSA path | 31 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **27** of 30.
+Solved on my own (no hint, editorial or reference code): **27** of 31.
 
-Current streak: **11 days**.
+Current streak: **12 days**.
 
-Solution notebook: **30** questions with saved solutions (30 attempts), 30 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **31** questions with saved solutions (31 attempts), 31 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-03 | 1 |
 | 2026-10-02 | 1 |
 | 2026-10-01 | 1 |
 | 2026-09-30 | 2 |
@@ -37,11 +38,18 @@ Solution notebook: **30** questions with saved solutions (30 attempts), 30 with 
 | 2026-09-22 | 3 |
 | 2026-09-21 | 0 |
 | 2026-09-20 | 0 |
-| 2026-09-19 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Saturday, 3 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/) | LeetCode | Easy | Solved with help |
 
 ### Friday, 2 October 2026
 
@@ -99,20 +107,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [1108. Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/) | LeetCode | Easy | Solved |
 | [709. To Lower Case](https://leetcode.com/problems/to-lower-case/) | LeetCode | Easy | Solved |
 
-### Saturday, 26 September 2026
-
-3 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | Solved |
-| [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | Solved |
-| [258. Add Digits](https://leetcode.com/problems/add-digits/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-03 | [168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/) | LeetCode | Easy | needs revision |
 | 2026-10-02 | [171. Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/) | LeetCode | Easy | solved |
 | 2026-10-01 | [1688. Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/) | LeetCode | Easy | solved |
 | 2026-09-30 | [507. Perfect Number](https://leetcode.com/problems/perfect-number/) | LeetCode | Easy | solved |
@@ -142,4 +141,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-23 | [1672. Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/) | LeetCode | Easy | solved |
 | 2026-09-22 | [2469. Convert the Temperature](https://leetcode.com/problems/convert-the-temperature/) | LeetCode | Easy | solved |
 | 2026-09-22 | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | LeetCode | Easy | solved |
-| 2026-09-22 | [412. Fizz Buzz](https://leetcode.com/problems/fizz-buzz/) | LeetCode | Easy | solved |

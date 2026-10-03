@@ -242,6 +242,14 @@
    "solvedOn": "2026-10-02",
    "u": 1790962685732,
    "work": "class Solution {\npublic:\n    int titleToNumber(string columnTitle) {\n        unordered_map<char, int>store;\n        int j=1;\n        for(char i = 'A'; i<='Z'; i++){\n            store[i] = j;\n            j++;\n        }\n        int ans = 0;\n        for(int i=0; i<columnTitle.length(); i++){\n            ans = ans*26 + store[columnTitle[i]];\n        }\n        return ans;\n    }\n};"
+  },
+  "excel-sheet-column-title": {
+   "status": "revisit",
+   "stage": 0,
+   "due": "2026-10-04",
+   "solvedOn": "2026-10-03",
+   "u": 1791048922044,
+   "work": "class Solution {\npublic:\n    string convertToTitle(int columnNumber) {\n        int temp = columnNumber;\n        string ans = \"\";\n        \n        while(temp != 0){\n            // Shift down by 1 to make it 0-indexed (0 to 25)\n            temp--; \n            \n            int modCatch = temp % 26;\n            ans.push_back(65 + modCatch);\n            \n            temp = temp / 26;\n        }\n        \n        // Reverse the string at the end since we calculated from right to left\n        reverse(ans.begin(), ans.end());\n        \n        return ans;\n    }\n};"
   }
  },
  "activity": {
@@ -255,7 +263,8 @@
   "2026-09-29": 2,
   "2026-09-30": 2,
   "2026-10-01": 1,
-  "2026-10-02": 1
+  "2026-10-02": 1,
+  "2026-10-03": 1
  },
  "log": {
   "2026-09-23": [
@@ -411,6 +420,13 @@
     "id": "excel-sheet-column-number",
     "a": "solved",
     "t": 1790962680925
+   }
+  ],
+  "2026-10-03": [
+   {
+    "id": "excel-sheet-column-title",
+    "a": "tricky",
+    "t": 1791048898989
    }
   ]
  },

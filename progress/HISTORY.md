@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-02.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-03.
 
-11 active days so far.
+12 active days so far.
+
+### Saturday, 3 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/) | LeetCode | Easy | Solved with help |
 
 ### Friday, 2 October 2026
 
