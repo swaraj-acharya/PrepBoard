@@ -8,6 +8,7 @@ import { isLive, TYPE_LABEL } from "@/lib/atcoder";
 import { HOW_LABEL } from "@/lib/profile";
 import { useSolution, solutionActions } from "@/lib/solutionStore";
 import TopicCard from "./TopicCard";
+import PatternCard from "./PatternCard";
 import PromptBox from "./PromptBox";
 import { useSyncStatus } from "./LocalSync";
 import { SaveAttempt, ReviewPaste, SolutionsTab, RecallGate, LANGS, ago, startOfToday, wordsFor } from "./Solutions";
@@ -194,6 +195,7 @@ function Drawer({ id, onClose }) {
 
         {tab === "topic" && (
           <section className="tabpanel">
+            {item.kind === "dsa" && <PatternCard item={item} solved={!!me.status} />}
             {item.topicNames.length > 0
               ? <>
                   <p className="muted small">Read these before you start. The first one is the main idea for this question.</p>

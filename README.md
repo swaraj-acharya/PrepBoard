@@ -11,6 +11,7 @@ A free placement-prep dashboard. No paid course, no AI key, no server costs.
 - **System design**: a ten-phase roadmap from how one request travels to interview practice, following the order of The Boring Education's System Design Engineer Roadmap, where each phase says why it matters, what it builds on, which interview questions test it and which free resources to use. An interview-prep tab built on their Top 30 questions adds answer structures for HLD and LLD rounds, the trade-offs to have ready, and where you stand. Plus 146 high-level and 74 low-level design questions (including machine-coding rounds and concurrency) and 21 system design concept questions with answer prompts.
 - **CS subjects**: 252 DBMS, OS, computer networks and OOPs interview questions with free study resources, plus all 323 LeetCode SQL problems.
 - **Every question** shows its platform and has its topic explained like you're 12 (144 explanations).
+- **Pattern recognition**: Learn the topic also names the pattern behind each coding question (hash lookup, sliding window, monotonic stack…), what gives it away in the statement, the move, and the usual trap. All 456 path questions have a hand-written one; others get tag-based guesses, labelled as guesses. It stays closed until you solve the question, so you try to name the pattern first.
 - **Copy-paste AI prompts**: 3 hints (only hint 3 gives the solution), "check my solution" (reviews your code, then all approaches from brute force to optimal), and "get/check my answer" for CS questions.
 - A 2,500-question goal with a finish date, revisions after 1, 3, 7, 21 and 45 days, streaks, heatmap and notes.
 - **Fair to AtCoder's rules**: AtCoder bans generative AI during live ABC, ARC and AGC contests, so the AI prompts switch off for a problem while its contest is running. Practising past problems with them is allowed.
@@ -80,6 +81,7 @@ The repo ships with a small AtCoder list (the Educational DP Contest and the AtC
 - System design questions: `lib/systemDesign.js`. The roadmap, interview map, resources and concept prerequisites: `lib/systemDesignPath.js` (`npm test` checks that every question and topic it points at exists). System design concept questions are the `sd` subject in `lib/cs.js`.
 - CS questions and resources: `lib/cs.js`.
 - Topic explanations: `lib/topics.js`. Prompt wording: `lib/prompts.js`.
+- Pattern recognition (the "Pattern recognition" block in Learn the topic): the patterns themselves are in `lib/patterns.js`, and the pattern for each DSA path question is in `lib/patternMap.js`. Questions that aren't on the path get guesses from their topic tags. `npm test` checks every path question has an entry.
 - AtCoder problems linked from path steps: `scripts/atcoder-bridge.mjs`, then `npm run data`. Only add a problem when its topic is certain; the rest belong in More questions.
 - Which AtCoder contests are imported: `classifyContest` and `PRACTICE` in `scripts/atcoder.mjs` (rated ABC, ARC and AGC, sponsored contests at those levels, AHC, and a few practice sets).
 
