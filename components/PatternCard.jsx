@@ -1,10 +1,11 @@
 "use client";
+import Link from "next/link";
 import { patternsFor } from "@/lib/patterns";
 
 // "Pattern recognition" block for the Learn the topic tab.
 // It stays closed until the question is marked solved, because naming the pattern is the skill being practised and the
 // pattern name gives the approach away. Open it any time; just try to name it yourself first.
-export default function PatternCard({ item, solved = false }) {
+export default function PatternCard({ item, solved = false, onLeave }) {
   const found = patternsFor(item);
   if (!found) return null;
   const guess = found.source === "tags";
@@ -23,6 +24,7 @@ export default function PatternCard({ item, solved = false }) {
             <ul>{p.signals.map(s => <li key={s}>{s}</li>)}</ul>
             <p><strong>The move.</strong> {p.move}</p>
             <p className="small"><strong>Cost:</strong> {p.cost} <strong>Watch out:</strong> {p.trap}</p>
+            <p className="small"><Link href={`/patterns#${p.key}`} onClick={onLeave}>Full lesson, example and AI prompt for this pattern →</Link></p>
           </div>
         ))}
       </div>

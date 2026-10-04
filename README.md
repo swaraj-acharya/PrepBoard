@@ -12,6 +12,7 @@ A free placement-prep dashboard. No paid course, no AI key, no server costs.
 - **CS subjects**: 252 DBMS, OS, computer networks and OOPs interview questions with free study resources, plus all 323 LeetCode SQL problems.
 - **Every question** shows its platform and has its topic explained like you're 12 (144 explanations).
 - **Pattern recognition**: Learn the topic also names the pattern behind each coding question (hash lookup, sliding window, monotonic stack…), what gives it away in the statement, the move, and the usual trap. All 456 path questions have a hand-written one; others get tag-based guesses, labelled as guesses. It stays closed until you solve the question, so you try to name the pattern first.
+- **Patterns page**: all 70 patterns in one place, grouped, searchable, each explained simply with a worked example, a code template and an AI prompt. Open it from the menu, or from the "Full lesson" link inside any question.
 - **Copy-paste AI prompts**: 3 hints (only hint 3 gives the solution), "check my solution" (reviews your code, then all approaches from brute force to optimal), and "get/check my answer" for CS questions.
 - A 2,500-question goal with a finish date, revisions after 1, 3, 7, 21 and 45 days, streaks, heatmap and notes.
 - **Fair to AtCoder's rules**: AtCoder bans generative AI during live ABC, ARC and AGC contests, so the AI prompts switch off for a problem while its contest is running. Practising past problems with them is allowed.
@@ -82,6 +83,7 @@ The repo ships with a small AtCoder list (the Educational DP Contest and the AtC
 - CS questions and resources: `lib/cs.js`.
 - Topic explanations: `lib/topics.js`. Prompt wording: `lib/prompts.js`.
 - Pattern recognition (the "Pattern recognition" block in Learn the topic): the patterns themselves are in `lib/patterns.js`, and the pattern for each DSA path question is in `lib/patternMap.js`. Questions that aren't on the path get guesses from their topic tags. `npm test` checks every path question has an entry.
+- Patterns page (`/patterns`): one lesson per pattern (story, worked example, template, a copy-prompt that makes an AI teach it like you're 12, and your path questions that use it). The lesson text is `lib/patternGuide.js`; the page is `app/patterns/page.jsx` and `components/PatternLesson.jsx`.
 - AtCoder problems linked from path steps: `scripts/atcoder-bridge.mjs`, then `npm run data`. Only add a problem when its topic is certain; the rest belong in More questions.
 - Which AtCoder contests are imported: `classifyContest` and `PRACTICE` in `scripts/atcoder.mjs` (rated ABC, ARC and AGC, sponsored contests at those levels, AHC, and a few practice sets).
 

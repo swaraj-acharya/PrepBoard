@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useStore, streak } from "@/lib/store";
 import { useSyncStatus, syncActions } from "@/components/LocalSync";
 
-const LINKS = [["/", "Today"], ["/path", "DSA path"], ["/practice", "More questions"], ["/cp", "CP training"], ["/lab", "Lab"], ["/companies", "Companies"], ["/system-design", "System design"], ["/cs", "CS subjects"], ["/topics", "Topics"], ["/profile", "Profile"], ["/history", "History"], ["/settings", "Settings"]];
+const LINKS = [["/", "Today"], ["/path", "DSA path"], ["/patterns", "Patterns"], ["/practice", "More questions"], ["/cp", "CP training"], ["/lab", "Lab"], ["/companies", "Companies"], ["/system-design", "System design"], ["/cs", "CS subjects"], ["/topics", "Topics"], ["/profile", "Profile"], ["/history", "History"], ["/settings", "Settings"]];
 
 export default function Nav() {
   const path = usePathname();

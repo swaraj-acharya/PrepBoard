@@ -195,7 +195,7 @@ function Drawer({ id, onClose }) {
 
         {tab === "topic" && (
           <section className="tabpanel">
-            {item.kind === "dsa" && <PatternCard item={item} solved={!!me.status} />}
+            {item.kind === "dsa" && <PatternCard item={item} solved={!!me.status} onLeave={onClose} />}
             {item.topicNames.length > 0
               ? <>
                   <p className="muted small">Read these before you start. The first one is the main idea for this question.</p>

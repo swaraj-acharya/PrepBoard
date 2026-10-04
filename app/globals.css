@@ -601,3 +601,16 @@ code { font: .88em ui-monospace, "Cascadia Code", Consolas, monospace; backgroun
   .sd-mode .ptitle { flex: 1 1 calc(100% - 1.5rem); }
   .sd-mode .prow .diff { margin-left: 1.3rem; }
 }
+
+/* patterns page */
+.patterns .filters { margin: 1.25rem 0 1rem; display: grid; gap: .6rem; }
+.patterns .topic-section h2 { display: flex; align-items: center; gap: .6rem; margin: 1.6rem 0 .6rem; }
+.pattern { scroll-margin-top: 4.5rem; }
+.pattern summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .75rem; }
+.pat-meta { font: 500 .8rem var(--body); color: var(--muted); }
+.pat-code { margin: .4rem 0 .8rem; padding: .75rem .9rem; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); overflow-x: auto; font: .85rem/1.55 ui-monospace, "Cascadia Code", Consolas, monospace; white-space: pre; }
+.pat-learn, .pat-practice { margin-top: 1rem; padding-top: .8rem; border-top: 1px solid var(--line); }
+.pat-practice .plist { list-style: none; padding: 0; margin: .4rem 0 .6rem; }
+.pat-lookup, .pat-limits { padding-left: 1.1rem; display: grid; gap: .35rem; }
+.pat-lookup a { font-weight: 600; white-space: nowrap; }
+@media (max-width: 640px) { .pat-lookup a { white-space: normal; } }

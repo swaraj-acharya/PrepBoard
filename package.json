@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "data": "node scripts/build-data.mjs",
-    "test": "node --test scripts/prepboard.test.mjs scripts/patterns.test.mjs",
+    "test": "node --test scripts/prepboard.test.mjs scripts/patterns.test.mjs scripts/patternGuide.test.mjs",
     "validate": "node scripts/validate-data.mjs",
     "check-links": "node scripts/check-links.mjs"
   },
