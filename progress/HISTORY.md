@@ -6,11 +6,12 @@ Every day I solved or revised something, newest first. Tracked with Prepboard. U
 
 ### Sunday, 4 October 2026
 
-1 solved, 0 revised.
+2 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/) | LeetCode | Easy | Solved |
+| [66. Plus One](https://leetcode.com/problems/plus-one/) | LeetCode | Easy | Solved |
 
 ### Saturday, 3 October 2026
 
