@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-03.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-04.
 
-12 active days so far.
+13 active days so far.
+
+### Sunday, 4 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/) | LeetCode | Easy | Solved |
 
 ### Saturday, 3 October 2026
 

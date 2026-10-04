@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-03.
+Tracked with Prepboard. Updated 2026-10-04.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **31** of 2,500 goal |
-| LeetCode | 31 (Easy 30, Medium 1, Hard 0) |
+| **Coding questions** | **32** of 2,500 goal |
+| LeetCode | 32 (Easy 31, Medium 1, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 31 of 456 |
+| DSA path | 32 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **27** of 31.
+Solved on my own (no hint, editorial or reference code): **28** of 32.
 
-Current streak: **12 days**.
+Current streak: **13 days**.
 
-Solution notebook: **31** questions with saved solutions (31 attempts), 31 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **32** questions with saved solutions (32 attempts), 32 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-04 | 1 |
 | 2026-10-03 | 1 |
 | 2026-10-02 | 1 |
 | 2026-10-01 | 1 |
@@ -37,11 +38,18 @@ Solution notebook: **31** questions with saved solutions (31 attempts), 31 with 
 | 2026-09-23 | 3 |
 | 2026-09-22 | 3 |
 | 2026-09-21 | 0 |
-| 2026-09-20 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Sunday, 4 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/) | LeetCode | Easy | Solved |
 
 ### Saturday, 3 October 2026
 
@@ -96,21 +104,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [231. Power of Two](https://leetcode.com/problems/power-of-two/) | LeetCode | Easy | Solved |
 | [326. Power of Three](https://leetcode.com/problems/power-of-three/) | LeetCode | Easy | Solved |
 
-### Sunday, 27 September 2026
-
-4 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [771. Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | LeetCode | Easy | Solved |
-| [1512. Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/) | LeetCode | Easy | Solved |
-| [1108. Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/) | LeetCode | Easy | Solved |
-| [709. To Lower Case](https://leetcode.com/problems/to-lower-case/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-04 | [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/) | LeetCode | Easy | solved |
 | 2026-10-03 | [168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/) | LeetCode | Easy | needs revision |
 | 2026-10-02 | [171. Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/) | LeetCode | Easy | solved |
 | 2026-10-01 | [1688. Count of Matches in Tournament](https://leetcode.com/problems/count-of-matches-in-tournament/) | LeetCode | Easy | solved |
@@ -140,4 +138,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-23 | [1342. Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/) | LeetCode | Easy | solved |
 | 2026-09-23 | [1672. Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/) | LeetCode | Easy | solved |
 | 2026-09-22 | [2469. Convert the Temperature](https://leetcode.com/problems/convert-the-temperature/) | LeetCode | Easy | solved |
-| 2026-09-22 | [1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/) | LeetCode | Easy | solved |

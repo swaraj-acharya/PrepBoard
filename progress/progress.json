@@ -250,6 +250,14 @@
    "solvedOn": "2026-10-03",
    "u": 1791048922044,
    "work": "class Solution {\npublic:\n    string convertToTitle(int columnNumber) {\n        int temp = columnNumber;\n        string ans = \"\";\n        \n        while(temp != 0){\n            // Shift down by 1 to make it 0-indexed (0 to 25)\n            temp--; \n            \n            int modCatch = temp % 26;\n            ans.push_back(65 + modCatch);\n            \n            temp = temp / 26;\n        }\n        \n        // Reverse the string at the end since we calculated from right to left\n        reverse(ans.begin(), ans.end());\n        \n        return ans;\n    }\n};"
+  },
+  "find-greatest-common-divisor-of-array": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-10-05",
+   "solvedOn": "2026-10-04",
+   "u": 1791094738506,
+   "work": "class Solution {\npublic:\n    int findGCD(vector<int>& nums) {\n        int max = nums[0];\n        int min = nums[0];\n        for(int i=1; i<nums.size(); i++){\n            if(nums[i] > max){\n                max = nums[i];\n            }\n            if(nums[i] < min){\n                min = nums[i];\n            }\n        }\n        int GCD = 1;\n        for(int i=2; i<=min; i++){\n            if(max%i==0 && min%i==0){\n                GCD = i;\n            }\n        }\n        return GCD;\n    }\n};"
   }
  },
  "activity": {
@@ -264,7 +272,8 @@
   "2026-09-30": 2,
   "2026-10-01": 1,
   "2026-10-02": 1,
-  "2026-10-03": 1
+  "2026-10-03": 1,
+  "2026-10-04": 1
  },
  "log": {
   "2026-09-23": [
@@ -427,6 +436,13 @@
     "id": "excel-sheet-column-title",
     "a": "tricky",
     "t": 1791048898989
+   }
+  ],
+  "2026-10-04": [
+   {
+    "id": "find-greatest-common-divisor-of-array",
+    "a": "solved",
+    "t": 1791094735402
    }
   ]
  },
