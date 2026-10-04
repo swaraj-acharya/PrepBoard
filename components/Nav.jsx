@@ -1,10 +1,10 @@
 "use client";
+import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useStore, streak } from "@/lib/store";
 import { useSyncStatus, syncActions } from "@/components/LocalSync";
-
-const LINKS = [["/", "Today"], ["/path", "DSA path"], ["/patterns", "Patterns"], ["/practice", "More questions"], ["/cp", "CP training"], ["/lab", "Lab"], ["/companies", "Companies"], ["/system-design", "System design"], ["/cs", "CS subjects"], ["/topics", "Topics"], ["/profile", "Profile"], ["/history", "History"], ["/settings", "Settings"]];
+import { NAV_TOP, NAV_MENUS, isActive } from "@/lib/nav";
 
 export default function Nav() {
   const path = usePathname();
@@ -12,17 +12,59 @@ export default function Nav() {
   const s = streak(activity);
   const sync = useSyncStatus();
   return (
-    <nav className="nav">
+    <nav className="nav" aria-label="Main">
       <Link href="/" className="brand">Prepboard</Link>
       <div className="nav-links">
-        {LINKS.map(([href, label]) => {
-          const on = href === "/" ? path === "/" : path.startsWith(href);
+        {NAV_TOP.map(([href, label]) => {
+          const on = isActive(path, href);
           return <Link key={href} href={href} className={on ? "on" : ""} aria-current={on ? "page" : undefined}>{label}</Link>;
         })}
+        {NAV_MENUS.map(m => <NavMenu key={m.label} label={m.label} items={m.items} path={path} />)}
       </div>
       <FolderBadge sync={sync} />
       <span className="streak" title="Days in a row with at least one solve or revision">{s} day{s === 1 ? "" : "s"} streak</span>
     </nav>
+  );
+}
+
+// A dropdown that opens on click (works on touch too). It closes when you pick a page, click elsewhere,
+// press Escape, or tab out of it. It remembers the page it was opened on, so changing page closes it.
+function NavMenu({ label, items, path }) {
+  const [openOn, setOpenOn] = useState(null);
+  const open = openOn === path;
+  const box = useRef(null);
+  const id = useId();
+  const on = items.some(([href]) => isActive(path, href));
+
+  useEffect(() => {
+    if (!open) return;
+    const away = e => { if (!box.current?.contains(e.target)) setOpenOn(null); };
+    const key = e => { if (e.key === "Escape") { setOpenOn(null); box.current?.querySelector("button")?.focus(); } };
+    document.addEventListener("pointerdown", away);
+    document.addEventListener("keydown", key);
+    return () => { document.removeEventListener("pointerdown", away); document.removeEventListener("keydown", key); };
+  }, [open]);
+
+  return (
+    <div className="nav-menu" ref={box} onBlur={e => { if (e.relatedTarget && !e.currentTarget.contains(e.relatedTarget)) setOpenOn(null); }}>
+      <button type="button" className={`nav-trigger${on ? " on" : ""}`} aria-expanded={open} aria-controls={id} onClick={() => setOpenOn(open ? null : path)}>
+        {label}<span className="caret" aria-hidden="true" />
+      </button>
+      {open && (
+        <ul className="nav-drop" id={id}>
+          {items.map(([href, text, hint]) => {
+            const here = isActive(path, href);
+            return (
+              <li key={href}>
+                <Link href={href} className={here ? "on" : ""} aria-current={here ? "page" : undefined} onClick={() => setOpenOn(null)}>
+                  <span>{text}</span><small>{hint}</small>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
   );
 }
 
