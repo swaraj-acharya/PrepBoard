@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-04.
+Tracked with Prepboard. Updated 2026-10-05.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **33** of 2,500 goal |
-| LeetCode | 33 (Easy 32, Medium 1, Hard 0) |
+| **Coding questions** | **34** of 2,500 goal |
+| LeetCode | 34 (Easy 32, Medium 2, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 33 of 456 |
+| DSA path | 34 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **29** of 33.
+Solved on my own (no hint, editorial or reference code): **29** of 34.
 
-Current streak: **13 days**.
+Current streak: **14 days**.
 
-Solution notebook: **33** questions with saved solutions (33 attempts), 33 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **34** questions with saved solutions (34 attempts), 34 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-05 | 1 |
 | 2026-10-04 | 2 |
 | 2026-10-03 | 1 |
 | 2026-10-02 | 1 |
@@ -37,11 +38,18 @@ Solution notebook: **33** questions with saved solutions (33 attempts), 33 with 
 | 2026-09-24 | 3 |
 | 2026-09-23 | 3 |
 | 2026-09-22 | 3 |
-| 2026-09-21 | 0 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Monday, 5 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [204. Count Primes](https://leetcode.com/problems/count-primes/) | LeetCode | Medium | Solved with help |
 
 ### Sunday, 4 October 2026
 
@@ -94,21 +102,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [202. Happy Number](https://leetcode.com/problems/happy-number/) | LeetCode | Easy | Solved with help |
 | [263. Ugly Number](https://leetcode.com/problems/ugly-number/) | LeetCode | Easy | Solved with help |
 
-### Monday, 28 September 2026
-
-4 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | LeetCode | Easy | Solved |
-| [2114. Maximum Number of Words Found in Sentences](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) | LeetCode | Easy | Solved |
-| [231. Power of Two](https://leetcode.com/problems/power-of-two/) | LeetCode | Easy | Solved |
-| [326. Power of Three](https://leetcode.com/problems/power-of-three/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-05 | [204. Count Primes](https://leetcode.com/problems/count-primes/) | LeetCode | Medium | needs revision |
 | 2026-10-04 | [66. Plus One](https://leetcode.com/problems/plus-one/) | LeetCode | Easy | solved |
 | 2026-10-04 | [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/) | LeetCode | Easy | solved |
 | 2026-10-03 | [168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/) | LeetCode | Easy | needs revision |
@@ -138,4 +136,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-24 | [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) | LeetCode | Easy | solved |
 | 2026-09-23 | [2413. Smallest Even Multiple](https://leetcode.com/problems/smallest-even-multiple/) | LeetCode | Easy | solved |
 | 2026-09-23 | [1342. Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/) | LeetCode | Easy | solved |
-| 2026-09-23 | [1672. Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/) | LeetCode | Easy | solved |

@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-04.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-05.
 
-13 active days so far.
+14 active days so far.
+
+### Monday, 5 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [204. Count Primes](https://leetcode.com/problems/count-primes/) | LeetCode | Medium | Solved with help |
 
 ### Sunday, 4 October 2026
 

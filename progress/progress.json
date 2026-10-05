@@ -266,6 +266,14 @@
    "solvedOn": "2026-10-04",
    "u": 1791137650825,
    "work": "class Solution {\npublic:\n    vector<int> plusOne(vector<int>& digits) {\n        int reminder = 0;\n        for(int i = digits.size()-1; i>=0; i--){\n            int sum = 0;\n            if(i== digits.size()-1){\n                sum = digits[i] + 1;\n                digits[i] = sum%10;\n                reminder = sum/10;\n                if(i==0 && reminder != 0){\n                    digits.insert(digits.begin(),reminder);\n                }\n            }else{\n                sum = digits[i] + reminder;\n                digits[i] = sum%10;\n                reminder = sum/10;\n                if(i==0 && reminder != 0){\n                    digits.insert(digits.begin(),reminder);\n                }\n            }\n            sum = 0;\n        }\n        return digits;\n    }\n};"
+  },
+  "count-primes": {
+   "status": "revisit",
+   "stage": 0,
+   "due": "2026-10-06",
+   "solvedOn": "2026-10-05",
+   "u": 1791224307162,
+   "work": "class Solution {\npublic:\n    int countPrimes(int n) {\n        vector<bool>prime(n+1,true);\n        prime[0]=false;\n        prime[1]=false;\n        for(int i=2;i*i<=n;i++)\n        {\n            if(prime[i])\n            {\n                for(int j=i*i;j<=n;j=j+i)\n                {\n                    prime[j]=false;\n                }\n            }\n        }\n\n        int count=0;\n        for(int i=2;i<n;i++)\n        {\n            if(prime[i])\n            {\n                count++;\n            }\n        }\n        return count;\n    }\n};"
   }
  },
  "activity": {
@@ -281,7 +289,8 @@
   "2026-10-01": 1,
   "2026-10-02": 1,
   "2026-10-03": 1,
-  "2026-10-04": 2
+  "2026-10-04": 2,
+  "2026-10-05": 1
  },
  "log": {
   "2026-09-23": [
@@ -456,6 +465,13 @@
     "id": "plus-one",
     "a": "solved",
     "t": 1791137648475
+   }
+  ],
+  "2026-10-05": [
+   {
+    "id": "count-primes",
+    "a": "tricky",
+    "t": 1791224301110
    }
   ]
  },
