@@ -8,15 +8,39 @@ import { useOpenItem } from "@/components/Drawer";
 import ItemRow from "@/components/ItemRow";
 import Heatmap from "@/components/Heatmap";
 import GoalCard from "@/components/GoalCard";
+import CountUp from "@/components/CountUp";
 import { normLab, pickToday, planSplit, CAT, status } from "@/lib/labEngine";
 import { useSolutionIndex } from "@/lib/solutionStore";
+
+// Today's progress as a ring that fills as you solve.
+function Ring({ value, max }) {
+  const pct = max ? Math.min(1, value / max) : 0;
+  const R = 34, C = 2 * Math.PI * R;
+  return (
+    <div className={`ring${pct >= 1 ? " full" : ""}`} role="img" aria-label={`${value} of ${max} done today`}>
+      <svg viewBox="0 0 80 80" aria-hidden="true">
+        <circle className="ring-bg" cx="40" cy="40" r={R} />
+        <circle className="ring-fg" cx="40" cy="40" r={R} strokeDasharray={C} strokeDashoffset={C * (1 - pct)} />
+      </svg>
+      <span className="ring-num" aria-hidden="true"><b><CountUp value={value} duration={700} /></b><small>of {max}</small></span>
+    </div>
+  );
+}
+
+// One honest line of encouragement that changes with how the day is going.
+function pep(done, goal, run) {
+  if (done > goal) return `${done - goal} past your goal. Bonus round.`;
+  if (done === goal) return "Goal hit. Everything extra is a bonus.";
+  if (done === 0) return run > 0 ? `Solve one to keep your ${run}-day streak alive.` : "Start with one. Opening the first question is the hardest part.";
+  return `${goal - done} more to hit today's goal.`;
+}
 
 function Hero({ id, total, number }) {
   const item = useItem(id);
   const open = useOpenItem();
   return (
     <>
-      <p className="hero-kicker">Next up: step {item.pattern?.step}, {item.pattern?.name}</p>
+      <p className="hero-kicker"><span>Next up: step {item.pattern?.step}, {item.pattern?.name}</span></p>
       <h1 className="hero-title"><button onClick={() => open(id)}>{item.name}</button></h1>
       <div className="hero-meta">
         <span className={`diff diff-${item.level}`}>{item.levelLabel}</span>
@@ -119,19 +143,19 @@ export default function Today() {
           <NotebookPanel />
           <section className="panel">
             <h2>Today</h2>
-            <div className="goal">
-              <div className="goal-bar"><span style={{ width: `${Math.min(100, (doneToday / settings.goal) * 100)}%` }} /></div>
-              <p><strong>{doneToday}</strong> of {settings.goal} done today</p>
+            <div className="today-ring">
+              <Ring value={doneToday} max={settings.goal || 3} />
+              <p className="pep">{pep(doneToday, settings.goal || 3, streak(activity))}</p>
             </div>
             <p className="muted small">{streak(activity)} day streak. <Link href="/history">See what you did each day</Link></p>
           </section>
           <section className="panel">
             <h2>Solved on LeetCode</h2>
             <div className="diffsplit">
-              <span><b className="diff-E">{byDiff.E}</b> Easy</span>
-              <span><b className="diff-M">{byDiff.M}</b> Medium</span>
-              <span><b className="diff-H">{byDiff.H}</b> Hard</span>
-              <span><b>{sdDone}</b> Design, CS</span>
+              <span><b className="diff-E"><CountUp value={byDiff.E} /></b> Easy</span>
+              <span><b className="diff-M"><CountUp value={byDiff.M} /></b> Medium</span>
+              <span><b className="diff-H"><CountUp value={byDiff.H} /></b> Hard</span>
+              <span><b><CountUp value={sdDone} /></b> Design, CS</span>
             </div>
             {otherDone > 0 && <p className="muted small">Plus {otherDone} on Codeforces, CodeChef and AtCoder.</p>}
             <Heatmap activity={activity} />

@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useStore } from "@/lib/store";
 import { useItem } from "@/lib/data";
 import { useSolutionIndex } from "@/lib/solutionStore";
@@ -22,9 +23,20 @@ export default function ItemRow({ id, index, extra, note }) {
   const item = useItem(id);
   const { problems } = useStore();
   const st = problems[id]?.status;
+  // Pulse the row for a moment right after it is marked solved or revised. The timestamp check keeps
+  // it quiet when saved data merely loads or syncs in, and typing notes doesn't count (only status and stage do).
+  const stamp = problems[id]?.u, stage = problems[id]?.stage;
+  const [pulse, setPulse] = useState(false);
+  useEffect(() => {
+    if (!st || !stamp || Date.now() - stamp > 1500) return;
+    setPulse(true);
+    const t = setTimeout(() => setPulse(false), 1300);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [st, stage]);
   if (!item) return null;
   return (
-    <li className={`prow ${st ? "is-" + st : ""}${note ? " has-note" : ""}`}>
+    <li className={`prow ${st ? "is-" + st : ""}${note ? " has-note" : ""}${pulse ? " pulse" : ""}`}>
       {index != null && <span className="idx">{index}</span>}
       <StatusDot status={st} />
       <button className="ptitle" onClick={() => open(id)}>{item.title}{item.premium && <span className="badge-premium">Premium</span>}</button>

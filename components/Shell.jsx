@@ -4,6 +4,7 @@ import Nav from "@/components/Nav";
 import { DrawerProvider } from "@/components/Drawer";
 import { DataProvider } from "@/lib/data";
 import LocalSync from "@/components/LocalSync";
+import Celebrate from "@/components/Celebrate";
 
 // The sign-in page gets a bare layout: no menu, no data loading, no saving to your repo folder.
 export default function Shell({ children }) {
@@ -14,6 +15,7 @@ export default function Shell({ children }) {
       <DrawerProvider>
         <Nav />
         <main className="main">{children}</main>
+        <Celebrate />
       </DrawerProvider>
     </DataProvider>
   );

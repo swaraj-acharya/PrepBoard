@@ -8,10 +8,10 @@ export default function Heatmap({ activity, weeks = 18 }) {
   return (
     <div className="heat" style={{ gridTemplateColumns: `repeat(${weeks}, 1fr)` }} role="img"
       aria-label={`Activity for the last ${weeks} weeks`}>
-      {days.map(d => {
+      {days.map((d, i) => {
         const n = activity[d] || 0;
         const lvl = d > t ? "future" : n === 0 ? 0 : n < 2 ? 1 : n < 4 ? 2 : n < 7 ? 3 : 4;
-        return <span key={d} className={`hc h${lvl}`} title={`${d}: ${n}`} />;
+        return <span key={d} className={`hc h${lvl}${d === t ? " hc-today" : ""}`} style={{ "--d": `${Math.floor(i / 7) * 22}ms` }} title={`${d}: ${n}`} />;
       })}
     </div>
   );

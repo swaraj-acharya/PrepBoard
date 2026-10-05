@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useStore } from "@/lib/store";
+import CountUp from "@/components/CountUp";
 
 // Your big target (default 2,500 coding questions) and when you'll reach it at your daily pace.
 export default function GoalCard() {
@@ -14,7 +15,7 @@ export default function GoalCard() {
     <section className="goalcard">
       <div className="goalcard-top">
         <h2>Goal: {target.toLocaleString("en-IN")} questions</h2>
-        <span><strong>{solved.toLocaleString("en-IN")}</strong> <span className="muted">solved</span></span>
+        <span><strong><CountUp value={solved} /></strong> <span className="muted">solved</span></span>
       </div>
       <div className="goal-bar big"><span style={{ width: `${Math.min(100, (solved / target) * 100)}%` }} /></div>
       <p className="muted small">

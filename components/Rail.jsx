@@ -22,7 +22,7 @@ export default function Rail({ groups, hideDone, numbered = true }) {
         const start = n; n += g.ids.length;
         const isOpen = current === g.id;
         return (
-          <li key={g.id} className={`stop ${pct === 1 ? "complete" : pct > 0 ? "started" : ""}`} style={{ "--pct": pct }}>
+          <li key={g.id} className={`stop ${pct === 1 ? "complete" : pct > 0 ? "started" : ""}${firstOpen === g.id ? " current" : ""}`} style={{ "--pct": pct }}>
             <span className="node" aria-hidden="true" />
             <button className="stop-head" aria-expanded={isOpen} onClick={() => setOpenId(isOpen ? "" : g.id)}>
               <span className="stop-num">{gi + 1}</span>
