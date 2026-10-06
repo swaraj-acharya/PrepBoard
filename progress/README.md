@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-05.
+Tracked with Prepboard. Updated 2026-10-06.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **34** of 2,500 goal |
-| LeetCode | 34 (Easy 32, Medium 2, Hard 0) |
+| **Coding questions** | **35** of 2,500 goal |
+| LeetCode | 35 (Easy 33, Medium 2, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 34 of 456 |
+| DSA path | 35 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **29** of 34.
+Solved on my own (no hint, editorial or reference code): **29** of 35.
 
-Current streak: **14 days**.
+Current streak: **15 days**.
 
-Solution notebook: **34** questions with saved solutions (34 attempts), 34 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **35** questions with saved solutions (35 attempts), 35 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-06 | 1 |
 | 2026-10-05 | 1 |
 | 2026-10-04 | 2 |
 | 2026-10-03 | 1 |
@@ -37,11 +38,18 @@ Solution notebook: **34** questions with saved solutions (34 attempts), 34 with 
 | 2026-09-25 | 4 |
 | 2026-09-24 | 3 |
 | 2026-09-23 | 3 |
-| 2026-09-22 | 3 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Tuesday, 6 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | LeetCode | Easy | Solved with help |
 
 ### Monday, 5 October 2026
 
@@ -93,19 +101,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [728. Self Dividing Numbers](https://leetcode.com/problems/self-dividing-numbers/) | LeetCode | Easy | Solved |
 | [507. Perfect Number](https://leetcode.com/problems/perfect-number/) | LeetCode | Easy | Solved |
 
-### Tuesday, 29 September 2026
-
-2 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [202. Happy Number](https://leetcode.com/problems/happy-number/) | LeetCode | Easy | Solved with help |
-| [263. Ugly Number](https://leetcode.com/problems/ugly-number/) | LeetCode | Easy | Solved with help |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-06 | [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | LeetCode | Easy | needs revision |
 | 2026-10-05 | [204. Count Primes](https://leetcode.com/problems/count-primes/) | LeetCode | Medium | needs revision |
 | 2026-10-04 | [66. Plus One](https://leetcode.com/problems/plus-one/) | LeetCode | Easy | solved |
 | 2026-10-04 | [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/) | LeetCode | Easy | solved |
@@ -135,4 +135,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-24 | [1523. Count Odd Numbers in an Interval Range](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/) | LeetCode | Easy | solved |
 | 2026-09-24 | [1295. Find Numbers with Even Number of Digits](https://leetcode.com/problems/find-numbers-with-even-number-of-digits/) | LeetCode | Easy | solved |
 | 2026-09-23 | [2413. Smallest Even Multiple](https://leetcode.com/problems/smallest-even-multiple/) | LeetCode | Easy | solved |
-| 2026-09-23 | [1342. Number of Steps to Reduce a Number to Zero](https://leetcode.com/problems/number-of-steps-to-reduce-a-number-to-zero/) | LeetCode | Easy | solved |

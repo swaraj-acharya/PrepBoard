@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-05.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-06.
 
-14 active days so far.
+15 active days so far.
+
+### Tuesday, 6 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | LeetCode | Easy | Solved with help |
 
 ### Monday, 5 October 2026
 
