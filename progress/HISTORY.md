@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-06.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-07.
 
-15 active days so far.
+16 active days so far.
+
+### Wednesday, 7 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [172. Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/) | LeetCode | Medium | Solved with help |
 
 ### Tuesday, 6 October 2026
 

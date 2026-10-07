@@ -282,6 +282,14 @@
    "solvedOn": "2026-10-06",
    "u": 1791311002841,
    "work": "\nclass Solution {\npublic:\n    std::string addBinary(std::string a, std::string b) {\n        std::string ans = \"\";\n        int ft = a.length() - 1;\n        int sd = b.length() - 1;\n        int carry = 0;\n\n        // Keep looping if there are digits left in a, or b, or if there is a leftover carry\n        while (ft >= 0 || sd >= 0 || carry > 0) {\n            int sum = carry;\n\n            // Add digit from string 'a' if available\n            if (ft >= 0) {\n                sum += a[ft] - '0'; // Convert character '0'/'1' to integer 0/1\n                ft--;\n            }\n\n            // Add digit from string 'b' if available\n            if (sd >= 0) {\n                sum += b[sd] - '0'; // Convert character '0'/'1' to integer 0/1\n                sd--;\n            }\n\n            // The value to push is sum % 2 (either 0 or 1)\n            ans.push_back((sum % 2) + '0'); \n\n            // The new carry is sum / 2 (1 if sum was 2 or 3, else 0)\n            carry = sum / 2; \n        }\n\n        // Reverse in-place and return\n        std::reverse(ans.begin(), ans.end());\n        return ans;\n    }\n};\n"
+  },
+  "factorial-trailing-zeroes": {
+   "status": "revisit",
+   "stage": 0,
+   "due": "2026-10-08",
+   "solvedOn": "2026-10-07",
+   "u": 1791397018483,
+   "work": "class Solution {\npublic:\n    int trailingZeroes(int n) {\n        int count = 0;\n        while (n > 0) {\n            count += n / 5;\n            n /= 5;\n        }\n        return count;\n    }\n};"
   }
  },
  "activity": {
@@ -299,7 +307,8 @@
   "2026-10-03": 1,
   "2026-10-04": 2,
   "2026-10-05": 1,
-  "2026-10-06": 1
+  "2026-10-06": 1,
+  "2026-10-07": 1
  },
  "log": {
   "2026-09-23": [
@@ -493,6 +502,13 @@
     "id": "greatest-common-divisor-of-strings",
     "a": "tricky",
     "t": 1791310990889
+   }
+  ],
+  "2026-10-07": [
+   {
+    "id": "factorial-trailing-zeroes",
+    "a": "tricky",
+    "t": 1791397013615
    }
   ]
  },
