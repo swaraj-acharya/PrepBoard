@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-07.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-08.
 
-16 active days so far.
+17 active days so far.
+
+### Thursday, 8 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [67. Add Binary](https://leetcode.com/problems/add-binary/) | LeetCode | Easy | Solved with help |
 
 ### Wednesday, 7 October 2026
 
