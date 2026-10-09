@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-08.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-09.
 
-17 active days so far.
+18 active days so far.
+
+### Friday, 9 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/) | LeetCode | Easy | Solved |
 
 ### Thursday, 8 October 2026
 

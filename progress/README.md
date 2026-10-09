@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-08.
+Tracked with Prepboard. Updated 2026-10-09.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **37** of 2,500 goal |
-| LeetCode | 37 (Easy 34, Medium 3, Hard 0) |
+| **Coding questions** | **38** of 2,500 goal |
+| LeetCode | 38 (Easy 35, Medium 3, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 37 of 456 |
+| DSA path | 38 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **29** of 37.
+Solved on my own (no hint, editorial or reference code): **30** of 38.
 
-Current streak: **17 days**.
+Current streak: **18 days**.
 
-Solution notebook: **37** questions with saved solutions (37 attempts), 36 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **38** questions with saved solutions (38 attempts), 37 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-09 | 1 |
 | 2026-10-08 | 1 |
 | 2026-10-07 | 1 |
 | 2026-10-06 | 1 |
@@ -37,11 +38,18 @@ Solution notebook: **37** questions with saved solutions (37 attempts), 36 with 
 | 2026-09-28 | 4 |
 | 2026-09-27 | 4 |
 | 2026-09-26 | 3 |
-| 2026-09-25 | 4 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Friday, 9 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/) | LeetCode | Easy | Solved |
 
 ### Thursday, 8 October 2026
 
@@ -92,18 +100,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 |---|---|---|---|
 | [168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/) | LeetCode | Easy | Solved with help |
 
-### Friday, 2 October 2026
-
-1 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [171. Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-09 | [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/) | LeetCode | Easy | solved |
 | 2026-10-08 | [67. Add Binary](https://leetcode.com/problems/add-binary/) | LeetCode | Easy | needs revision |
 | 2026-10-07 | [172. Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/) | LeetCode | Medium | needs revision |
 | 2026-10-06 | [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | LeetCode | Easy | needs revision |
@@ -133,4 +134,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-25 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | solved |
 | 2026-09-25 | [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | solved |
 | 2026-09-24 | [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | solved |
-| 2026-09-24 | [1523. Count Odd Numbers in an Interval Range](https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/) | LeetCode | Easy | solved |
