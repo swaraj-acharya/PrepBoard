@@ -182,7 +182,7 @@ test("profile numbers", () => {
   assert.equal(p.resolved, 2);
   assert.equal(p.bridgeDone, 1);
   assert.equal(p.recall, 2 / 3);
-  assert.equal(p.longest, 3);
+  assert.equal(p.longest, 5, "the 21st was missed but made up on the 22nd (3 solves), so it counts");
   assert.equal(p.activeDays, 4);
   assert.deepEqual([p.pathDone, p.pathTotal], [2, 3]);
   assert.ok(p.topics.has("Hash Table") && p.topics.get("Hash Table") === 2);

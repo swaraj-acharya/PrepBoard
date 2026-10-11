@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useStore, actions, today, streak } from "@/lib/store";
+import { useStore, actions, today, streakStatus } from "@/lib/store";
 import { useData, useItem, getCompany } from "@/lib/data";
 import { HLD_GROUPS, LLD_GROUPS } from "@/lib/systemDesign";
 import { useOpenItem } from "@/components/Drawer";
@@ -28,7 +28,11 @@ function Ring({ value, max }) {
 }
 
 // One honest line of encouragement that changes with how the day is going.
-function pep(done, goal, run) {
+// rec comes from streakStatus: when yesterday was missed, today's job is to save the streak.
+function pep(done, goal, run, rec) {
+  if (rec?.pending) return done === 0
+    ? `You missed yesterday. Solve ${rec.need} today (one makes up for yesterday) to save your ${rec.n}-day streak.`
+    : `Solve ${rec.need} more today to make up for yesterday and save your ${rec.n}-day streak.`;
   if (done > goal) return `${done - goal} past your goal. Bonus round.`;
   if (done === goal) return "Goal hit. Everything extra is a bonus.";
   if (done === 0) return run > 0 ? `Solve one to keep your ${run}-day streak alive.` : "Start with one. Opening the first question is the hardest part.";
@@ -77,6 +81,7 @@ export default function Today() {
   const picks = companyPicks.filter(s => !prog[s]?.status).slice(0, 5);
 
   const doneToday = activity[today()] || 0;
+  const run = streakStatus(activity);
   const byDiff = { E: 0, M: 0, H: 0 };
   let sdDone = 0, otherDone = 0;
   for (const [s, v] of Object.entries(prog)) {
@@ -145,9 +150,9 @@ export default function Today() {
             <h2>Today</h2>
             <div className="today-ring">
               <Ring value={doneToday} max={settings.goal || 3} />
-              <p className="pep">{pep(doneToday, settings.goal || 3, streak(activity))}</p>
+              <p className="pep">{pep(doneToday, settings.goal || 3, run.n, run)}</p>
             </div>
-            <p className="muted small">{streak(activity)} day streak. <Link href="/history">See what you did each day</Link></p>
+            <p className="muted small">{run.n} day streak{run.pending ? " (at risk: you missed yesterday)" : run.recovered ? " (yesterday made up)" : ""}. <Link href="/history">See what you did each day</Link></p>
           </section>
           <section className="panel">
             <h2>Solved on LeetCode</h2>
