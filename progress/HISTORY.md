@@ -1,8 +1,17 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-09.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-12.
 
-18 active days so far.
+19 active days so far.
+
+### Sunday, 11 October 2026
+
+2 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/) | LeetCode | Easy | Solved |
+| [1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/) | LeetCode | Easy | Solved |
 
 ### Friday, 9 October 2026
 

@@ -1,29 +1,32 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-09.
+Tracked with Prepboard. Updated 2026-10-12.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **38** of 2,500 goal |
-| LeetCode | 38 (Easy 35, Medium 3, Hard 0) |
+| **Coding questions** | **40** of 2,500 goal |
+| LeetCode | 40 (Easy 37, Medium 3, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 38 of 456 |
+| DSA path | 40 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **30** of 38.
+Solved on my own (no hint, editorial or reference code): **32** of 40.
 
-Current streak: **18 days**.
+Current streak: **20 days**.
 
-Solution notebook: **38** questions with saved solutions (38 attempts), 37 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **40** questions with saved solutions (40 attempts), 39 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-12 | 0 |
+| 2026-10-11 | 2 |
+| 2026-10-10 | 0 |
 | 2026-10-09 | 1 |
 | 2026-10-08 | 1 |
 | 2026-10-07 | 1 |
@@ -35,13 +38,19 @@ Solution notebook: **38** questions with saved solutions (38 attempts), 37 with 
 | 2026-10-01 | 1 |
 | 2026-09-30 | 2 |
 | 2026-09-29 | 2 |
-| 2026-09-28 | 4 |
-| 2026-09-27 | 4 |
-| 2026-09-26 | 3 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Sunday, 11 October 2026
+
+2 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/) | LeetCode | Easy | Solved |
+| [1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/) | LeetCode | Easy | Solved |
 
 ### Friday, 9 October 2026
 
@@ -92,18 +101,12 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/) | LeetCode | Easy | Solved |
 | [66. Plus One](https://leetcode.com/problems/plus-one/) | LeetCode | Easy | Solved |
 
-### Saturday, 3 October 2026
-
-1 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/) | LeetCode | Easy | Solved with help |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-11 | [1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/) | LeetCode | Easy | solved |
+| 2026-10-11 | [1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/) | LeetCode | Easy | solved |
 | 2026-10-09 | [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/) | LeetCode | Easy | solved |
 | 2026-10-08 | [67. Add Binary](https://leetcode.com/problems/add-binary/) | LeetCode | Easy | needs revision |
 | 2026-10-07 | [172. Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/) | LeetCode | Medium | needs revision |
@@ -132,5 +135,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-25 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | solved |
 | 2026-09-25 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | solved |
 | 2026-09-25 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | solved |
-| 2026-09-25 | [2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/) | LeetCode | Easy | solved |
-| 2026-09-24 | [1281. Subtract the Product and Sum of Digits of an Integer](https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/) | LeetCode | Easy | solved |

@@ -306,6 +306,22 @@
    "solvedOn": "2026-10-09",
    "u": 1791567304646,
    "work": "class Solution {\npublic:\n    vector<int> getConcatenation(vector<int>& nums) {\n        int n = nums.size();\n        vector <int> ans(2*n);\n        for(int i = 0; i < n; i++){\n            ans[i] = nums[i];\n            ans[i+n] = nums[i];\n        }\n        return ans;\n    }\n};"
+  },
+  "build-array-from-permutation": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-10-12",
+   "solvedOn": "2026-10-11",
+   "u": 1791743180881,
+   "work": "class Solution {\npublic:\n    vector<int> buildArray(vector<int>& nums) {\n        vector<int> ans;\n        for(int i=0; i<nums.size(); i++){\n            ans.push_back(nums[nums[i]]);\n        }\n        return ans;\n    }\n};"
+  },
+  "shuffle-the-array": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-10-12",
+   "solvedOn": "2026-10-11",
+   "u": 1791743406600,
+   "work": "class Solution {\npublic:\n    vector<int> shuffle(vector<int>& nums, int n) {\n        vector<int>ans;\n        for(int i=0; i<n; i++){\n            ans.push_back(nums[i]);\n            ans.push_back(nums[i+n]);\n        }\n        return ans;\n    }\n};"
   }
  },
  "activity": {
@@ -326,7 +342,8 @@
   "2026-10-06": 1,
   "2026-10-07": 1,
   "2026-10-08": 1,
-  "2026-10-09": 1
+  "2026-10-09": 1,
+  "2026-10-11": 2
  },
  "log": {
   "2026-09-23": [
@@ -541,6 +558,18 @@
     "id": "concatenation-of-array",
     "a": "solved",
     "t": 1791567296977
+   }
+  ],
+  "2026-10-11": [
+   {
+    "id": "build-array-from-permutation",
+    "a": "solved",
+    "t": 1791743171996
+   },
+   {
+    "id": "shuffle-the-array",
+    "a": "solved",
+    "t": 1791743298581
    }
   ]
  },

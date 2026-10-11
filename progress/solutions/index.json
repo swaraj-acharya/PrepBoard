@@ -19,6 +19,12 @@
    "n": 1,
    "r": 1
   },
+  "build-array-from-permutation": {
+   "h": "nuh4lm9656",
+   "u": 1791743226398,
+   "n": 1,
+   "r": 1
+  },
   "concatenation-of-array": {
    "h": "15ci2red1jr",
    "u": 1791567363261,
@@ -196,6 +202,12 @@
   "self-dividing-numbers": {
    "h": "pu7jhzk5br",
    "u": 1790779239692,
+   "n": 1,
+   "r": 1
+  },
+  "shuffle-the-array": {
+   "h": "2fdv7kwo3o9",
+   "u": 1791743459463,
    "n": 1,
    "r": 1
   },
