@@ -2,7 +2,15 @@
 
 Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-12.
 
-19 active days so far.
+20 active days so far.
+
+### Monday, 12 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | LeetCode | Easy | Solved |
 
 ### Sunday, 11 October 2026
 

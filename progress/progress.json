@@ -322,6 +322,14 @@
    "solvedOn": "2026-10-11",
    "u": 1791743406600,
    "work": "class Solution {\npublic:\n    vector<int> shuffle(vector<int>& nums, int n) {\n        vector<int>ans;\n        for(int i=0; i<n; i++){\n            ans.push_back(nums[i]);\n            ans.push_back(nums[i+n]);\n        }\n        return ans;\n    }\n};"
+  },
+  "kids-with-the-greatest-number-of-candies": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-10-13",
+   "solvedOn": "2026-10-12",
+   "u": 1791816111593,
+   "work": "class Solution {\npublic:\n    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {\n        int max_val = *max_element(candies.begin(), candies.end());\n        vector<bool> ans;\n        for(int i=0; i<candies.size(); i++){\n            if((candies[i] + extraCandies) >= max_val){\n                ans.push_back(true);\n            }else{\n                ans.push_back(false);\n            }\n        }\n        return ans;\n    }\n};"
   }
  },
  "activity": {
@@ -343,7 +351,8 @@
   "2026-10-07": 1,
   "2026-10-08": 1,
   "2026-10-09": 1,
-  "2026-10-11": 2
+  "2026-10-11": 2,
+  "2026-10-12": 1
  },
  "log": {
   "2026-09-23": [
@@ -570,6 +579,13 @@
     "id": "shuffle-the-array",
     "a": "solved",
     "t": 1791743298581
+   }
+  ],
+  "2026-10-12": [
+   {
+    "id": "kids-with-the-greatest-number-of-candies",
+    "a": "solved",
+    "t": 1791816108607
    }
   ]
  },

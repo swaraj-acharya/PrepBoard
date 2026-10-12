@@ -4,27 +4,27 @@ Tracked with Prepboard. Updated 2026-10-12.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **40** of 2,500 goal |
-| LeetCode | 40 (Easy 37, Medium 3, Hard 0) |
+| **Coding questions** | **41** of 2,500 goal |
+| LeetCode | 41 (Easy 38, Medium 3, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 40 of 456 |
+| DSA path | 41 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **32** of 40.
+Solved on my own (no hint, editorial or reference code): **33** of 41.
 
-Current streak: **20 days**.
+Current streak: **21 days**.
 
-Solution notebook: **40** questions with saved solutions (40 attempts), 39 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **41** questions with saved solutions (41 attempts), 40 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
-| 2026-10-12 | 0 |
+| 2026-10-12 | 1 |
 | 2026-10-11 | 2 |
 | 2026-10-10 | 0 |
 | 2026-10-09 | 1 |
@@ -42,6 +42,14 @@ Solution notebook: **40** questions with saved solutions (40 attempts), 39 with 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Monday, 12 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | LeetCode | Easy | Solved |
 
 ### Sunday, 11 October 2026
 
@@ -92,19 +100,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 |---|---|---|---|
 | [204. Count Primes](https://leetcode.com/problems/count-primes/) | LeetCode | Medium | Solved with help |
 
-### Sunday, 4 October 2026
-
-2 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/) | LeetCode | Easy | Solved |
-| [66. Plus One](https://leetcode.com/problems/plus-one/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-12 | [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | LeetCode | Easy | solved |
 | 2026-10-11 | [1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/) | LeetCode | Easy | solved |
 | 2026-10-11 | [1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/) | LeetCode | Easy | solved |
 | 2026-10-09 | [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/) | LeetCode | Easy | solved |
@@ -134,4 +134,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-26 | [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | solved |
 | 2026-09-25 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | solved |
 | 2026-09-25 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | solved |
-| 2026-09-25 | [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/) | LeetCode | Easy | solved |
