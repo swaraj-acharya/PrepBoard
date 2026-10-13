@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-12.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-13.
 
-20 active days so far.
+21 active days so far.
+
+### Tuesday, 13 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1732. Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/) | LeetCode | Easy | Solved |
 
 ### Monday, 12 October 2026
 

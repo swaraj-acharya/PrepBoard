@@ -330,6 +330,14 @@
    "solvedOn": "2026-10-12",
    "u": 1791816111593,
    "work": "class Solution {\npublic:\n    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {\n        int max_val = *max_element(candies.begin(), candies.end());\n        vector<bool> ans;\n        for(int i=0; i<candies.size(); i++){\n            if((candies[i] + extraCandies) >= max_val){\n                ans.push_back(true);\n            }else{\n                ans.push_back(false);\n            }\n        }\n        return ans;\n    }\n};"
+  },
+  "find-the-highest-altitude": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-10-14",
+   "solvedOn": "2026-10-13",
+   "u": 1791913770105,
+   "work": "class Solution {\npublic:\n    int largestAltitude(vector<int>& gain) {\n        int highest = 0;\n        int sum = 0;\n        for(int i=0; i<gain.size(); i++){\n            sum = sum + gain[i];\n            if(sum > highest){\n                highest = sum;\n            }\n        }\n        return highest;\n    }\n};"
   }
  },
  "activity": {
@@ -352,7 +360,8 @@
   "2026-10-08": 1,
   "2026-10-09": 1,
   "2026-10-11": 2,
-  "2026-10-12": 1
+  "2026-10-12": 1,
+  "2026-10-13": 1
  },
  "log": {
   "2026-09-23": [
@@ -586,6 +595,13 @@
     "id": "kids-with-the-greatest-number-of-candies",
     "a": "solved",
     "t": 1791816108607
+   }
+  ],
+  "2026-10-13": [
+   {
+    "id": "find-the-highest-altitude",
+    "a": "solved",
+    "t": 1791913767021
    }
   ]
  },

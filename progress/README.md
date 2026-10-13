@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-12.
+Tracked with Prepboard. Updated 2026-10-13.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **41** of 2,500 goal |
-| LeetCode | 41 (Easy 38, Medium 3, Hard 0) |
+| **Coding questions** | **42** of 2,500 goal |
+| LeetCode | 42 (Easy 39, Medium 3, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 41 of 456 |
+| DSA path | 42 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **33** of 41.
+Solved on my own (no hint, editorial or reference code): **34** of 42.
 
-Current streak: **21 days**.
+Current streak: **22 days**.
 
-Solution notebook: **41** questions with saved solutions (41 attempts), 40 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **42** questions with saved solutions (42 attempts), 41 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-13 | 1 |
 | 2026-10-12 | 1 |
 | 2026-10-11 | 2 |
 | 2026-10-10 | 0 |
@@ -37,11 +38,18 @@ Solution notebook: **41** questions with saved solutions (41 attempts), 40 with 
 | 2026-10-02 | 1 |
 | 2026-10-01 | 1 |
 | 2026-09-30 | 2 |
-| 2026-09-29 | 2 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Tuesday, 13 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1732. Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/) | LeetCode | Easy | Solved |
 
 ### Monday, 12 October 2026
 
@@ -92,18 +100,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 |---|---|---|---|
 | [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | LeetCode | Easy | Solved with help |
 
-### Monday, 5 October 2026
-
-1 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [204. Count Primes](https://leetcode.com/problems/count-primes/) | LeetCode | Medium | Solved with help |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-13 | [1732. Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/) | LeetCode | Easy | solved |
 | 2026-10-12 | [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | LeetCode | Easy | solved |
 | 2026-10-11 | [1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/) | LeetCode | Easy | solved |
 | 2026-10-11 | [1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/) | LeetCode | Easy | solved |
@@ -133,4 +134,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-26 | [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | solved |
 | 2026-09-26 | [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | solved |
 | 2026-09-25 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | solved |
-| 2026-09-25 | [2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/) | LeetCode | Easy | solved |
