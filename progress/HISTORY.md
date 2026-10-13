@@ -6,11 +6,12 @@ Every day I solved or revised something, newest first. Tracked with Prepboard. U
 
 ### Tuesday, 13 October 2026
 
-1 solved, 0 revised.
+2 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [1732. Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/) | LeetCode | Easy | Solved |
+| [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | LeetCode | Easy | Solved |
 
 ### Monday, 12 October 2026
 

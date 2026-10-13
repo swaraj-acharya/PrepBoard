@@ -4,27 +4,27 @@ Tracked with Prepboard. Updated 2026-10-13.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **42** of 2,500 goal |
-| LeetCode | 42 (Easy 39, Medium 3, Hard 0) |
+| **Coding questions** | **43** of 2,500 goal |
+| LeetCode | 43 (Easy 40, Medium 3, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 42 of 456 |
+| DSA path | 43 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **34** of 42.
+Solved on my own (no hint, editorial or reference code): **35** of 43.
 
 Current streak: **22 days**.
 
-Solution notebook: **42** questions with saved solutions (42 attempts), 41 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **43** questions with saved solutions (43 attempts), 42 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
-| 2026-10-13 | 1 |
+| 2026-10-13 | 2 |
 | 2026-10-12 | 1 |
 | 2026-10-11 | 2 |
 | 2026-10-10 | 0 |
@@ -45,11 +45,12 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 ### Tuesday, 13 October 2026
 
-1 solved, 0 revised.
+2 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [1732. Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/) | LeetCode | Easy | Solved |
+| [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | LeetCode | Easy | Solved |
 
 ### Monday, 12 October 2026
 
@@ -104,6 +105,7 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-13 | [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | LeetCode | Easy | solved |
 | 2026-10-13 | [1732. Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/) | LeetCode | Easy | solved |
 | 2026-10-12 | [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | LeetCode | Easy | solved |
 | 2026-10-11 | [1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/) | LeetCode | Easy | solved |
@@ -133,4 +135,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-26 | [258. Add Digits](https://leetcode.com/problems/add-digits/) | LeetCode | Easy | solved |
 | 2026-09-26 | [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | solved |
 | 2026-09-26 | [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | solved |
-| 2026-09-25 | [1822. Sign of the Product of an Array](https://leetcode.com/problems/sign-of-the-product-of-an-array/) | LeetCode | Easy | solved |
