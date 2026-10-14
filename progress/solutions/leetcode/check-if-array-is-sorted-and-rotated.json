@@ -1,0 +1,16 @@
+{
+ "v": 1,
+ "id": "check-if-array-is-sorted-and-rotated",
+ "attempts": [
+  {
+   "id": "mv8ep1mi-1d4g5b4i",
+   "at": 1792000275066,
+   "u": 1792000275066,
+   "lang": "C++",
+   "code": "class Solution {\npublic:\n    int thirdMax(vector<int>& nums) {\n        set<int> topSet;\n        for (int num : nums) {\n            topSet.insert(num);\n            if (topSet.size() > 3) {\n                topSet.erase(topSet.begin()); // Remove the smallest of the top elements\n            }\n        }\n        \n        // If we have 3 or more distinct numbers, the third max is the smallest in our set\n        if (topSet.size() == 3) {\n            return *topSet.begin();\n        }\n        \n        // Otherwise, return the maximum element in the set\n        return *topSet.rbegin();\n    }\n};",
+   "ctx": "solve"
+  }
+ ],
+ "deleted": {},
+ "u": 1792000275066
+}

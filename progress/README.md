@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-13.
+Tracked with Prepboard. Updated 2026-10-14.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **43** of 2,500 goal |
-| LeetCode | 43 (Easy 40, Medium 3, Hard 0) |
+| **Coding questions** | **44** of 2,500 goal |
+| LeetCode | 44 (Easy 41, Medium 3, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 43 of 456 |
+| DSA path | 44 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **35** of 43.
+Solved on my own (no hint, editorial or reference code): **35** of 44.
 
-Current streak: **22 days**.
+Current streak: **23 days**.
 
-Solution notebook: **43** questions with saved solutions (43 attempts), 42 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **44** questions with saved solutions (44 attempts), 42 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-14 | 1 |
 | 2026-10-13 | 2 |
 | 2026-10-12 | 1 |
 | 2026-10-11 | 2 |
@@ -37,11 +38,18 @@ Solution notebook: **43** questions with saved solutions (43 attempts), 42 with 
 | 2026-10-03 | 1 |
 | 2026-10-02 | 1 |
 | 2026-10-01 | 1 |
-| 2026-09-30 | 2 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Wednesday, 14 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1752. Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/) | LeetCode | Easy | Solved with help |
 
 ### Tuesday, 13 October 2026
 
@@ -93,18 +101,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 |---|---|---|---|
 | [172. Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/) | LeetCode | Medium | Solved with help |
 
-### Tuesday, 6 October 2026
-
-1 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | LeetCode | Easy | Solved with help |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-14 | [1752. Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/) | LeetCode | Easy | needs revision |
 | 2026-10-13 | [485. Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | LeetCode | Easy | solved |
 | 2026-10-13 | [1732. Find the Highest Altitude](https://leetcode.com/problems/find-the-highest-altitude/) | LeetCode | Easy | solved |
 | 2026-10-12 | [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | LeetCode | Easy | solved |
@@ -134,4 +135,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-27 | [771. Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | LeetCode | Easy | solved |
 | 2026-09-26 | [258. Add Digits](https://leetcode.com/problems/add-digits/) | LeetCode | Easy | solved |
 | 2026-09-26 | [7. Reverse Integer](https://leetcode.com/problems/reverse-integer/) | LeetCode | Medium | solved |
-| 2026-09-26 | [1491. Average Salary Excluding the Minimum and Maximum Salary](https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/) | LeetCode | Easy | solved |

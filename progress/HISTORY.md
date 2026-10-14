@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-13.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-14.
 
-21 active days so far.
+22 active days so far.
+
+### Wednesday, 14 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [1752. Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/) | LeetCode | Easy | Solved with help |
 
 ### Tuesday, 13 October 2026
 
