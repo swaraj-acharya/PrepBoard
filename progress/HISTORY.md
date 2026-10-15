@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-14.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-15.
 
-22 active days so far.
+23 active days so far.
+
+### Thursday, 15 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [268. Missing Number](https://leetcode.com/problems/missing-number/) | LeetCode | Easy | Solved |
 
 ### Wednesday, 14 October 2026
 
