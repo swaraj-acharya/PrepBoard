@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-15.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-16.
 
-23 active days so far.
+24 active days so far.
+
+### Friday, 16 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [414. Third Maximum Number](https://leetcode.com/problems/third-maximum-number/) | LeetCode | Easy | Solved with help |
 
 ### Thursday, 15 October 2026
 
