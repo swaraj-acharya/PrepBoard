@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-16.
+Tracked with Prepboard. Updated 2026-10-17.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **46** of 2,500 goal |
-| LeetCode | 46 (Easy 43, Medium 3, Hard 0) |
+| **Coding questions** | **47** of 2,500 goal |
+| LeetCode | 47 (Easy 44, Medium 3, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 46 of 456 |
+| DSA path | 47 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **36** of 46.
+Solved on my own (no hint, editorial or reference code): **36** of 47.
 
-Current streak: **25 days**.
+Current streak: **26 days**.
 
-Solution notebook: **46** questions with saved solutions (46 attempts), 43 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **47** questions with saved solutions (47 attempts), 43 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-17 | 1 |
 | 2026-10-16 | 1 |
 | 2026-10-15 | 1 |
 | 2026-10-14 | 1 |
@@ -37,11 +38,18 @@ Solution notebook: **46** questions with saved solutions (46 attempts), 43 with 
 | 2026-10-06 | 1 |
 | 2026-10-05 | 1 |
 | 2026-10-04 | 2 |
-| 2026-10-03 | 1 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Saturday, 17 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [136. Single Number](https://leetcode.com/problems/single-number/) | LeetCode | Easy | Solved with help |
 
 ### Friday, 16 October 2026
 
@@ -93,18 +101,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | [1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/) | LeetCode | Easy | Solved |
 | [1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/) | LeetCode | Easy | Solved |
 
-### Friday, 9 October 2026
-
-1 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-17 | [136. Single Number](https://leetcode.com/problems/single-number/) | LeetCode | Easy | needs revision |
 | 2026-10-16 | [414. Third Maximum Number](https://leetcode.com/problems/third-maximum-number/) | LeetCode | Easy | needs revision |
 | 2026-10-15 | [268. Missing Number](https://leetcode.com/problems/missing-number/) | LeetCode | Easy | solved |
 | 2026-10-14 | [1752. Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/) | LeetCode | Easy | needs revision |
@@ -134,4 +135,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-27 | [709. To Lower Case](https://leetcode.com/problems/to-lower-case/) | LeetCode | Easy | solved |
 | 2026-09-27 | [1108. Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/) | LeetCode | Easy | solved |
 | 2026-09-27 | [1512. Number of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/) | LeetCode | Easy | solved |
-| 2026-09-27 | [771. Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/) | LeetCode | Easy | solved |

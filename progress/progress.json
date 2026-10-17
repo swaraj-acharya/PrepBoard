@@ -370,6 +370,14 @@
    "solvedOn": "2026-10-16",
    "u": 1792174156965,
    "work": "class Solution {\npublic:\n    int thirdMax(vector<int>& nums) {\n        set<int> topSet;\n        for (int num : nums) {\n            topSet.insert(num);\n            if (topSet.size() > 3) {\n                topSet.erase(topSet.begin()); // Remove the smallest of the top elements\n            }\n        }\n        \n        // If we have 3 or more distinct numbers, the third max is the smallest in our set\n        if (topSet.size() == 3) {\n            return *topSet.begin();\n        }\n        \n        // Otherwise, return the maximum element in the set\n        return *topSet.rbegin();\n    }\n};"
+  },
+  "single-number": {
+   "status": "revisit",
+   "stage": 0,
+   "due": "2026-10-18",
+   "solvedOn": "2026-10-17",
+   "u": 1792259628661,
+   "work": "class Solution {\npublic:\n    int singleNumber(vector<int>& nums) {\n        unordered_map<int, int>store;\n        for(int i=0; i<nums.size(); i++){\n            store[nums[i]]++;\n        }\n        for(auto i : store){\n            if(i.second == 1){\n                return i.first;\n            }\n        }\n        return -1;\n    }\n};"
   }
  },
  "activity": {
@@ -396,7 +404,8 @@
   "2026-10-13": 2,
   "2026-10-14": 1,
   "2026-10-15": 1,
-  "2026-10-16": 1
+  "2026-10-16": 1,
+  "2026-10-17": 1
  },
  "log": {
   "2026-09-23": [
@@ -663,6 +672,18 @@
     "id": "third-maximum-number",
     "a": "tricky",
     "t": 1792174153979
+   }
+  ],
+  "2026-10-17": [
+   {
+    "id": "single-number",
+    "a": "solved",
+    "t": 1792259625011
+   },
+   {
+    "id": "single-number",
+    "a": "tricky",
+    "t": 1792259628661
    }
   ]
  },

@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-16.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-17.
 
-24 active days so far.
+25 active days so far.
+
+### Saturday, 17 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [136. Single Number](https://leetcode.com/problems/single-number/) | LeetCode | Easy | Solved with help |
 
 ### Friday, 16 October 2026
 
