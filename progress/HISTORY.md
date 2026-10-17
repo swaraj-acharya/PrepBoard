@@ -6,11 +6,12 @@ Every day I solved or revised something, newest first. Tracked with Prepboard. U
 
 ### Saturday, 17 October 2026
 
-1 solved, 0 revised.
+2 solved, 0 revised.
 
 | Question | Platform | Level | What I did |
 |---|---|---|---|
 | [136. Single Number](https://leetcode.com/problems/single-number/) | LeetCode | Easy | Solved with help |
+| [169. Majority Element](https://leetcode.com/problems/majority-element/) | LeetCode | Easy | Solved |
 
 ### Friday, 16 October 2026
 
