@@ -386,6 +386,14 @@
    "solvedOn": "2026-10-17",
    "u": 1792260990407,
    "work": "class Solution {\npublic:\n    int majorityElement(vector<int>& nums) {\n        unordered_map<int, int>ustore;\n        for(int i = 0; i<nums.size(); i++){\n            ustore[nums[i]]++;\n        }\n        for(auto i : ustore){\n            if( i.second > (nums.size()/2)){\n                return i.first;\n            }\n        }\n        return 0;\n    }\n};"
+  },
+  "find-all-numbers-disappeared-in-an-array": {
+   "status": "solved",
+   "stage": 0,
+   "due": "2026-10-19",
+   "solvedOn": "2026-10-18",
+   "u": 1792262097385,
+   "work": "class Solution {\npublic:\n    vector<int> findDisappearedNumbers(vector<int>& nums) {\n        unordered_map<int, int>ust;\n        for(int i = 0; i<nums.size(); i++){\n            ust[nums[i]]++;\n        }\n        vector<int> ans;\n        for(int i = 1; i<=nums.size(); i++){\n            if(ust.find(i) == ust.end()){\n                ans.push_back(i);\n            }\n        }\n        return ans;\n    }\n};"
   }
  },
  "activity": {
@@ -413,7 +421,8 @@
   "2026-10-14": 1,
   "2026-10-15": 1,
   "2026-10-16": 1,
-  "2026-10-17": 2
+  "2026-10-17": 2,
+  "2026-10-18": 1
  },
  "log": {
   "2026-09-23": [
@@ -697,6 +706,13 @@
     "id": "majority-element",
     "a": "solved",
     "t": 1792260987589
+   }
+  ],
+  "2026-10-18": [
+   {
+    "id": "find-all-numbers-disappeared-in-an-array",
+    "a": "solved",
+    "t": 1792262092652
    }
   ]
  },

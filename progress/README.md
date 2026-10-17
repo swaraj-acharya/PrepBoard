@@ -1,29 +1,30 @@
 # My placement prep progress
 
-Tracked with Prepboard. Updated 2026-10-17.
+Tracked with Prepboard. Updated 2026-10-18.
 
 | | Solved |
 |---|---|
-| **Coding questions** | **48** of 2,500 goal |
-| LeetCode | 48 (Easy 45, Medium 3, Hard 0) |
+| **Coding questions** | **49** of 2,500 goal |
+| LeetCode | 49 (Easy 46, Medium 3, Hard 0) |
 | Codeforces | 0 |
 | CodeChef | 0 |
 | AtCoder | 0 |
-| DSA path | 48 of 456 |
+| DSA path | 49 of 456 |
 | System design | 0 |
 | CS subjects | 0 |
 
-Solved on my own (no hint, editorial or reference code): **37** of 48.
+Solved on my own (no hint, editorial or reference code): **38** of 49.
 
-Current streak: **26 days**.
+Current streak: **27 days**.
 
-Solution notebook: **48** questions with saved solutions (48 attempts), 44 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
+Solution notebook: **49** questions with saved solutions (49 attempts), 45 with an AI review. Each question's attempts and reviews are in [solutions/](solutions/).
 
 
 ## Last 14 days
 
 | Day | Solved or revised |
 |---|---|
+| 2026-10-18 | 1 |
 | 2026-10-17 | 2 |
 | 2026-10-16 | 1 |
 | 2026-10-15 | 1 |
@@ -37,11 +38,18 @@ Solution notebook: **48** questions with saved solutions (48 attempts), 44 with 
 | 2026-10-07 | 1 |
 | 2026-10-06 | 1 |
 | 2026-10-05 | 1 |
-| 2026-10-04 | 2 |
 
 ## History
 
 What I did on each of the last 7 active days. The full day-by-day list is in [HISTORY.md](HISTORY.md).
+
+### Sunday, 18 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) | LeetCode | Easy | Solved |
 
 ### Saturday, 17 October 2026
 
@@ -93,19 +101,11 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 |---|---|---|---|
 | [1431. Kids With the Greatest Number of Candies](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | LeetCode | Easy | Solved |
 
-### Sunday, 11 October 2026
-
-2 solved, 0 revised.
-
-| Question | Platform | Level | What I did |
-|---|---|---|---|
-| [1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/) | LeetCode | Easy | Solved |
-| [1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/) | LeetCode | Easy | Solved |
-
 ## Recently solved
 
 | Date | Question | Platform | Level | Status |
 |---|---|---|---|---|
+| 2026-10-18 | [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) | LeetCode | Easy | solved |
 | 2026-10-17 | [169. Majority Element](https://leetcode.com/problems/majority-element/) | LeetCode | Easy | solved |
 | 2026-10-17 | [136. Single Number](https://leetcode.com/problems/single-number/) | LeetCode | Easy | needs revision |
 | 2026-10-16 | [414. Third Maximum Number](https://leetcode.com/problems/third-maximum-number/) | LeetCode | Easy | needs revision |
@@ -135,4 +135,3 @@ What I did on each of the last 7 active days. The full day-by-day list is in [HI
 | 2026-09-28 | [2114. Maximum Number of Words Found in Sentences](https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/) | LeetCode | Easy | solved |
 | 2026-09-28 | [58. Length of Last Word](https://leetcode.com/problems/length-of-last-word/) | LeetCode | Easy | solved |
 | 2026-09-27 | [709. To Lower Case](https://leetcode.com/problems/to-lower-case/) | LeetCode | Easy | solved |
-| 2026-09-27 | [1108. Defanging an IP Address](https://leetcode.com/problems/defanging-an-ip-address/) | LeetCode | Easy | solved |

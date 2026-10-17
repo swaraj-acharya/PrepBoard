@@ -1,8 +1,16 @@
 # My prep history
 
-Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-17.
+Every day I solved or revised something, newest first. Tracked with Prepboard. Updated 2026-10-18.
 
-25 active days so far.
+26 active days so far.
+
+### Sunday, 18 October 2026
+
+1 solved, 0 revised.
+
+| Question | Platform | Level | What I did |
+|---|---|---|---|
+| [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) | LeetCode | Easy | Solved |
 
 ### Saturday, 17 October 2026
 
